@@ -1,19 +1,39 @@
 package Personajes;
 
-public class Personaje{
+public class Personaje extends BasePersonaje {
     private String nombre;
-    private Atacante rol;
+    private Roles rol;
 
-    public Personaje(String nombre, Atacante rol){
+    public Personaje(String nombre, int ps, int ataque, Roles rol) {
+        super(ps, ataque);
         this.nombre = nombre;
-        this.rol = rol;}
+        this.rol = rol;
+        switch (rol) {
+            case Atacante:
+                this.ps += 500;
+                this.ataque += 100;
+                break;
+            case Apoyo:
+                this.ps += 1000;
+                this.ataque += 25;
+                break;
+            case Sabotaje:
+                this.ps += 750;
+                this.ataque += 50;
+                break;
+            default:
+                throw new IllegalArgumentException("Rol no valido");}
+    }
+    public Roles getRol() {
+        return rol;
+    }
 
-    public Personaje(String nombre){
-        this.nombre = nombre;}
+    public String getNombre(){
+        return nombre;
+    }
 
-    public String getNombre() {return nombre;}
-    public Atacante getRol() {return rol;}
-
+    @Override
     public String toString() {
-        return nombre+" "+rol;}
+        return "Personaje nuevo: "+nombre;
+    }
 }

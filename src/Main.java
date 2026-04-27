@@ -1,28 +1,20 @@
-import Personajes.Atacante;
-import Personajes.Enemigo;
+import Personajes.GestionarPersonajes;
 import Personajes.Personaje;
-import Mecanicas.Combate;
+import Personajes.Roles;
 
-import java.util.Random;
-import java.util.Scanner;
+import java.util.ArrayList;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        Random random = new Random();
+        GestionarPersonajes gestor = new GestionarPersonajes();
+        Personaje pers1 = new Personaje("Tojita",300, 100, Roles.Atacante);
+        Personaje pers2 = new Personaje("Wonejo", 500, 20, Roles.Apoyo);
+        Personaje pers3 = new Personaje("Hervacio", 200, 50, Roles.Sabotaje);
 
-        Atacante atacante = new Atacante(100, 5, "Ninguno");
-        Personaje personaje = new Personaje("Tojita", atacante);
-        System.out.println(personaje+"\nPS: "+atacante.getPs()+"\nAtaque: "+atacante.getAtaque()+"\n");
+        gestor.agregar(pers1);
+        gestor.agregar(pers2);
+        gestor.agregar(pers3);
 
-        Enemigo enemigo = new Enemigo();
-        enemigo.setPs(1500);
-        enemigo.setAtaque(20);
-        System.out.println(enemigo+"\nPS: "+enemigo.getPs());
-
-        Combate combate = new Combate("Normal");
-
-        combate.IniciarCombate(personaje, enemigo);
+        gestor.mostrarPersonajes();
     }
 }
