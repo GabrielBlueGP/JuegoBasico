@@ -1,38 +1,74 @@
 package Mecanicas;
 
 import Personajes.Enemigo;
-import Personajes.BasePersonaje;
 import Personajes.Personaje;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Combate {
     private String modoCombate;
+    private int energia;
+    private Random random = new Random();
 
-    public Combate(String modoCombate) {
-        this.modoCombate = modoCombate;}
+    public Combate(String modoCombate){
+        this.modoCombate = modoCombate;
+    }
 
-    public void IniciarCombate(Personaje personaje, Enemigo enemigo) {
-        //Scanner control = new Scanner(System.in);
-        //System.out.println("Desea combatir (si / no): ");
-        //String opcion = control.nextLine();
-        //if (opcion.equals("Si") || opcion.equals("si")) {
-        //    while (personaje.getRol().getPs() > 0 && enemigo.getPs() > 0) {
-        //        System.out.println("Que vas a hacer?\n1) atacar\n 2) nada\nsu accion: ");
-        //        int accion = control.nextInt();
-        //        if (accion == 1) {
-        //            enemigo.setPs(enemigo.getPs() - personaje.getRol().getAtaque());
-        //            System.out.println("\nATACASTE!\n");
-        //        } else {
-        //            System.out.println("\nNo atacaste...\n");}
-        //        if (enemigo.getPs() > 0) {
-        //            personaje.getRol().setPs(personaje.getRol().getPs() - enemigo.getAtaque());}
-        //        }
-        //    System.out.println("Salud: " + personaje.getRol().getPs());
-        //    System.out.println("Salud rival: " + enemigo.getPs());
-        //} else if (opcion.equals("No") || opcion.equals("no")) {
-        //  System.out.println("No se realizara ningun combate");}
+    public void modoCombate(Personaje personaje, Enemigo enemigo) {
+        Scanner control = new Scanner(System.in);
+        System.out.print("¿Iniciar combate?\n-Si\n-No\nDecida: ");
+        String opcion = control.nextLine();
+        if(opcion.equals("No") || opcion.equals("no")){
+            System.out.println("No se realizo ningun combate");
+        } else {
+            if(opcion.equals("Si") || opcion.equals("si")){
+                System.out.println("\n¡¡¡COMENZO EL COMBATE!!!\n");
+                while(personaje.getPs() > 0 && enemigo.getPs() > 0){
+                    int danioEnemigo = random.nextInt(100)+ 1;
+                    System.out.print("¿Que vas a hacer?\n(1) Atacar\n(2) Reservar\nSu accion: ");
+                    String accion = control.nextLine();
+                    if(accion.equals("1")){
+                        int danioAdicional = 0;
+                        danioAdicional = danioEnergia();
+                        enemigo.setPs(enemigo.getPs() - (personaje.getAtaque() + danioAdicional));
+                        System.out.println("¡Atacaste!");
+                    } else {
+                        energia += 1;
+                        System.out.println("No se realizo ningún ataque...\nEnergia reservada: "+ energia);}
+                    if(danioEnemigo >= 1 || danioEnemigo <= 50){
+                        personaje.setPs(personaje.getPs() - enemigo.getAtaque());
+                        System.out.println("¡EL ENEMIGO A ACERTADO SU ATAQUE\n¡!HAS RECIBIDO DAÑO");
+                    } else {
+                        System.out.println("¡El enemigo fallo su ataque!");}
+                    System.out.println("Recuento de Salud:\n"+personaje.getNombre()+": "+personaje.getPs()+"\nEnemigo: "+enemigo.getPs());
 
+                    if(enemigo.getPs() <= 0){
+                        System.out.println("¡HAS DERROTADO AL ENEMIGO!");
+                    } else {
+                        if(personaje.getPs() <= 0){
+                            System.out.println("Te han derrotado...\nSuerta la proxima");
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public int danioEnergia(){
+        Scanner decidirEnergia = new Scanner(System.in);
+        if(this.energia >= 3){
+            System.out.print("\n¿Usar energia?\nSi)\nNo)\nDecidir:");
+            String usar = decidirEnergia.nextLine();
+            if(usar.equals("Si") || usar.equals("si")){
+                int danioAdicional = 50 * this.energia;
+                this.energia = 0;
+                System.out.println("\n!ENERGIA USADA¡\n ¡ATAQUE CARGADO!");
+                return danioAdicional;
+            } else if(usar.equals("No") || usar.equals("no")){
+                System.out.println("\nNo se utilizo la energia");}
+        }
+        return 0;
     }
 }
 

@@ -7,6 +7,8 @@ public class Enemigo extends BasePersonaje{
         super(ps, ataque);
     }
 
+
+
     @Override
     public String toString() {
         return "Se creo el enemigo";

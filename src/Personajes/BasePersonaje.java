@@ -13,7 +13,13 @@ public abstract class BasePersonaje{
         return ps;
     }
 
+    public void setPs(int ps) {
+        this.ps = ps;}
+
     public int getAtaque() {
         return ataque;
     }
+
+    public void setAtaque(int ataque) {
+        this.ataque = ataque;}
 }

@@ -1,3 +1,5 @@
+import Mecanicas.Combate;
+import Personajes.Enemigo;
 import Personajes.GestionarPersonajes;
 import Personajes.Personaje;
 import Personajes.Roles;
@@ -11,10 +13,14 @@ public class Main {
         Personaje pers2 = new Personaje("Wonejo", 500, 20, Roles.Apoyo);
         Personaje pers3 = new Personaje("Hervacio", 200, 50, Roles.Sabotaje);
 
+        Enemigo enemigo = new Enemigo(1000, 10);
+
         gestor.agregar(pers1);
         gestor.agregar(pers2);
         gestor.agregar(pers3);
 
-        gestor.mostrarPersonajes();
+        Combate combate = new Combate("Combatir");
+        combate.modoCombate(pers1, enemigo);
+
     }
 }
