@@ -32,17 +32,16 @@ public class Combate {
                         int danioAdicional = 0;
                         danioAdicional = danioEnergia();
                         enemigo.setPs(enemigo.getPs() - (personaje.getAtaque() + danioAdicional));
-                        System.out.println("¡Atacaste!");
+                        System.out.println("¡Atacaste! PS del enemigo: "+ enemigo.getPs());
                     } else {
-                        energia += 1;
-                        System.out.println("No se realizo ningún ataque...\nEnergia reservada: "+ energia);}
-                    if(danioEnemigo >= 1 || danioEnemigo <= 50){
+                        manejoEnergia();
+                        }
+                    if(danioEnemigo >= 1 && danioEnemigo <= 50){
                         personaje.setPs(personaje.getPs() - enemigo.getAtaque());
-                        System.out.println("¡EL ENEMIGO A ACERTADO SU ATAQUE\n¡!HAS RECIBIDO DAÑO");
+                        System.out.println("¡EL ENEMIGO A ACERTADO SU ATAQUE¡ PS de "+personaje.getNombre()+": "+ personaje.getPs());
                     } else {
                         System.out.println("¡El enemigo fallo su ataque!");}
-                    System.out.println("Recuento de Salud:\n"+personaje.getNombre()+": "+personaje.getPs()+"\nEnemigo: "+enemigo.getPs());
-
+                    System.out.println("");
                     if(enemigo.getPs() <= 0){
                         System.out.println("¡HAS DERROTADO AL ENEMIGO!");
                     } else {
@@ -58,18 +57,28 @@ public class Combate {
     public int danioEnergia(){
         Scanner decidirEnergia = new Scanner(System.in);
         if(this.energia >= 3){
-            System.out.print("\n¿Usar energia?\nSi)\nNo)\nDecidir:");
+            System.out.print("\n¿Usar energia?\nSi)\nNo)\nDecidir: ");
             String usar = decidirEnergia.nextLine();
             if(usar.equals("Si") || usar.equals("si")){
                 int danioAdicional = 50 * this.energia;
                 this.energia = 0;
-                System.out.println("\n!ENERGIA USADA¡\n ¡ATAQUE CARGADO!");
+                System.out.println("\n!ENERGIA USADA¡\n¡ATAQUE CARGADO!");
                 return danioAdicional;
             } else if(usar.equals("No") || usar.equals("no")){
                 System.out.println("\nNo se utilizo la energia");}
         }
         return 0;
     }
+
+    public void manejoEnergia(){
+        if(this.energia < 3){
+            this.energia += 1;
+            System.out.println("No se realizo ningún ataque...\nEnergia reservada: "+ energia);}
+        else{
+            System.out.println("No se puede acumular mas energia\nEnergia reservada: "+ energia);
+        }
+    }
+
 }
 
 
