@@ -3,10 +3,12 @@ package Personajes;
 public abstract class BasePersonaje{
     protected int ps;
     protected int ataque;
+    protected int precision;
 
-    public BasePersonaje(int ps, int ataque){
+    public BasePersonaje(int ps, int ataque, int precision){
         this.ps = ps;
         this.ataque = ataque;
+        this.precision = precision;
     }
 
     public int getPs() {
@@ -22,4 +24,9 @@ public abstract class BasePersonaje{
 
     public void setAtaque(int ataque) {
         this.ataque = ataque;}
+
+    public int getPrecision() {return precision;}
+
+    public void setPrecision(int precision) {
+        this.precision = precision;}
 }

@@ -4,9 +4,10 @@ public class Personaje extends BasePersonaje {
     private String nombre;
     private Roles rol;
 
-    public Personaje(String nombre, int ps, int ataque, Roles rol) {
-        super(ps, ataque);
+    public Personaje(String nombre, int ps, int ataque, int precision, Roles rol) {
+        super(ps, ataque, precision);
         this.nombre = nombre;
+        this.precision = precision;
         this.rol = rol;
         switch (rol) {
             case Atacante:

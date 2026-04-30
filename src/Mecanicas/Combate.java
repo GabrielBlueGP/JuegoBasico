@@ -37,7 +37,8 @@ public class Combate {
                             int danioAdicional = 0;
                             danioAdicional = danioEnergia();
                             enemigo.setPs(enemigo.getPs() - (personaje.getAtaque() + danioAdicional));
-                            System.out.println("¡Atacaste! PS del enemigo: "+ enemigo.getPs());
+                            int psEnemigo = controlPS(enemigo.getPs());
+                            System.out.println("¡Atacaste! PS del enemigo: "+ psEnemigo);
                             break;
                         case "2":
                             manejoEnergia();
@@ -57,7 +58,8 @@ public class Combate {
                     if(danioEnemigo >= 1 && danioEnemigo <= 50){
                         System.out.println("enemigo valor "+danioEnemigo);
                         personaje.setPs(personaje.getPs() - enemigo.getAtaque());
-                        System.out.println("¡EL ENEMIGO A ACERTADO SU ATAQUE¡ PS de "+personaje.getNombre()+": "+ personaje.getPs());
+                        int psJugador = controlPS(personaje.getPs());
+                        System.out.println("¡EL ENEMIGO A ACERTADO SU ATAQUE¡ PS de "+personaje.getNombre()+": "+ psJugador);
                     } else {
                         System.out.println("¡El enemigo fallo su ataque!");}
                     System.out.println("");
@@ -73,10 +75,16 @@ public class Combate {
         }
     }
 
-
+    public int controlPS(int ps){
+        if(ps < 0){
+            ps = 0;
+            return ps;
+        }
+        return ps;
+    }
 
     public void manejoEnergia(){
-        if(this.energia < 3){
+        if(this.energia < 6){
             this.energia += 1;
             System.out.println("No se realizo ningún ataque...\nEnergia reservada: "+ energia);}
         else{
