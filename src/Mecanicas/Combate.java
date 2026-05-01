@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Combate {
     private String modoCombate;
-    private int energia;
+    private Energia energia = new Energia();
     private int danioHabilidad;
     private Random random = new Random();
 
@@ -17,10 +17,9 @@ public class Combate {
         this.modoCombate = modoCombate;
     }
 
-    public void modoCombate(Personaje personaje, Enemigo enemigo) {
+    public void modoCombate(Personaje personaje, Enemigo enemigo, Scanner control) {
         int perMaxPs = personaje.getPs();
         int eneMaxPs = enemigo.getPs();
-        Scanner control = new Scanner(System.in);
         System.out.print("¿Iniciar combate?\n-Si\n-No\nDecida: ");
         String opcion = control.nextLine();
         if(opcion.equals("No") || opcion.equals("no")){
@@ -35,13 +34,15 @@ public class Combate {
                     switch (accion){
                         case "1":
                             int danioAdicional = 0;
-                            danioAdicional = danioEnergia();
-                            enemigo.setPs(enemigo.getPs() - (personaje.getAtaque() + danioAdicional));
-                            int psEnemigo = controlPS(enemigo.getPs());
-                            System.out.println("¡Atacaste! PS del enemigo: "+ psEnemigo);
+                            if(energia.verificarEnergia()){
+                                System.out.print("\n¿Usar energia?\nSi)\nNo)\nDecidir: ");
+                                String usar = control.nextLine();
+                                danioAdicional = energia.aumentaDanio(usar);}
+                            enemigo.setPs(controlPS(enemigo.getPs() - (personaje.getAtaque() + danioAdicional)));
+                            System.out.println("¡Atacaste! PS del enemigo: "+ enemigo.getPs());
                             break;
                         case "2":
-                            manejoEnergia();
+                            energia.manejoEnergia();
                             break;
 
                         case "3":
@@ -52,27 +53,34 @@ public class Combate {
                             break;
                         default:
                             System.out.println("Accion no reconocida...\nSe contara como Reservar");
-                            manejoEnergia();
+                            energia.manejoEnergia();
                             break;
                     }
                     if(danioEnemigo >= 1 && danioEnemigo <= 50){
-                        System.out.println("enemigo valor "+danioEnemigo);
-                        personaje.setPs(personaje.getPs() - enemigo.getAtaque());
-                        int psJugador = controlPS(personaje.getPs());
-                        System.out.println("¡EL ENEMIGO A ACERTADO SU ATAQUE¡ PS de "+personaje.getNombre()+": "+ psJugador);
+                        personaje.setPs(controlPS(personaje.getPs() - enemigo.getAtaque()));
+                        System.out.println("¡EL ENEMIGO A ACERTADO SU ATAQUE¡ PS de "+personaje.getNombre()+": "+ personaje.getPs());
                     } else {
                         System.out.println("¡El enemigo fallo su ataque!");}
                     System.out.println("");
-                    if(enemigo.getPs() <= 0){
-                        System.out.println("¡HAS DERROTADO AL ENEMIGO!");
-                    } else {
-                        if(personaje.getPs() <= 0){
-                            System.out.println("Te han derrotado...\nSuerta la proxima");
-                        }
+                }
+                if(enemigo.getPs() == 0){
+                    personaje.setPs(reseatPS(perMaxPs));
+                    enemigo.setPs(reseatPS(eneMaxPs));
+                    System.out.println("¡HAS DERROTADO AL ENEMIGO!");
+                } else {
+                    if(personaje.getPs() == 0){
+                        personaje.setPs(reseatPS(perMaxPs));
+                        enemigo.setPs(reseatPS(eneMaxPs));
+                        System.out.println("Te han derrotado...\nSuerta la proxima");
                     }
                 }
             }
         }
+        System.out.println("\nSaliendo del modo combate...\n");
+    }
+
+    public void ataqueJugador(){
+
     }
 
     public int controlPS(int ps){
@@ -83,36 +91,15 @@ public class Combate {
         return ps;
     }
 
-    public void manejoEnergia(){
-        if(this.energia < 6){
-            this.energia += 1;
-            System.out.println("No se realizo ningún ataque...\nEnergia reservada: "+ energia);}
-        else{
-            System.out.println("No se puede acumular mas energia\nEnergia reservada: "+ energia);
-        }
-    }
-
-    public int danioEnergia(){
-        Scanner decidirEnergia = new Scanner(System.in);
-        if(this.energia >= 3){
-            System.out.print("\n¿Usar energia?\nSi)\nNo)\nDecidir: ");
-            String usar = decidirEnergia.nextLine();
-            if(usar.equals("Si") || usar.equals("si")){
-                int danioAdicional = 50 * this.energia;
-                this.energia = 0;
-                System.out.println("\n!ENERGIA USADA¡\n¡ATAQUE CARGADO!");
-                return danioAdicional;
-            } else if(usar.equals("No") || usar.equals("no")){
-                System.out.println("\nNo se utilizo la energia");}
-        }
-        return 0;
-    }
-
     public int curarse(int ps, int psMax, int cura) {
         if ((ps + cura) <= psMax) {
             return cura;}
         cura = psMax - ps;
         return cura;
+    }
+
+    public int reseatPS(int maxPS){
+        return maxPS;
     }
 
 }
