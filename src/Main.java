@@ -19,7 +19,7 @@ public class Main {
         Personaje pers3 = new Personaje("Hervacio", 200, 50, 100, Roles.Sabotaje);
         Personaje pers4 = new Personaje("Anthony", 400, 70, 100, Roles.Atacante);
 
-        Enemigo enemigo = new Enemigo(100, 50, 100);
+        Enemigo enemigo = new Enemigo(1000, 50, 50);
 
         gestor.agregar(pers1);
         gestor.agregar(pers2);
@@ -41,6 +41,7 @@ public class Main {
                     combate.modoCombate(pers1, enemigo, menu);
                     break;
                 case "D":
+                    TextosMenu.salirDelPrograma();
                     juegoActivo = false;
                     break;
                 default:

@@ -10,6 +10,8 @@ import java.util.Scanner;
 public class Combate {
     private String modoCombate;
     private Energia energia = new Energia();
+    private Habilidades habiliadd = new Habilidades();
+    private EntornosPosibles entorno;
     private int danioHabilidad;
     private Random random = new Random();
 
@@ -20,6 +22,7 @@ public class Combate {
     public void modoCombate(Personaje personaje, Enemigo enemigo, Scanner control) {
         int perMaxPs = personaje.getPs();
         int eneMaxPs = enemigo.getPs();
+        entorno = EntornosPosibles.Normal;
         System.out.print("¿Iniciar combate?\n-Si\n-No\nDecida: ");
         String opcion = control.nextLine();
         if(opcion.equals("No") || opcion.equals("no")){
@@ -28,8 +31,8 @@ public class Combate {
             if(opcion.equals("Si") || opcion.equals("si")){
                 System.out.println("\n¡¡¡COMENZO EL COMBATE!!!\n");
                 while(personaje.getPs() > 0 && enemigo.getPs() > 0){
-                    int danioEnemigo = random.nextInt(100)+ 1;
-                    System.out.print("¿Que vas a hacer?\n(1) Atacar\n(2) Reservar\n(3) Curarse\nSu accion: ");
+                    int precisionEnemigo = random.nextInt(100)+ 1;
+                    System.out.print("¿Que vas a hacer?\n(1) Atacar\n(2) Reservar\n(3) Curarse\n(4) Habilidad\nSu accion: ");
                     String accion = control.nextLine();
                     switch (accion){
                         case "1":
@@ -39,7 +42,7 @@ public class Combate {
                                 String usar = control.nextLine();
                                 danioAdicional = energia.aumentaDanio(usar);}
                             enemigo.setPs(controlPS(enemigo.getPs() - (personaje.getAtaque() + danioAdicional)));
-                            System.out.println("¡Atacaste! PS del enemigo: "+ enemigo.getPs());
+                            System.out.println("¡Atacaste! PS del enemigo: "+ enemigo.getPs()+"\nataque de jugador: "+personaje.getAtaque());
                             break;
                         case "2":
                             energia.manejoEnergia();
@@ -51,16 +54,15 @@ public class Combate {
                             personaje.setPs(personaje.getPs() + curacion);
                             System.out.println("¡Te curaste! Ps recuperados: "+curacion+" PS de "+personaje.getNombre()+": "+ personaje.getPs());
                             break;
+                        case "4":
+                            int activarHabilidad = habiliadd.superdanio(personaje, energia);
+                            break;
                         default:
                             System.out.println("Accion no reconocida...\nSe contara como Reservar");
                             energia.manejoEnergia();
                             break;
                     }
-                    if(danioEnemigo >= 1 && danioEnemigo <= 50){
-                        personaje.setPs(controlPS(personaje.getPs() - enemigo.getAtaque()));
-                        System.out.println("¡EL ENEMIGO A ACERTADO SU ATAQUE¡ PS de "+personaje.getNombre()+": "+ personaje.getPs());
-                    } else {
-                        System.out.println("¡El enemigo fallo su ataque!");}
+                    ataqueEnemigo(precisionEnemigo, personaje, enemigo);
                     System.out.println("");
                 }
                 if(enemigo.getPs() == 0){
@@ -79,8 +81,20 @@ public class Combate {
         System.out.println("\nSaliendo del modo combate...\n");
     }
 
-    public void ataqueJugador(){
+    public void precisionEnemigo(int precision, Personaje personaje, Enemigo enemigo){
+        System.out.println("Precision del enemigo: "+enemigo.getPrecision()+" Random: "+precision);
+        if(precision >= 1 && precision <= enemigo.getPrecision()){
+            personaje.setPs(controlPS(personaje.getPs() - enemigo.getAtaque()));
+            System.out.println("¡EL ENEMIGO A ACERTADO SU ATAQUE¡ PS de "+personaje.getNombre()+": "+ personaje.getPs());
+        } else {
+            System.out.println("¡El enemigo fallo su ataque!");}
+    }
 
+    public boolean ataqueEnemigo(int precision, Personaje personaje, Enemigo enemigo){
+        if(enemigo.getPs() != 0){
+            precisionEnemigo(precision, personaje, enemigo);
+       }
+        return false;
     }
 
     public int controlPS(int ps){
@@ -102,6 +116,28 @@ public class Combate {
         return maxPS;
     }
 
+    public int entornoAgresivo(){
+        int danioAgresivo = 1;
+        return danioAgresivo;
+    }
+
+    public void accionEntornos(EntornosPosibles entorno){
+        switch (entorno){
+            case Normal:
+                System.out.println("El campo de batalla se encuentra normal");
+                break;
+            case Temblor:
+                System.out.println("El campo de batalla esta temblando...\nLos ataques pueden llegar a fallar mas seguido");
+                break;
+            case Agresivo:
+                System.out.println("El campo de batalla esta sumergido en una niebla agresiva...\nLos ataques de todos haran un 10% mas daño");
+                entorno = EntornosPosibles.Agresivo;
+                break;
+            case Sanador:
+                System.out.println("El campo de batalla esta sumergido en un aura sanadora...\nLos ataques que acierten recuperan un 10% de los PS");
+                break;
+        }
+    }
 }
 
 
