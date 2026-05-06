@@ -2,7 +2,7 @@ import Mecanicas.Combate;
 import Personajes.Enemigo;
 import Personajes.GestionarPersonajes;
 import Personajes.Personaje;
-import Personajes.Roles;
+import EnumsUsados.Roles;
 import UsosDeMenu.TextosMenu;
 
 import java.util.Scanner;

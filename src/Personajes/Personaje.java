@@ -1,5 +1,7 @@
 package Personajes;
 
+import EnumsUsados.Roles;
+
 public class Personaje extends BasePersonaje {
     private String nombre;
     private Roles rol;

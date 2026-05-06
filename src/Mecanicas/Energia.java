@@ -1,7 +1,5 @@
 package Mecanicas;
 
-import java.util.Scanner;
-
 public class Energia {
     private int energia;
 
@@ -12,9 +10,9 @@ public class Energia {
     public void manejoEnergia(){
         if(this.energia < 6){
             this.energia += 1;
-            System.out.println("No se realizo ningún ataque...\nEnergia reservada: "+ energia);}
+            System.out.println("Con calma, se ha reservado...\nReserva de energia: "+ energia);}
         else{
-            System.out.println("No se puede acumular mas energia\nEnergia reservada: "+ energia);
+            System.out.println("Has llegado al limite para reservar...\nReserva de energia: "+ energia);
         }
     }
 
@@ -25,15 +23,10 @@ public class Energia {
         return false;
     }
 
-    public int aumentaDanio(String usar){
-        if(usar.equals("Si") || usar.equals("si")){
-            int danioAdicional = 50 * this.energia;
-            this.energia = 0;
-            System.out.println("\n!ENERGIA USADA¡\n¡ATAQUE CARGADO!");
-            return danioAdicional;
-        } else if(usar.equals("No") || usar.equals("no")){
-            System.out.println("\nNo se utilizo la energia");}
-        return 0;
+    public int aumentaDanio(){
+        int danioAdicional = 50 * this.energia;
+        this.energia = 0;
+        return danioAdicional;
     }
 
     public int getEnergia() {return energia;}
