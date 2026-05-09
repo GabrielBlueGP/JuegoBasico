@@ -1,13 +1,14 @@
-package Personajes;
+package ConfigurarPersonajes;
 
-import EnumsUsados.Roles;
+import Enums.PosEstados;
+import Enums.Roles;
 
 public class Personaje extends BasePersonaje {
     private String nombre;
     private Roles rol;
 
-    public Personaje(String nombre, int ps, int ataque, int precision, Roles rol) {
-        super(ps, ataque, precision);
+    public Personaje(String nombre, int ps, int ataque, int precision, PosEstados estado, Roles rol, String apodo) {
+        super(ps, ataque, precision, estado, apodo);
         this.nombre = nombre;
         this.precision = precision;
         this.rol = rol;

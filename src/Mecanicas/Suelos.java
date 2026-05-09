@@ -1,6 +1,6 @@
 package Mecanicas;
 
-import EnumsUsados.SuelosPosibles;
+import Enums.SuelosPosibles;
 
 public class Suelos {
     private SuelosPosibles suelo;

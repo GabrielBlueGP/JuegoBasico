@@ -1,7 +1,7 @@
 package Mecanicas;
 
-import Personajes.Enemigo;
-import Personajes.Personaje;
+import ConfigurarPersonajes.Enemigo;
+import ConfigurarPersonajes.Personaje;
 
 import java.util.Random;
 
@@ -44,7 +44,6 @@ public class SistemaCombate {
     }
 
     public void precisionJugador(Personaje personaje, Enemigo enemigo, int precision){
-        System.out.println("Precision del usuario: "+personaje.getPrecision()+" Random: "+precision);
         if(precision >= 1 && precision <= personaje.getPrecision()){
             restarPsEnemigo(personaje, enemigo);
         } else {
@@ -64,7 +63,6 @@ public class SistemaCombate {
 
     public void precisionEnemigo(Personaje personaje, Enemigo enemigo){
         int precision = random.nextInt(100)+ 1;
-        System.out.println("Precision del enemigo: "+enemigo.getPrecision()+" Random: "+precision);
         if(precision >= 1 && precision <= enemigo.getPrecision()){
             restarPsJugador(enemigo, personaje);
         } else {

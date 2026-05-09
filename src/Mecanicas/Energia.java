@@ -23,9 +23,18 @@ public class Energia {
         return false;
     }
 
+    public void reseteoEnergia(){
+        this.energia = 0;
+    }
+
+    public void restarEnergia(int energia){
+        int resEnergia = 5;
+        this.energia = energia - resEnergia;
+    }
+
     public int aumentaDanio(){
         int danioAdicional = 50 * this.energia;
-        this.energia = 0;
+        reseteoEnergia();
         return danioAdicional;
     }
 

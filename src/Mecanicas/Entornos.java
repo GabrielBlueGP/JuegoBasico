@@ -1,6 +1,6 @@
 package Mecanicas;
 
-import EnumsUsados.EntornosPosibles;
+import Enums.EntornosPosibles;
 
 public class Entornos {
     private EntornosPosibles campoBatalla;

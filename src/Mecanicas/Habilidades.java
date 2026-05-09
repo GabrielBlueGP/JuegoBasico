@@ -1,10 +1,10 @@
 package Mecanicas;
 
-import EnumsUsados.Roles;
-import Personajes.Personaje;
+import ConfigurarPersonajes.Enemigo;
+import ConfigurarPersonajes.Personaje;
 
 public class Habilidades {
-    private Roles rol;
+
     private Energia energia;
     private int danioHabilidad;
 
@@ -15,9 +15,18 @@ public class Habilidades {
         return danioAgresivo;
     }
 
-    public int superdanio(Personaje personaje, Energia energia){
-        int ataqueHabilidad = personaje.getAtaque() + 500;
-        energia.setEnergia(0);
+    public int superDanio(Personaje personaje, Enemigo enemigo, Energia energia, int enerhab){
+        int ataqueHabilidad = 500;
+        energia.restarEnergia(enerhab);
+        enemigo.setPs(personaje.getAtaque());
         return ataqueHabilidad;
+    }
+
+    public void curacion(Personaje personaje, Energia energia, int enerhab, int psMax){
+        int curaBase = 100;
+        int cura = curaBase;
+        energia.restarEnergia(enerhab);
+        personaje.setPs(personaje.getPs() + cura);
+        System.out.println("¡Te curaste! Ps recuperados: "+cura+" PS de "+personaje.getNombre()+": "+ personaje.getPs());
     }
 }

@@ -1,4 +1,4 @@
-package EnumsUsados;
+package Enums;
 
 public enum SuelosPosibles {
     Normal, Puas
