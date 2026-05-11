@@ -1,10 +1,10 @@
 import Enums.PosEstados;
-import Mecanicas.Combate;
+import Mecanicas.CombateMenus;
 import ConfigurarPersonajes.Enemigo;
 import ConfigurarPersonajes.GestionarPersonajes;
 import ConfigurarPersonajes.Personaje;
 import Enums.Roles;
-import UsosDeMenu.TextosMenu;
+import UsosDeMenu.TextosUsados;
 
 import java.util.Scanner;
 
@@ -13,14 +13,14 @@ public class Main {
         Scanner menu = new Scanner(System.in);
         Boolean juegoActivo = true;
         String menuOpciones;
-        Combate combate = new Combate("Combatir");
+        CombateMenus combate = new CombateMenus("Combatir");
         GestionarPersonajes gestor = new GestionarPersonajes();
         Personaje pers1 = new Personaje("Tojita",300, 100, 100, PosEstados.Normal, Roles.Atacante, "El colorista desquiciado");
         Personaje pers2 = new Personaje("Wonejo", 500, 20, 100, PosEstados.Normal, Roles.Apoyo, "El conejo dragon");
         Personaje pers3 = new Personaje("Hervacio", 200, 50, 100, PosEstados.Normal, Roles.Sabotaje, "El artesano misterioso");
         Personaje pers4 = new Personaje("Anthony", 400, 70, 100, PosEstados.Normal, Roles.Atacante, "El carnero abismal");
 
-        Enemigo enemigo = new Enemigo(1000, 50, 50, PosEstados.Normal, "");
+        Enemigo enemigo = new Enemigo(5000, 10, 50, PosEstados.Normal, "");
 
         gestor.agregar(pers1);
         gestor.agregar(pers2);
@@ -33,10 +33,10 @@ public class Main {
             menuOpciones = menu.nextLine();
             switch (menuOpciones){
                 case "A":
-                    TextosMenu.descripcion();
+                    TextosUsados.descripcion();
                     break;
                 case "B":
-                    TextosMenu.reglas();
+                    TextosUsados.reglas();
                     break;
                 case "C":
                     combate.modoCombate(pers1, enemigo, menu);
@@ -45,11 +45,11 @@ public class Main {
                     gestor.mostrarPersonajesStats();
                     break;
                 case "E":
-                    TextosMenu.salirDelPrograma();
+                    TextosUsados.salirDelPrograma();
                     juegoActivo = false;
                     break;
                 default:
-                    TextosMenu.opcionNoReconocida();
+                    TextosUsados.opcionNoReconocida();
                     break;
             }
         }

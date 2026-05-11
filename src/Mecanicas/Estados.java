@@ -1,6 +1,7 @@
 package Mecanicas;
 
 import ConfigurarPersonajes.Personaje;
+import Enums.PosEstados;
 
 public class Estados {
 
@@ -18,5 +19,11 @@ public class Estados {
                 break;
         }
 
+    }
+
+    public boolean estadoEntumecido(Personaje personaje){
+        if(personaje.getEstado() == PosEstados.Entumecido){
+            return true;}
+        return false;
     }
 }

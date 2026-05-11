@@ -29,4 +29,12 @@ public class Habilidades {
         personaje.setPs(personaje.getPs() + cura);
         System.out.println("¡Te curaste! Ps recuperados: "+cura+" PS de "+personaje.getNombre()+": "+ personaje.getPs());
     }
+
+    //Viendo donde utilizar
+    public int verificarCura(int ps, int psMax, int cura) {
+        if ((ps + cura) <= psMax) {
+            return cura;}
+        cura = psMax - ps;
+        return cura;
+    }
 }
