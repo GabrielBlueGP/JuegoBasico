@@ -22,6 +22,7 @@ public class CombateMenus {
     }
 
     public void modoCombate(Personaje personaje, Enemigo enemigo, Scanner control) {
+        modComb.setTurnos(1);
         boolean activo = true;
         while (activo){
             System.out.println("\nSeleccione el modo de combate:");
@@ -30,7 +31,7 @@ public class CombateMenus {
             switch (opcion){
                 case "1" :
                     System.out.println("\nModo 1vs1 seleccionado\n");
-                    combateNormal(personaje, enemigo, control);
+                    combateUnoVSUno(personaje, enemigo, control);
                     break;
                 case "2":
                     System.out.println("\nModo Contra-reloj seleccionado\n");
@@ -48,16 +49,16 @@ public class CombateMenus {
     }
 
 
-    public void combateNormal(Personaje personaje, Enemigo enemigo, Scanner control){
+    public void combateUnoVSUno(Personaje personaje, Enemigo enemigo, Scanner control){
         turnos = 1;
         int perMaxPs = personaje.getPs();
         int eneMaxPs = enemigo.getPs();
         System.out.println("############################################################################");
         System.out.println("\n¡¡¡COMENZO EL COMBATE!!!\n");
         while(personaje.getPs() > 0 && enemigo.getPs() > 0){
-             modComb.menuUnoVSUno(personaje, enemigo, energia, sist, hab, turnos, control);
-             turnos++;
+             modComb.unoVSUno(personaje, enemigo, energia, sist, hab, control);
         }
+        modComb.setTurnos(0);
         personaje.setPs(sist.reseatPS(perMaxPs));
         enemigo.setPs(sist.reseatPS(eneMaxPs));
         System.out.println("############################################################################");
@@ -65,24 +66,14 @@ public class CombateMenus {
     }
 
     public void combateContraReloj(Personaje personaje, Enemigo enemigo, Scanner control){
-        turnos = 1;
-        int limiteTurnos = 20;
         int perMaxPs = personaje.getPs();
         int eneMaxPs = enemigo.getPs();
         System.out.println("############################################################################");
         System.out.println("\n¡¡¡COMENZO EL COMBATE CONTRA EL TIEMPO!!!\n");
-        while(personaje.getPs() > 0 && enemigo.getPs() > 0){
-            modComb.modoContraReloj(personaje, enemigo, energia, sist, hab, turnos, control);
-            turnos++;
+        while(modComb.getTurnos() <= modComb.getLimiteTurnos() && (personaje.getPs() > 0 && enemigo.getPs() > 0)){
+            modComb.contraReloj(personaje, enemigo, energia, sist, hab,  control);
         }
-
-        if(turnos == limiteTurnos || (personaje.getPs() > 0 && enemigo.getPs() > 0)){
-            System.out.println("\n¡¡¡SE ACABO EL TIEMPO!!!\n\nResultados:");
-            System.out.println("\tPS del jugador: "+personaje.getPs());
-            System.out.println("\tPS del jugador: "+enemigo.getPs());
-        } else {
-            modComb.verificarGanador(personaje, enemigo);
-        }
+        modComb.finContraReloj(personaje, enemigo);
         personaje.setPs(sist.reseatPS(perMaxPs));
         enemigo.setPs(sist.reseatPS(eneMaxPs));
         System.out.println("############################################################################");

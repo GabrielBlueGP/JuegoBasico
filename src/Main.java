@@ -20,7 +20,7 @@ public class Main {
         Personaje pers3 = new Personaje("Hervacio", 200, 50, 100, PosEstados.Normal, Roles.Sabotaje, "El artesano misterioso");
         Personaje pers4 = new Personaje("Anthony", 400, 70, 100, PosEstados.Normal, Roles.Atacante, "El carnero abismal");
 
-        Enemigo enemigo = new Enemigo(5000, 10, 50, PosEstados.Normal, "");
+        Enemigo enemigo = new Enemigo(2000, 10, 50, PosEstados.Normal, "");
 
         gestor.agregar(pers1);
         gestor.agregar(pers2);
