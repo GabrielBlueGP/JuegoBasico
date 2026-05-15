@@ -18,8 +18,7 @@ public class Habilidades {
 
     public void curacion(Personaje personaje, Energia energia, int enerhab, int psMax){
         this.id = 2;
-        int curaBase = 100;
-        int cura = curaBase;
+        int cura = (personaje.getPsMaximo() * 20) / 100;
         energia.restarEnergia(enerhab);
         personaje.setPs(personaje.getPs() + cura);
         System.out.println("¡Te curaste! Ps recuperados: "+cura+" PS de "+personaje.getNombre()+": "+ personaje.getPs());

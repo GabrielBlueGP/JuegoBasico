@@ -52,4 +52,16 @@ public abstract class BasePersonaje{
 
     public void setEstado(PosEstados estado) {
         this.estado = estado;}
+
+    public void controlPS(){
+        if(getPs() < 0){
+            setPs(0);
+        }
+    }
+
+    public void verificarCura(int cura) {
+        if ((getPs() + cura) <= getPsMaximo()) {
+            setPs(getPs() + cura);
+        } else {setPs(getPsMaximo());}
+        }
 }
