@@ -4,6 +4,7 @@ import Enums.PosEstados;
 
 public abstract class BasePersonaje{
     protected int ps;
+    protected int psMaximo;
     protected int ataque;
     protected int precision;
     protected String apodo;
@@ -11,6 +12,7 @@ public abstract class BasePersonaje{
 
     public BasePersonaje(int ps, int ataque, int precision, PosEstados estado, String apodo){
         this.ps = ps;
+        this.psMaximo = ps;
         this.ataque = ataque;
         this.precision = precision;
         this.estado = estado;
@@ -23,6 +25,11 @@ public abstract class BasePersonaje{
 
     public void setPs(int ps) {
         this.ps = ps;}
+
+    public int getPsMaximo() {return psMaximo;}
+
+    public void setPsMaximo(int psMaximo) {
+        this.psMaximo = psMaximo;}
 
     public int getAtaque() {
         return ataque;

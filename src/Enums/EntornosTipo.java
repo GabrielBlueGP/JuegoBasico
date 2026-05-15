@@ -1,5 +1,5 @@
 package Enums;
 
-public enum EntornosPosibles {
+public enum EntornosTipo {
     Normal, Temblor, Agresivo, Sanador;
 }

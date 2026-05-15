@@ -1,27 +1,28 @@
 package Mecanicas;
 
-import Enums.EntornosPosibles;
+import Enums.EntornosTipo;
 import ConfigurarPersonajes.Enemigo;
 import ConfigurarPersonajes.Personaje;
-import Mecanicas.ModosDeCombate.ModosDeCombate;
+import Mecanicas.ModosDeCombate.ModosDJuego;
 
 import java.util.Scanner;
 
 public class CombateMenus {
-    private int turnos;
+    private Energia ener;
+    private Habilidades hab;
+    private SistemaCombate sist;
+    private Entornos ento;
+    private ModosDJuego modComb;
 
-    private SistemaCombate sist = new SistemaCombate();
-    private String modoCombate;
-    private Energia energia = new Energia();
-    private Habilidades hab = new Habilidades();
-    private EntornosPosibles entorno = EntornosPosibles.Normal;
-    private ModosDeCombate modComb = new ModosDeCombate();
-
-    public CombateMenus(String modoCombate){
-        this.modoCombate = modoCombate;
+    public CombateMenus(){
+        this.ener = new Energia();
+        this.hab = new Habilidades();
+        this.ento = new Entornos(EntornosTipo.Normal);
+        this.sist = new SistemaCombate(ener, hab, ento);
+        this.modComb = new ModosDJuego(sist);
     }
 
-    public void modoCombate(Personaje personaje, Enemigo enemigo, Scanner control) {
+    public void menuModos(Personaje personaje, Enemigo enemigo, Scanner control) {
         modComb.setTurnos(1);
         boolean activo = true;
         while (activo){
@@ -50,32 +51,27 @@ public class CombateMenus {
 
 
     public void combateUnoVSUno(Personaje personaje, Enemigo enemigo, Scanner control){
-        turnos = 1;
-        int perMaxPs = personaje.getPs();
-        int eneMaxPs = enemigo.getPs();
         System.out.println("############################################################################");
         System.out.println("\n¡¡¡COMENZO EL COMBATE!!!\n");
         while(personaje.getPs() > 0 && enemigo.getPs() > 0){
-             modComb.unoVSUno(personaje, enemigo, energia, sist, hab, control);
+             modComb.unoVSUno(personaje, enemigo, control);
         }
         modComb.setTurnos(0);
-        personaje.setPs(sist.reseatPS(perMaxPs));
-        enemigo.setPs(sist.reseatPS(eneMaxPs));
+        personaje.setPs(personaje.getPsMaximo());
+        enemigo.setPs(enemigo.getPsMaximo());
         System.out.println("############################################################################");
 
     }
 
     public void combateContraReloj(Personaje personaje, Enemigo enemigo, Scanner control){
-        int perMaxPs = personaje.getPs();
-        int eneMaxPs = enemigo.getPs();
         System.out.println("############################################################################");
         System.out.println("\n¡¡¡COMENZO EL COMBATE CONTRA EL TIEMPO!!!\n");
         while(modComb.getTurnos() <= modComb.getLimiteTurnos() && (personaje.getPs() > 0 && enemigo.getPs() > 0)){
-            modComb.contraReloj(personaje, enemigo, energia, sist, hab,  control);
+            modComb.contraReloj(personaje, enemigo, control);
         }
         modComb.finContraReloj(personaje, enemigo);
-        personaje.setPs(sist.reseatPS(perMaxPs));
-        enemigo.setPs(sist.reseatPS(eneMaxPs));
+        personaje.setPs(personaje.getPsMaximo());
+        enemigo.setPs(enemigo.getPsMaximo());
         System.out.println("############################################################################");
     }
 }

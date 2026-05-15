@@ -1,5 +1,5 @@
 package Enums;
 
 public enum SuelosPosibles {
-    Normal, Puas
+    Normal, Puas, Toxico, Resiliente
 }

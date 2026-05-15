@@ -1,21 +1,41 @@
 package Mecanicas;
 
-import Enums.EntornosPosibles;
+import ConfigurarPersonajes.Enemigo;
+import ConfigurarPersonajes.Personaje;
+import Enums.EntornosTipo;
+
+import java.util.Random;
 
 public class Entornos {
-    private EntornosPosibles campoBatalla;
+    private EntornosTipo entor;
+    private Random random = new Random();
 
-    public Entornos(EntornosPosibles campoBatalla){
-        this.campoBatalla = campoBatalla;
+    public Entornos(EntornosTipo entor){
+        this.entor = EntornosTipo.Normal;
     }
 
-    public EntornosPosibles getCampoBatalla() {
-        return campoBatalla;}
+    public EntornosTipo getEntor() {
+        return entor;}
 
-    public void setCampoBatalla(EntornosPosibles campoBatalla) {
-        this.campoBatalla = campoBatalla;}
+    public void setEntor(EntornosTipo entor) {
+        this.entor = entor;}
 
-    public void accionEntornos(EntornosPosibles entorno){
+    public int accionAgresivo(int ataque){
+        if(entor == EntornosTipo.Agresivo){
+            ataque += (ataque * 15) / 100;
+        }
+        return ataque;
+    }
+
+    public int accionTemblor(){
+        int modi = 0;
+        if(entor == EntornosTipo.Temblor){
+            modi = random.nextInt(20)+1;
+        }
+        return modi;
+    }
+
+    public void accionEntornos(EntornosTipo entorno){
         switch (entorno){
             case Normal:
                 System.out.println("El campo de batalla se encuentra normal");
@@ -25,7 +45,7 @@ public class Entornos {
                 break;
             case Agresivo:
                 System.out.println("El campo de batalla esta sumergido en una niebla agresiva...\nLos ataques de todos haran un 10% mas daño");
-                entorno = EntornosPosibles.Agresivo;
+                entorno = EntornosTipo.Agresivo;
                 break;
             case Sanador:
                 System.out.println("El campo de batalla esta sumergido en un aura sanadora...\nLos ataques que acierten recuperan un 10% de los PS");

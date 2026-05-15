@@ -32,10 +32,10 @@ public class TextosUsados {
         System.out.println("Estados:");
         System.out.println("\n-Definen la condicion fisica del jugador y el enemigo\n-Puede ser cambiada por habilidades u efectos");
         System.out.println("\n-Hay 4 tipos:");
-        System.out.println("\tNormal\nEs el estado base y sin efecto");
-        System.out.println("\tEntumecido\nEl afectado no puede realizar ninguna accion durante cierta cantidad de turnos");
-        System.out.println("\tEnvenenado\nQuita una parte de la salud del afectado y reduce las habilidades curativas en un 30%");
-        System.out.println("\tSencible\nEl afectado recibe el doble de daño del siguiente tipo:");
+        System.out.println("\t-Normal\nEs el estado base y sin efecto");
+        System.out.println("\t-Entumecido\nEl afectado no puede realizar ninguna accion durante cierta cantidad de turnos");
+        System.out.println("\t-Envenenado\nQuita una parte de la salud del afectado y reduce las habilidades curativas en un 30%");
+        System.out.println("\t-Sencible\nEl afectado recibe el doble de daño del siguiente tipo:");
         System.out.println("\t\t-Ataques normales\t\t\n-Ataques cargados\t\t\n-Habilidades ofensivas");
         System.out.println("\tEste cambio dura muy pocos turnos");
         System.out.println("\n----------------------------------------------------------------------------");

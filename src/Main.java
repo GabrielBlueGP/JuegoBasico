@@ -13,7 +13,7 @@ public class Main {
         Scanner menu = new Scanner(System.in);
         Boolean juegoActivo = true;
         String menuOpciones;
-        CombateMenus combate = new CombateMenus("Combatir");
+        CombateMenus combate = new CombateMenus();
         GestionarPersonajes gestor = new GestionarPersonajes();
         Personaje pers1 = new Personaje("Tojita",300, 100, 100, PosEstados.Normal, Roles.Atacante, "El colorista desquiciado");
         Personaje pers2 = new Personaje("Wonejo", 500, 20, 100, PosEstados.Normal, Roles.Apoyo, "El conejo dragon");
@@ -39,7 +39,7 @@ public class Main {
                     TextosUsados.reglas();
                     break;
                 case "C":
-                    combate.modoCombate(pers1, enemigo, menu);
+                    combate.menuModos(pers1, enemigo, menu);
                     break;
                 case "D":
                     gestor.mostrarPersonajesStats();
