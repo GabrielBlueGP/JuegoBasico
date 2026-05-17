@@ -3,6 +3,7 @@ package Mecanicas;
 import ConfigurarPersonajes.BasePersonaje;
 import ConfigurarPersonajes.Enemigo;
 import ConfigurarPersonajes.Personaje;
+import Enums.EntornosTipo;
 
 import java.util.Random;
 
@@ -48,29 +49,39 @@ public class SistemaCombate {
                 precisionFinal(personaje, enemigo);
                 break;
             case "3":
-                ataqueJugadorEnergia(personaje, enemigo);
+                ataqueCargado(personaje, enemigo);
                 break;}
     }
 
-    public void ataqueJugadorEnergia(Personaje personaje, Enemigo enemigo){
-        int danioAdicional = 0;
+    public void ataqueCargado(BasePersonaje atacante, BasePersonaje objetivo){
         if(ener.verificarEnergia()){
-            danioAdicional = ener.aumentaDanio();
-            enemigo.setPs(enemigo.getPs() - (personaje.getAtaque() + danioAdicional));
-            enemigo.controlPS();
-            System.out.print("\n¡Ataque Cargado!");
-            System.out.println("PS del enemigo: "+ enemigo.getPs()+"\nataque de jugador: "+(personaje.getAtaque()+danioAdicional));
+            int cargado = ener.aumentaDanio();
+            int ataGuardado = atacante.getAtaque() + cargado;
+            ataGuardado = calcularDanio(ataGuardado);
+            objetivo.setPs(objetivo.getPs() - ataGuardado);
+            objetivo.controlPS();
+            System.out.println("\n¡Ataque Cargado Acertado!");
+            System.out.println("PS de "+objetivo.getNombre()+": "+objetivo.getPs());
+            System.out.println("ataque recibido: "+ ataGuardado);
         } else {
-            restarPs(personaje, enemigo);}}
+            restarPs(atacante, objetivo);
+        }
+    }
 
     public void confirmarAtaqueJugador(Personaje personaje, Enemigo enemigo, String accion){
         tipoAtaque(personaje, enemigo, accion);}
 
     public void confirmarAtaqueEnemigo(Personaje personaje, Enemigo enemigo){
-        if(enemigo.getPs() != 0){
-            precisionFinal(enemigo, personaje);}}
+        if(enemigo.getPs() != 0) {
+            precisionFinal(enemigo, personaje);
+            ento.accionSanador(enemigo);
+        }
+    }
 
     //----- Metodos Extras -----
+    public Entornos getEnto() {
+        return ento;}
+
     public void verificarGanador(Personaje personaje, Enemigo enemigo){
         if(enemigo.getPs() == 0){
             System.out.println("\n¡HAS DERROTADO AL ENEMIGO!");}
@@ -78,8 +89,12 @@ public class SistemaCombate {
             System.out.println("\nTe han derrotado...\nSuerta la proxima");}
     }
 
+    public void probar(){
+        getEnto().cambioEntorno(EntornosTipo.Agresivo);
+    }
+
     public void opcionesJugador(Personaje personaje, Enemigo enemigo, String accion){
-        switch (accion){
+        switch (accion) {
             case "1":
                 confirmarAtaqueJugador(personaje, enemigo, accion);
                 break;
@@ -90,13 +105,13 @@ public class SistemaCombate {
                 confirmarAtaqueJugador(personaje, enemigo, accion);
                 break;
             case "4":
-                int enerHab = ener.getEnergia();
-                hab.superDanio(personaje, enemigo, ener, enerHab);
+                probar();
                 break;
             default:
                 System.out.println("Accion no reconocida...\nSe contara como Reservar");
                 ener.manejoEnergia();
                 break;
         }
+        ento.accionSanador(personaje);
     }
 }

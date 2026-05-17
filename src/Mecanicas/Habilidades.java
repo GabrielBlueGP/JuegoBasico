@@ -10,17 +10,15 @@ public class Habilidades {
     public Habilidades(){}
 
     public void superDanio(Personaje personaje, Enemigo enemigo, Energia energia, int enerhab){
-        this.id = 1;
         int ataqueHabilidad = 500;
         energia.restarEnergia(enerhab);
-        enemigo.setPs(personaje.getAtaque());
+        enemigo.setPs(personaje.getAtaque() + ataqueHabilidad);
     }
 
-    public void curacion(Personaje personaje, Energia energia, int enerhab, int psMax){
-        this.id = 2;
+    public void curacion(Personaje personaje, Energia energia, int enerhab){
         int cura = (personaje.getPsMaximo() * 20) / 100;
         energia.restarEnergia(enerhab);
-        personaje.setPs(personaje.getPs() + cura);
+
         System.out.println("¡Te curaste! Ps recuperados: "+cura+" PS de "+personaje.getNombre()+": "+ personaje.getPs());
     }
 

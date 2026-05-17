@@ -8,7 +8,7 @@ public class Energia {
     }
 
     public void manejoEnergia(){
-        if(this.energia < 6){
+        if(this.energia < 11){
             this.energia += 1;
             System.out.println("Con calma, se ha reservado...\nReserva de energia: "+ energia);}
         else{

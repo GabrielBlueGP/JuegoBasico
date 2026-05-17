@@ -4,12 +4,10 @@ import Enums.PosEstados;
 import Enums.Roles;
 
 public class Personaje extends BasePersonaje {
-    private String nombre;
     private Roles rol;
 
     public Personaje(String nombre, int ps, int ataque, int precision, PosEstados estado, Roles rol, String apodo) {
-        super(ps, ataque, precision, estado, apodo);
-        this.nombre = nombre;
+        super(nombre, ps, ataque, precision, estado, apodo);
         this.precision = precision;
         this.rol = rol;
         switch (rol) {
@@ -30,14 +28,5 @@ public class Personaje extends BasePersonaje {
     }
     public Roles getRol() {
         return rol;
-    }
-
-    public String getNombre(){
-        return nombre;
-    }
-
-    @Override
-    public String toString() {
-        return "Personaje nuevo: "+nombre;
     }
 }

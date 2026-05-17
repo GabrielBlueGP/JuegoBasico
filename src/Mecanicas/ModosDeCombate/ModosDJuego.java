@@ -2,8 +2,10 @@ package Mecanicas.ModosDeCombate;
 
 import ConfigurarPersonajes.Enemigo;
 import ConfigurarPersonajes.Personaje;
+import Enums.EntornosTipo;
 import Enums.PosEstados;
 import Mecanicas.Energia;
+import Mecanicas.Entornos;
 import Mecanicas.Habilidades;
 import Mecanicas.SistemaCombate;
 
@@ -20,13 +22,23 @@ public class ModosDJuego {
     }
 
     public void unoVSUno(Personaje personaje, Enemigo enemigo, Scanner control){
-        System.out.println("\nTurno "+getTurnos()+"\n");
-        System.out.print("¿Que vas a hacer?\n(1) Atacar\n(2) Reservar\n(3) Ataque Cargado\n(4) Habilidad\nSu accion: ");
+        System.out.println("\n=============");
+        System.out.println("\tTurno " + getTurnos());
+        System.out.println("Entorno: "+ sist.getEnto().getEntor());
+        if(sist.getEnto().getEntor() != EntornosTipo.Normal){
+            System.out.println("Duracion: "+sist.getEnto().getContadorEntorno()+" un turno");
+        }
+        System.out.println("=============\n");
+        System.out.print("\n¿Que vas a hacer?\n(1) Atacar\n(2) Reservar\n(3) Ataque Cargado\n(4) Habilidad\nSu accion: ");
         String accion = control.nextLine();
         if(personaje.getEstado() == PosEstados.Entumecido){
             System.out.println("El jugador se encuentra Entumecido, No puede realizar ninguna accion");
         } else {
             sist.opcionesJugador(personaje, enemigo, accion);
+        }
+        setTurnos(turnos + 1);
+        if(sist.getEnto().getEntor() != EntornosTipo.Normal){
+            sist.getEnto().controlEntorno();
         }
         if (enemigo.getPs() > 0){
             turnoEnemigo(enemigo, personaje);
@@ -84,12 +96,15 @@ public class ModosDJuego {
     public void turnoEnemigo(Enemigo enemigo, Personaje personaje){
         System.out.println("\n==================");
         System.out.println("Turno "+getTurnos());
+        System.out.println("Turno del enemigo...");
         System.out.println("==================\n");
-        System.out.println("Turno del enemigo...\n");
         if(enemigo.getEstado() == PosEstados.Entumecido){
             System.out.println("El enemigo se encuentra Entumecido, No puede atacar");
         } else {
             sist.confirmarAtaqueEnemigo(personaje, enemigo);
+        }
+        if(sist.getEnto().getEntor() != EntornosTipo.Normal){
+            sist.getEnto().controlEntorno();
         }
     }
 

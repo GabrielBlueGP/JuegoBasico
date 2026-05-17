@@ -1,8 +1,10 @@
 package ConfigurarPersonajes;
 
 import Enums.PosEstados;
+import Enums.Roles;
 
 public abstract class BasePersonaje{
+    protected String nombre;
     protected int ps;
     protected int psMaximo;
     protected int ataque;
@@ -10,13 +12,18 @@ public abstract class BasePersonaje{
     protected String apodo;
     protected PosEstados estado;
 
-    public BasePersonaje(int ps, int ataque, int precision, PosEstados estado, String apodo){
+    public BasePersonaje(String nombre, int ps, int ataque, int precision, PosEstados estado, String apodo){
+        this.nombre = nombre;
         this.ps = ps;
         this.psMaximo = ps;
         this.ataque = ataque;
         this.precision = precision;
         this.estado = estado;
         this.apodo = apodo;
+    }
+
+    public String getNombre(){
+        return nombre;
     }
 
     public int getPs() {
@@ -63,5 +70,9 @@ public abstract class BasePersonaje{
         if ((getPs() + cura) <= getPsMaximo()) {
             setPs(getPs() + cura);
         } else {setPs(getPsMaximo());}
-        }
+    }
+
+    public String toString() {
+        return "Personaje nuevo: "+nombre;
+    }
 }
