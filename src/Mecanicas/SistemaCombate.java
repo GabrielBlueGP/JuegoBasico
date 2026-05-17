@@ -11,20 +11,26 @@ public class SistemaCombate {
     private Energia ener;
     private Habilidades hab;
     private Entornos ento;
+    private Estados est;
 
     private Random random = new Random();
 
-    public SistemaCombate(Energia ener, Habilidades hab, Entornos ento){
+    public SistemaCombate(Energia ener, Habilidades hab, Entornos ento, Estados est){
         this.ener = ener;
         this.hab = hab;
         this.ento = ento;
+        this.est = est;
     }
 
     //----- Metodos de PS -----
     public void restarPs(BasePersonaje atacante, BasePersonaje objetivo){
-        objetivo.setPs(objetivo.getPs() - calcularDanio(atacante.getAtaque()));
-        objetivo.controlPS();
-        System.out.println("¡Atacaste! PS del enemigo: "+ objetivo.getPs());}
+        int ataque = calcularDanio(atacante.getAtaque());
+        ataque = est.estSencible(objetivo, ataque);
+        objetivo.aplicarDanio(objetivo, ataque);
+        System.out.println("¡"+atacante.getNombre()+" acerto su ataque contra "+ objetivo.getNombre()+"!");
+        System.out.println("Daño: "+ataque);
+
+    }
 
     //----- Metodos de precision -----
     public int calcularPrecision(){
@@ -58,8 +64,9 @@ public class SistemaCombate {
             int cargado = ener.aumentaDanio();
             int ataGuardado = atacante.getAtaque() + cargado;
             ataGuardado = calcularDanio(ataGuardado);
-            objetivo.setPs(objetivo.getPs() - ataGuardado);
-            objetivo.controlPS();
+            objetivo.aplicarDanio(objetivo, ataGuardado);
+            System.out.println("¡"+atacante.getNombre()+" acerto su ataque contra "+ objetivo.getNombre()+"!");
+            System.out.println("Daño: "+ataGuardado);
             System.out.println("\n¡Ataque Cargado Acertado!");
             System.out.println("PS de "+objetivo.getNombre()+": "+objetivo.getPs());
             System.out.println("ataque recibido: "+ ataGuardado);
@@ -82,6 +89,10 @@ public class SistemaCombate {
     public Entornos getEnto() {
         return ento;}
 
+    public Estados getEst(){
+        return est;
+    }
+
     public void verificarGanador(Personaje personaje, Enemigo enemigo){
         if(enemigo.getPs() == 0){
             System.out.println("\n¡HAS DERROTADO AL ENEMIGO!");}
@@ -89,8 +100,12 @@ public class SistemaCombate {
             System.out.println("\nTe han derrotado...\nSuerta la proxima");}
     }
 
-    public void probar(){
+    public void probar1(){
         getEnto().cambioEntorno(EntornosTipo.Agresivo);
+    }
+
+    public void probar2(BasePersonaje afectado){
+        getEst().setear(afectado);
     }
 
     public void opcionesJugador(Personaje personaje, Enemigo enemigo, String accion){
@@ -105,7 +120,9 @@ public class SistemaCombate {
                 confirmarAtaqueJugador(personaje, enemigo, accion);
                 break;
             case "4":
-                probar();
+                probar1();
+                //probar2(enemigo);
+                System.out.println("Estado afectado: "+enemigo.getEstado());
                 break;
             default:
                 System.out.println("Accion no reconocida...\nSe contara como Reservar");

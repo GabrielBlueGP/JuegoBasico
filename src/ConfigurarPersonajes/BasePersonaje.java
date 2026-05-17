@@ -1,7 +1,6 @@
 package ConfigurarPersonajes;
 
 import Enums.PosEstados;
-import Enums.Roles;
 
 public abstract class BasePersonaje{
     protected String nombre;
@@ -11,6 +10,8 @@ public abstract class BasePersonaje{
     protected int precision;
     protected String apodo;
     protected PosEstados estado;
+    protected int contadorEstados;
+
 
     public BasePersonaje(String nombre, int ps, int ataque, int precision, PosEstados estado, String apodo){
         this.nombre = nombre;
@@ -22,10 +23,17 @@ public abstract class BasePersonaje{
         this.apodo = apodo;
     }
 
+    // ---- Textos ----
     public String getNombre(){
         return nombre;
     }
 
+    public String getApodo() {return apodo;}
+
+    public void setApodo(String apodo) {
+        this.apodo = apodo;}
+
+    // ---- Ps ----
     public int getPs() {
         return ps;
     }
@@ -38,6 +46,7 @@ public abstract class BasePersonaje{
     public void setPsMaximo(int psMaximo) {
         this.psMaximo = psMaximo;}
 
+    // ---- mecanias ----
     public int getAtaque() {
         return ataque;
     }
@@ -50,15 +59,22 @@ public abstract class BasePersonaje{
     public void setPrecision(int precision) {
         this.precision = precision;}
 
-    public String getApodo() {return apodo;}
-
-    public void setApodo(String apodo) {
-        this.apodo = apodo;}
+    public void aplicarDanio(BasePersonaje objetivo, int danio){
+        this.ps -= danio;
+        objetivo.controlPS();
+    }
 
     public PosEstados getEstado() {return estado;}
 
     public void setEstado(PosEstados estado) {
-        this.estado = estado;}
+        this.estado = estado;
+    }
+
+    public int getContadorEstados(){return contadorEstados;}
+
+    public void setContadorEstados(int contadorEstados){
+       this.contadorEstados = contadorEstados;
+    }
 
     public void controlPS(){
         if(getPs() < 0){
@@ -66,10 +82,11 @@ public abstract class BasePersonaje{
         }
     }
 
-    public void verificarCura(int cura) {
-        if ((getPs() + cura) <= getPsMaximo()) {
-            setPs(getPs() + cura);
-        } else {setPs(getPsMaximo());}
+    public void recibirCura(int cura) {
+        if ((this.ps + cura) <= this.psMaximo) {
+            this.ps += cura;
+        } else {
+            this.ps = this.psMaximo;}
     }
 
     public String toString() {

@@ -24,8 +24,15 @@ public class Personaje extends BasePersonaje {
                 this.ataque += 50;
                 break;
             default:
-                throw new IllegalArgumentException("Rol no valido");}
+                throw new IllegalArgumentException("Rol no valido");
+        }
+    setearMaximo(this.ps);
     }
+
+    public void setearMaximo(int maximo){
+        setPsMaximo(maximo);
+    }
+
     public Roles getRol() {
         return rol;
     }

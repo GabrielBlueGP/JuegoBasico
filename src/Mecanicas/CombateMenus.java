@@ -12,13 +12,15 @@ public class CombateMenus {
     private Habilidades hab;
     private SistemaCombate sist;
     private Entornos ento;
+    private Estados est;
     private ModosDJuego modComb;
 
     public CombateMenus(){
         this.ener = new Energia();
         this.hab = new Habilidades();
         this.ento = new Entornos(EntornosTipo.Normal);
-        this.sist = new SistemaCombate(ener, hab, ento);
+        this.est = new Estados();
+        this.sist = new SistemaCombate(ener, hab, ento, est);
         this.modComb = new ModosDJuego(sist);
     }
 

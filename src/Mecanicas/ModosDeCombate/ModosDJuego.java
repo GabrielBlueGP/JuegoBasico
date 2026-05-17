@@ -1,5 +1,6 @@
 package Mecanicas.ModosDeCombate;
 
+import ConfigurarPersonajes.BasePersonaje;
 import ConfigurarPersonajes.Enemigo;
 import ConfigurarPersonajes.Personaje;
 import Enums.EntornosTipo;
@@ -22,32 +23,58 @@ public class ModosDJuego {
     }
 
     public void unoVSUno(Personaje personaje, Enemigo enemigo, Scanner control){
-        System.out.println("\n=============");
-        System.out.println("\tTurno " + getTurnos());
-        System.out.println("Entorno: "+ sist.getEnto().getEntor());
-        if(sist.getEnto().getEntor() != EntornosTipo.Normal){
-            System.out.println("Duracion: "+sist.getEnto().getContadorEntorno()+" un turno");
-        }
-        System.out.println("=============\n");
-        System.out.print("\n¿Que vas a hacer?\n(1) Atacar\n(2) Reservar\n(3) Ataque Cargado\n(4) Habilidad\nSu accion: ");
-        String accion = control.nextLine();
-        if(personaje.getEstado() == PosEstados.Entumecido){
-            System.out.println("El jugador se encuentra Entumecido, No puede realizar ninguna accion");
-        } else {
-            sist.opcionesJugador(personaje, enemigo, accion);
-        }
-        setTurnos(turnos + 1);
-        if(sist.getEnto().getEntor() != EntornosTipo.Normal){
-            sist.getEnto().controlEntorno();
-        }
-        if (enemigo.getPs() > 0){
-            turnoEnemigo(enemigo, personaje);
-            setTurnos(turnos + 1);
-        } else {
-            sist.verificarGanador(personaje, enemigo);
-        }
+        mostrarTurnos(personaje, enemigo);
+        mostrarOpciones();
+
+        turnoJugador(personaje, enemigo, control);
+        efectosTurnos();
+        finalizarTurnos(personaje);
+
+        turnoEnemigo(enemigo, personaje);
+        efectosTurnos();
+        finalizarTurnos(enemigo);
+
+        verificarGanador(personaje, enemigo);
     }
 
+    // ------ metodos de juegos en general ------
+    public void verificarGanador(Personaje personaje, Enemigo enemigo){
+        if(enemigo.getPs() == 0){
+            System.out.println("\n¡HAS DERROTADO AL ENEMIGO!");}
+        if(personaje.getPs() == 0){
+            System.out.println("\nTe han derrotado...\nSuerta la proxima");}
+    }
+
+    public void mostrarTurnos(Personaje personaje, Enemigo enemigo){
+        System.out.println("\n================");
+        System.out.println("\tTurno " + getTurnos());
+        System.out.println("=============");
+        System.out.println("Entorno: "+ sist.getEnto().getEntor());
+        if(sist.getEnto().getEntor() != EntornosTipo.Normal){
+            System.out.println("=============");
+            System.out.println("Duracion de turnos: "+sist.getEnto().getContadorEntorno());
+        }
+        System.out.println("================\n");
+        System.out.println(personaje.getNombre()+"\nPS: "+personaje.getPs()+"/"+personaje.getPsMaximo());
+        System.out.println("Estado: "+personaje.getEstado());
+        System.out.println("Suelo: "+sist.getEnto()+"\n");
+        System.out.println("-----------------");
+        System.out.println(enemigo.getNombre()+"\nPS: "+enemigo.getPs()+"/"+enemigo.getPsMaximo()+"\n");
+        System.out.println("Estado: "+enemigo.getEstado()+"\n");
+        System.out.println("Suelo: "+sist.getEnto()+"\n");
+        System.out.println("================\n");
+    }
+
+    public void mostrarOpciones(){
+        System.out.println("¿--------- Acciones ---------");
+        System.out.println("(1) Atacar");
+        System.out.println("(2) Reservar");
+        System.out.println("(3) Ataque Cargado");
+        System.out.println("(4) Habilidad");
+        System.out.print("\nOpcion: ");
+    }
+
+    // ------ metodos de contra reloj ------
     public void contraReloj(Personaje personaje, Enemigo enemigo, Scanner control){
         if(turnos <= 15) {
             System.out.println("\n=============");
@@ -76,13 +103,6 @@ public class ModosDJuego {
 
     }
 
-    public void verificarGanador(Personaje personaje, Enemigo enemigo){
-        if(enemigo.getPs() == 0){
-            System.out.println("\n¡HAS DERROTADO AL ENEMIGO!");}
-        if(personaje.getPs() == 0){
-            System.out.println("\nTe han derrotado...\nSuerta la proxima");}
-    }
-
     public void finContraReloj(Personaje personaje, Enemigo enemigo){
         if(getTurnos() == getLimiteTurnos() || (personaje.getPs() > 0 && enemigo.getPs() > 0)){
             System.out.println("\n¡¡¡SE ACABO EL TIEMPO!!!\n\nResultados:");
@@ -93,16 +113,36 @@ public class ModosDJuego {
         }
     }
 
-    public void turnoEnemigo(Enemigo enemigo, Personaje personaje){
-        System.out.println("\n==================");
-        System.out.println("Turno "+getTurnos());
-        System.out.println("Turno del enemigo...");
-        System.out.println("==================\n");
-        if(enemigo.getEstado() == PosEstados.Entumecido){
-            System.out.println("El enemigo se encuentra Entumecido, No puede atacar");
+    // ------ metodos de turnos ------
+    public void turnoJugador(Personaje personaje, Enemigo enemigo, Scanner control){
+        String accion = control.nextLine();
+        if(sist.getEst().estadoEntumecido(personaje)){
+            System.out.println("El jugador se encuentra Entumecido, No puede realizar ninguna accion");
         } else {
-            sist.confirmarAtaqueEnemigo(personaje, enemigo);
+            sist.opcionesJugador(personaje, enemigo, accion);
         }
+    }
+
+    public void turnoEnemigo(Enemigo enemigo, Personaje personaje) {
+        if (enemigo.getPs() > 0){
+            System.out.println("\n==================");
+            System.out.println("Turno " + getTurnos());
+            System.out.println("==================\n");
+            System.out.println("-------Turno de enemigo-------");
+            if (sist.getEst().estadoEntumecido(enemigo)) {
+                System.out.println("El enemigo se encuentra Entumecido\nNo puede atacar");
+            } else {
+                sist.confirmarAtaqueEnemigo(personaje, enemigo);
+            }
+        }
+    }
+
+    public void efectosTurnos(){
+        setTurnos(turnos + 1);
+    }
+
+    public void finalizarTurnos(BasePersonaje perTurno){
+        sist.getEst().controlEstado(perTurno);
         if(sist.getEnto().getEntor() != EntornosTipo.Normal){
             sist.getEnto().controlEntorno();
         }

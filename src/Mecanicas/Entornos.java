@@ -8,6 +8,7 @@ import java.util.Random;
 public class Entornos {
     private EntornosTipo entor;
     private int contadorEntorno;
+    private boolean entAplicado;
     private Random random = new Random();
 
     public Entornos(EntornosTipo entor){
@@ -15,6 +16,11 @@ public class Entornos {
     }
 
     public void controlEntorno(){
+
+        if(entAplicado) {
+            entAplicado = false;
+            return;
+        }
         if(contadorEntorno > 1){
             contadorEntorno--;
             System.out.println("Le quedan: "+contadorEntorno);
@@ -28,13 +34,13 @@ public class Entornos {
     public void iniciarContador(){
         switch (entor){
             case Temblor:
-                this.contadorEntorno = 8;
+                this.contadorEntorno = 12;
                 break;
             case Agresivo:
-                this.contadorEntorno = 6;
+                this.contadorEntorno = 10;
                 break;
             case Sanador:
-                this.contadorEntorno = 4;
+                this.contadorEntorno = 8;
                 break;
         }
     }
@@ -53,8 +59,9 @@ public class Entornos {
         this.entor = EntornosTipo.Normal;
     }
 
-    public void cambioEntorno(EntornosTipo NuevoEntor){
-        this.entor = NuevoEntor;
+    public void cambioEntorno(EntornosTipo nuevoEntor){
+        this.entor = nuevoEntor;
+        entAplicado = true;
         iniciarContador();
         mostrarEntornos();
     }
@@ -77,23 +84,23 @@ public class Entornos {
     public void accionSanador(BasePersonaje afectado){
         if(entor == EntornosTipo.Sanador){
             int curita = (afectado.getPsMaximo() * 5) / 100;
-            afectado.verificarCura(curita);
+            afectado.recibirCura(curita);
         }
     }
 
     public void mostrarEntornos(){
         switch (entor){
             case Normal:
-                System.out.println("El campo de batalla se encuentra normal");
+                System.out.println("\nEl campo de batalla se encuentra normal");
                 break;
             case Temblor:
-                System.out.println("El campo de batalla esta temblando...\nLos ataques pueden llegar a fallar mas seguido");
+                System.out.println("\nEl campo de batalla esta temblando...\nLos ataques pueden llegar a fallar mas seguido");
                 break;
             case Agresivo:
-                System.out.println("El campo de batalla esta sumergido en una niebla agresiva...\nLos ataques de todos haran un 15% mas daño");
+                System.out.println("\nEl campo de batalla esta sumergido en una niebla agresiva...\nLos ataques de todos haran un 15% mas daño");
                 break;
             case Sanador:
-                System.out.println("El campo de batalla esta sumergido en un aura sanadora...\nLos ataques que acierten recuperan un 5% de los PS");
+                System.out.println("\nEl campo de batalla esta sumergido en un aura sanadora...\nLos ataques que acierten recuperan un 5% de los PS");
                 break;
         }
     }
