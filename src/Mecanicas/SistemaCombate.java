@@ -11,14 +11,16 @@ public class SistemaCombate {
     private Energia ener;
     private Habilidades hab;
     private Entornos ento;
+    private Suelos sue;
     private Estados est;
 
     private Random random = new Random();
 
-    public SistemaCombate(Energia ener, Habilidades hab, Entornos ento, Estados est){
+    public SistemaCombate(Energia ener, Habilidades hab, Entornos ento, Suelos sue, Estados est){
         this.ener = ener;
         this.hab = hab;
         this.ento = ento;
+        this.sue = sue;
         this.est = est;
     }
 
@@ -26,7 +28,7 @@ public class SistemaCombate {
     public void restarPs(BasePersonaje atacante, BasePersonaje objetivo){
         int ataque = calcularDanio(atacante.getAtaque());
         ataque = est.estSencible(objetivo, ataque);
-        objetivo.aplicarDanio(objetivo, ataque);
+        objetivo.aplicarDanio(ataque);
         System.out.println("¡"+atacante.getNombre()+" acerto su ataque contra "+ objetivo.getNombre()+"!");
         System.out.println("Daño: "+ataque);
 
@@ -64,7 +66,7 @@ public class SistemaCombate {
             int cargado = ener.aumentaDanio();
             int ataGuardado = atacante.getAtaque() + cargado;
             ataGuardado = calcularDanio(ataGuardado);
-            objetivo.aplicarDanio(objetivo, ataGuardado);
+            objetivo.aplicarDanio(ataGuardado);
             System.out.println("¡"+atacante.getNombre()+" acerto su ataque contra "+ objetivo.getNombre()+"!");
             System.out.println("Daño: "+ataGuardado);
             System.out.println("\n¡Ataque Cargado Acertado!");
@@ -86,12 +88,11 @@ public class SistemaCombate {
     }
 
     //----- Metodos Extras -----
-    public Entornos getEnto() {
-        return ento;}
+    public Entornos getEnto() {return ento;}
 
-    public Estados getEst(){
-        return est;
-    }
+    public Estados getEst(){return est;}
+
+    public Suelos getSue(){return sue;}
 
     public void verificarGanador(Personaje personaje, Enemigo enemigo){
         if(enemigo.getPs() == 0){
@@ -108,6 +109,10 @@ public class SistemaCombate {
         getEst().setear(afectado);
     }
 
+    public void probar3(BasePersonaje afectado){
+        getSue().setear(afectado);
+    }
+
     public void opcionesJugador(Personaje personaje, Enemigo enemigo, String accion){
         switch (accion) {
             case "1":
@@ -120,9 +125,9 @@ public class SistemaCombate {
                 confirmarAtaqueJugador(personaje, enemigo, accion);
                 break;
             case "4":
-                probar1();
-                //probar2(enemigo);
-                System.out.println("Estado afectado: "+enemigo.getEstado());
+                //probar1();
+                //probar2(personaje);
+                probar3(personaje);
                 break;
             default:
                 System.out.println("Accion no reconocida...\nSe contara como Reservar");

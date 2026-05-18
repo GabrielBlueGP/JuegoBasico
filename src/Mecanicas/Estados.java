@@ -40,7 +40,6 @@ public class Estados {
     public void cambioEstados(BasePersonaje afectado, PosEstados nuevoEstados){
         afectado.setEstado(nuevoEstados);
         iniciarContador(afectado);
-
     }
 
     public void controlEstado(BasePersonaje afectado){
@@ -63,7 +62,7 @@ public class Estados {
     }
 
     public void setear(BasePersonaje afectado){
-        afectado.setEstado(PosEstados.Sencible);
+        afectado.setEstado(PosEstados.Envenenado);
     }
 
     public int estSencible(BasePersonaje afectado, int ataque){
@@ -76,7 +75,7 @@ public class Estados {
     public void estEnvenenado(BasePersonaje afectado){
         if(afectado.getEstado() == PosEstados.Envenenado){
             int veneno = (afectado.getPs() * 5) / 100;
-            afectado.aplicarDanio(afectado, veneno);
+            afectado.aplicarDanio(veneno);
             System.out.println(afectado.getNombre()+" sufre "+veneno+" de daño por veneno");
         }
     }

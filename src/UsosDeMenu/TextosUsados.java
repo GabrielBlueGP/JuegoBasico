@@ -11,7 +11,7 @@ public class TextosUsados {
     public static void reglas(){
         System.out.println("\n----------------------------------------------------------------------------");
         System.out.println("\nModos de juego:");
-        System.out.println("\t-1vs1: Un jugador se enfrenta a un enemigo. Gana el que deje sin ps al otro primero");
+        System.out.println("\t-Contra enemigo: Un jugador se enfrenta a un enemigo generico. Gana el que deje sin ps al otro primero");
         System.out.println("\t-Contrareloj: Variante del 1vs1 pero el combate se limita por cantidad de turnos");
         System.out.println("----------------------------------------------------------------------------");
 

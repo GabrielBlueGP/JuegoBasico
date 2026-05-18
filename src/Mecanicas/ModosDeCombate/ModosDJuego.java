@@ -5,9 +5,6 @@ import ConfigurarPersonajes.Enemigo;
 import ConfigurarPersonajes.Personaje;
 import Enums.EntornosTipo;
 import Enums.PosEstados;
-import Mecanicas.Energia;
-import Mecanicas.Entornos;
-import Mecanicas.Habilidades;
 import Mecanicas.SistemaCombate;
 
 import java.util.Scanner;
@@ -22,17 +19,17 @@ public class ModosDJuego {
         this.sist = sist;
     }
 
-    public void unoVSUno(Personaje personaje, Enemigo enemigo, Scanner control){
+    public void combateContraEnemigo(Personaje personaje, Enemigo enemigo, Scanner control){
         mostrarTurnos(personaje, enemigo);
         mostrarOpciones();
 
         turnoJugador(personaje, enemigo, control);
-        efectosTurnos();
         finalizarTurnos(personaje);
+        sumarTurnos();
 
         turnoEnemigo(enemigo, personaje);
-        efectosTurnos();
         finalizarTurnos(enemigo);
+        sumarTurnos();
 
         verificarGanador(personaje, enemigo);
     }
@@ -46,7 +43,7 @@ public class ModosDJuego {
     }
 
     public void mostrarTurnos(Personaje personaje, Enemigo enemigo){
-        System.out.println("\n================");
+        System.out.println("================");
         System.out.println("\tTurno " + getTurnos());
         System.out.println("=============");
         System.out.println("Entorno: "+ sist.getEnto().getEntor());
@@ -57,16 +54,16 @@ public class ModosDJuego {
         System.out.println("================\n");
         System.out.println(personaje.getNombre()+"\nPS: "+personaje.getPs()+"/"+personaje.getPsMaximo());
         System.out.println("Estado: "+personaje.getEstado());
-        System.out.println("Suelo: "+sist.getEnto()+"\n");
+        System.out.println("Suelo: "+personaje.getSuelo()+"\n");
         System.out.println("-----------------");
-        System.out.println(enemigo.getNombre()+"\nPS: "+enemigo.getPs()+"/"+enemigo.getPsMaximo()+"\n");
-        System.out.println("Estado: "+enemigo.getEstado()+"\n");
-        System.out.println("Suelo: "+sist.getEnto()+"\n");
+        System.out.println(enemigo.getNombre()+"\nPS: "+enemigo.getPs()+"/"+enemigo.getPsMaximo());
+        System.out.println("Estado: "+enemigo.getEstado());
+        System.out.println("Suelo: "+personaje.getSuelo()+"\n");
         System.out.println("================\n");
     }
 
     public void mostrarOpciones(){
-        System.out.println("¿--------- Acciones ---------");
+        System.out.println("¡¡¡ ---------- Acciones --------- !!!");
         System.out.println("(1) Atacar");
         System.out.println("(2) Reservar");
         System.out.println("(3) Ataque Cargado");
@@ -120,6 +117,7 @@ public class ModosDJuego {
             System.out.println("El jugador se encuentra Entumecido, No puede realizar ninguna accion");
         } else {
             sist.opcionesJugador(personaje, enemigo, accion);
+            sist.getSue().sueloPuas(personaje);
         }
     }
 
@@ -127,7 +125,7 @@ public class ModosDJuego {
         if (enemigo.getPs() > 0){
             System.out.println("\n==================");
             System.out.println("Turno " + getTurnos());
-            System.out.println("==================\n");
+            System.out.println("==================");
             System.out.println("-------Turno de enemigo-------");
             if (sist.getEst().estadoEntumecido(enemigo)) {
                 System.out.println("El enemigo se encuentra Entumecido\nNo puede atacar");
@@ -137,7 +135,7 @@ public class ModosDJuego {
         }
     }
 
-    public void efectosTurnos(){
+    public void sumarTurnos(){
         setTurnos(turnos + 1);
     }
 
@@ -146,6 +144,7 @@ public class ModosDJuego {
         if(sist.getEnto().getEntor() != EntornosTipo.Normal){
             sist.getEnto().controlEntorno();
         }
+        sist.getSue().controlSuelo(perTurno);
     }
 
     public int getTurnos() {return turnos;}

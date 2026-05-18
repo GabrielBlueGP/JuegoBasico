@@ -1,6 +1,7 @@
 package ConfigurarPersonajes;
 
 import Enums.PosEstados;
+import Enums.SuelosPosibles;
 
 public abstract class BasePersonaje{
     protected String nombre;
@@ -10,8 +11,10 @@ public abstract class BasePersonaje{
     protected int precision;
     protected String apodo;
     protected PosEstados estado;
-    protected int contadorEstados;
+    protected SuelosPosibles suelo;
 
+    protected int contadorEstados;
+    protected int contadorSuelos;
 
     public BasePersonaje(String nombre, int ps, int ataque, int precision, PosEstados estado, String apodo){
         this.nombre = nombre;
@@ -20,6 +23,7 @@ public abstract class BasePersonaje{
         this.ataque = ataque;
         this.precision = precision;
         this.estado = estado;
+        this.suelo = SuelosPosibles.Normal;
         this.apodo = apodo;
     }
 
@@ -27,6 +31,9 @@ public abstract class BasePersonaje{
     public String getNombre(){
         return nombre;
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;}
 
     public String getApodo() {return apodo;}
 
@@ -59,9 +66,9 @@ public abstract class BasePersonaje{
     public void setPrecision(int precision) {
         this.precision = precision;}
 
-    public void aplicarDanio(BasePersonaje objetivo, int danio){
+    public void aplicarDanio(int danio){
         this.ps -= danio;
-        objetivo.controlPS();
+        controlPS();
     }
 
     public PosEstados getEstado() {return estado;}
@@ -70,11 +77,19 @@ public abstract class BasePersonaje{
         this.estado = estado;
     }
 
+    public SuelosPosibles getSuelo(){return suelo;}
+
+    public void setSuelo(SuelosPosibles suelo){this.suelo = suelo;}
+
     public int getContadorEstados(){return contadorEstados;}
 
     public void setContadorEstados(int contadorEstados){
        this.contadorEstados = contadorEstados;
     }
+
+    public int getContadorSuelos() {return contadorSuelos;}
+
+    public void setContadorSuelos(int contadorSuelos) { this.contadorSuelos = contadorSuelos;}
 
     public void controlPS(){
         if(getPs() < 0){

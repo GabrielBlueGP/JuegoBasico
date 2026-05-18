@@ -12,6 +12,7 @@ public class CombateMenus {
     private Habilidades hab;
     private SistemaCombate sist;
     private Entornos ento;
+    private Suelos sue;
     private Estados est;
     private ModosDJuego modComb;
 
@@ -19,8 +20,9 @@ public class CombateMenus {
         this.ener = new Energia();
         this.hab = new Habilidades();
         this.ento = new Entornos(EntornosTipo.Normal);
+        this.sue = new Suelos();
         this.est = new Estados();
-        this.sist = new SistemaCombate(ener, hab, ento, est);
+        this.sist = new SistemaCombate(ener, hab, ento, sue, est);
         this.modComb = new ModosDJuego(sist);
     }
 
@@ -56,7 +58,7 @@ public class CombateMenus {
         System.out.println("############################################################################");
         System.out.println("\n¡¡¡COMENZO EL COMBATE!!!\n");
         while(personaje.getPs() > 0 && enemigo.getPs() > 0){
-             modComb.unoVSUno(personaje, enemigo, control);
+             modComb.combateContraEnemigo(personaje, enemigo, control);
         }
         modComb.setTurnos(0);
         personaje.setPs(personaje.getPsMaximo());
