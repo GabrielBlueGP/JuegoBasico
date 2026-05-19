@@ -27,10 +27,11 @@ public class Suelos {
     public void sueloResiliente(BasePersonaje afectado){
         if(afectado.getEstado() != PosEstados.Normal){
             afectado.setEstado(PosEstados.Normal);
+            afectado.setContadorEstados(0);
         }
     }
 
-    public void  iniciarContador(BasePersonaje afectado){
+    public void iniciarContador(BasePersonaje afectado){
         switch (afectado.getSuelo()){
             case Toxico:
                 afectado.setContadorSuelos(2);
@@ -45,32 +46,31 @@ public class Suelos {
     }
 
     public void controlSuelo(BasePersonaje afectado){
+        if(afectado.getSuelo() == SuelosPosibles.Normal){
+            return;
+        }
         switch (afectado.getSuelo()){
             case Toxico:
                 sueloToxico(afectado);
                 break;
             case Puas:
                 sueloPuas(afectado);
-                if(afectado.getContadorSuelos() > 1){
-                    afectado.setContadorSuelos(afectado.getContadorSuelos() - 1);
-                    System.out.println("El suelo se mantendra por "+afectado.getContadorSuelos());
-                } else {
-                    afectado.setContadorSuelos(0);
-                    afectado.setSuelo(SuelosPosibles.Normal);
-                    System.out.println("El suelo se ha restaurado a la normalidad");
-                }
                 break;
             case Resiliente:
                 sueloResiliente(afectado);
-                if(afectado.getContadorSuelos() > 1){
-                    afectado.setContadorSuelos(afectado.getContadorSuelos() - 1);
-                    System.out.println("El suelo se mantendra por "+afectado.getContadorSuelos());
-                } else {
-                    afectado.setContadorSuelos(0);
-                    afectado.setSuelo(SuelosPosibles.Normal);
-                    System.out.println("El suelo se ha restaurado a la normalidad");
-                }
                 break;
+        }
+        reductorContador(afectado);
+    }
+
+    public void reductorContador(BasePersonaje afectado){
+        if(afectado.getContadorSuelos() > 1){
+            afectado.setContadorSuelos(afectado.getContadorSuelos() - 1);
+            System.out.println("El suelo se mantendra por "+afectado.getContadorSuelos());
+        } else {
+            afectado.setContadorSuelos(0);
+            afectado.setSuelo(SuelosPosibles.Normal);
+            System.out.println("El suelo se ha restaurado a la normalidad");
         }
     }
 }

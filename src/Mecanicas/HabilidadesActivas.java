@@ -1,18 +1,31 @@
 package Mecanicas;
 
+import ConfigurarPersonajes.BasePersonaje;
 import ConfigurarPersonajes.Enemigo;
 import ConfigurarPersonajes.Personaje;
+import Enums.EntornosTipo;
 import Enums.PosEstados;
 
-public class Habilidades {
-    private Integer id;
+public class HabilidadesActivas {
+    private Energia ener;
+    private Estados est;
+    private Suelos sue;
+    private Entornos ento;
 
-    public Habilidades(){}
+    private Integer idHabilidad;
 
-    public void superDanio(Personaje personaje, Enemigo enemigo, Energia energia, int enerhab){
+    public HabilidadesActivas(Energia ener, Estados est, Suelos sue, Entornos ento){
+        this.ener = ener;
+        this.est = est;
+        this.sue = sue;
+        this.ento = ento;
+    }
+
+    public void superDanio(BasePersonaje atacante, BasePersonaje objetivo, Energia energia, int enerhab){
         int ataqueHabilidad = 500;
         energia.restarEnergia(enerhab);
-        enemigo.setPs(personaje.getAtaque() + ataqueHabilidad);
+
+
     }
 
     public void curacion(Personaje personaje, Energia energia, int enerhab){

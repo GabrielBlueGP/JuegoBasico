@@ -24,22 +24,26 @@ public class ModosDJuego {
         mostrarOpciones();
 
         turnoJugador(personaje, enemigo, control);
+        sumarTurnos();
         finalizarTurnos(personaje);
-        sumarTurnos();
 
-        turnoEnemigo(enemigo, personaje);
-        finalizarTurnos(enemigo);
-        sumarTurnos();
-
+        if(enemigo.getPs() > 0) {
+            turnoEnemigo(enemigo, personaje);
+            sumarTurnos();
+            finalizarTurnos(enemigo);
+        }
         verificarGanador(personaje, enemigo);
     }
 
     // ------ metodos de juegos en general ------
     public void verificarGanador(Personaje personaje, Enemigo enemigo){
-        if(enemigo.getPs() == 0){
-            System.out.println("\n¡HAS DERROTADO AL ENEMIGO!");}
-        if(personaje.getPs() == 0){
-            System.out.println("\nTe han derrotado...\nSuerta la proxima");}
+        if(personaje.getPs() == 0  && enemigo.getPs() == 0){
+            System.out.println("\n¡Ambos han caido derrotados!");
+        } else if (enemigo.getPs() == 0){
+            System.out.println("\n¡HAS DERROTADO AL ENEMIGO!");
+        } else if (personaje.getPs() == 0) {
+            System.out.println("\nTe han derrotado...\nSuerta la proxima");
+        }
     }
 
     public void mostrarTurnos(Personaje personaje, Enemigo enemigo){
@@ -58,7 +62,7 @@ public class ModosDJuego {
         System.out.println("-----------------");
         System.out.println(enemigo.getNombre()+"\nPS: "+enemigo.getPs()+"/"+enemigo.getPsMaximo());
         System.out.println("Estado: "+enemigo.getEstado());
-        System.out.println("Suelo: "+personaje.getSuelo()+"\n");
+        System.out.println("Suelo: "+enemigo.getSuelo()+"\n");
         System.out.println("================\n");
     }
 
@@ -122,16 +126,14 @@ public class ModosDJuego {
     }
 
     public void turnoEnemigo(Enemigo enemigo, Personaje personaje) {
-        if (enemigo.getPs() > 0){
-            System.out.println("\n==================");
-            System.out.println("Turno " + getTurnos());
-            System.out.println("==================");
-            System.out.println("-------Turno de enemigo-------");
-            if (sist.getEst().estadoEntumecido(enemigo)) {
-                System.out.println("El enemigo se encuentra Entumecido\nNo puede atacar");
-            } else {
-                sist.confirmarAtaqueEnemigo(personaje, enemigo);
-            }
+        System.out.println("\n==================");
+        System.out.println("Turno " + getTurnos());
+        System.out.println("==================");
+        System.out.println("-------Turno de enemigo-------");
+        if (sist.getEst().estadoEntumecido(enemigo)) {
+            System.out.println("El enemigo se encuentra Entumecido\nNo puede atacar");
+        } else {
+            sist.confirmarAtaqueEnemigo(personaje, enemigo);
         }
     }
 

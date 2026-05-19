@@ -9,14 +9,14 @@ import java.util.Random;
 
 public class SistemaCombate {
     private Energia ener;
-    private Habilidades hab;
+    private HabilidadesActivas hab;
     private Entornos ento;
     private Suelos sue;
     private Estados est;
 
     private Random random = new Random();
 
-    public SistemaCombate(Energia ener, Habilidades hab, Entornos ento, Suelos sue, Estados est){
+    public SistemaCombate(Energia ener, HabilidadesActivas hab, Entornos ento, Suelos sue, Estados est){
         this.ener = ener;
         this.hab = hab;
         this.ento = ento;

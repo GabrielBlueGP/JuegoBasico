@@ -9,19 +9,19 @@ import java.util.Scanner;
 
 public class CombateMenus {
     private Energia ener;
-    private Habilidades hab;
-    private SistemaCombate sist;
     private Entornos ento;
     private Suelos sue;
     private Estados est;
+    private SistemaCombate sist;
+    private HabilidadesActivas hab;
     private ModosDJuego modComb;
 
     public CombateMenus(){
         this.ener = new Energia();
-        this.hab = new Habilidades();
         this.ento = new Entornos(EntornosTipo.Normal);
         this.sue = new Suelos();
         this.est = new Estados();
+        this.hab = new HabilidadesActivas(ener, est, sue, ento);
         this.sist = new SistemaCombate(ener, hab, ento, sue, est);
         this.modComb = new ModosDJuego(sist);
     }
