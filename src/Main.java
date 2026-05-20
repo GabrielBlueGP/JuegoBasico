@@ -29,14 +29,14 @@ public class Main {
 
         System.out.println("\nBienvenido a: Gana o muere :3\n\nOpciones:\n\n(Precione la tecla marcada en ( ) + Enter)");
         while(juegoActivo){
-            System.out.print("\n(A) Acerca del juego\n(B) Reglas de juego\n(C) Jugar\n(D) Mostrar personajes\n(E) Salir del juego\n\nIngrese su opcion: ");
-            menuOpciones = menu.nextLine();
+            System.out.print("\n(A) Acerca del juego\n(B) Reglas de juego\n(C) Jugar\n(D) Mostrar personajes\n(X) Salir del juego\n\nIngrese su opcion: ");
+            menuOpciones = menu.nextLine().toUpperCase();
             switch (menuOpciones){
                 case "A":
                     TextosUsados.descripcion();
                     break;
                 case "B":
-                    TextosUsados.reglas();
+                    TextosUsados.reglas(menu);
                     break;
                 case "C":
                     combate.menuModos(pers1, enemigo, menu);
@@ -44,7 +44,7 @@ public class Main {
                 case "D":
                     gestor.mostrarPersonajesStats();
                     break;
-                case "E":
+                case "X":
                     TextosUsados.salirDelPrograma();
                     juegoActivo = false;
                     break;

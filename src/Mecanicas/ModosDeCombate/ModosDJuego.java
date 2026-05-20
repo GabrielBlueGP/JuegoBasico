@@ -19,7 +19,7 @@ public class ModosDJuego {
         this.sist = sist;
     }
 
-    public void combateContraEnemigo(Personaje personaje, Enemigo enemigo, Scanner control){
+    public void contraUnComun(Personaje personaje, Enemigo enemigo, Scanner control){
         mostrarTurnos(personaje, enemigo);
         mostrarOpciones();
 

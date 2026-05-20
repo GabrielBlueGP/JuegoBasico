@@ -53,7 +53,7 @@ public class HabilidadesActivas {
     }
 
     public void ejecutarHabilidades(BasePersonaje usuario, BasePersonaje objetivo){
-        if(ener.getEnergia() >= usoEnergia) {
+        if(ener.getEnergia() < usoEnergia) {
             System.out.println("Se esta ejecutando una habilidad");
             switch (usuario.getIdHabilidad()) {
                 case 1:

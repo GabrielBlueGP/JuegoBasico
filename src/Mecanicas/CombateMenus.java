@@ -58,7 +58,7 @@ public class CombateMenus {
         System.out.println("############################################################################");
         System.out.println("\n¡¡¡COMENZO EL COMBATE!!!\n");
         while(personaje.getPs() > 0 && enemigo.getPs() > 0){
-             modComb.combateContraEnemigo(personaje, enemigo, control);
+             modComb.contraUnComun(personaje, enemigo, control);
         }
         modComb.setTurnos(0);
         personaje.setPs(personaje.getPsMaximo());
