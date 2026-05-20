@@ -93,26 +93,7 @@ public class SistemaCombate {
     public Estados getEst(){return est;}
 
     public Suelos getSue(){return sue;}
-
-    public void verificarGanador(Personaje personaje, Enemigo enemigo){
-        if(enemigo.getPs() == 0){
-            System.out.println("\n¡HAS DERROTADO AL ENEMIGO!");}
-        if(personaje.getPs() == 0){
-            System.out.println("\nTe han derrotado...\nSuerta la proxima");}
-    }
-
-    public void probar1(){
-        getEnto().cambioEntorno(EntornosTipo.Agresivo);
-    }
-
-    public void probar2(BasePersonaje afectado){
-        getEst().setear(afectado);
-    }
-
-    public void probar3(BasePersonaje afectado){
-        getSue().setear(afectado);
-    }
-
+    
     public void opcionesJugador(Personaje personaje, Enemigo enemigo, String accion){
         switch (accion) {
             case "1":
@@ -125,9 +106,7 @@ public class SistemaCombate {
                 confirmarAtaqueJugador(personaje, enemigo, accion);
                 break;
             case "4":
-                //probar1();
-                //probar2(personaje);
-                probar3(personaje);
+                hab.ejecutarHabilidades(personaje, enemigo);
                 break;
             default:
                 System.out.println("Accion no reconocida...\nSe contara como Reservar");

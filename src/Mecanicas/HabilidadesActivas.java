@@ -3,7 +3,6 @@ package Mecanicas;
 import ConfigurarPersonajes.BasePersonaje;
 import ConfigurarPersonajes.Enemigo;
 import ConfigurarPersonajes.Personaje;
-import Enums.EntornosTipo;
 import Enums.PosEstados;
 
 public class HabilidadesActivas {
@@ -12,7 +11,7 @@ public class HabilidadesActivas {
     private Suelos sue;
     private Entornos ento;
 
-    private Integer idHabilidad;
+    private int usoEnergia;
 
     public HabilidadesActivas(Energia ener, Estados est, Suelos sue, Entornos ento){
         this.ener = ener;
@@ -21,24 +20,52 @@ public class HabilidadesActivas {
         this.ento = ento;
     }
 
-    public void superDanio(BasePersonaje atacante, BasePersonaje objetivo, Energia energia, int enerhab){
-        int ataqueHabilidad = 500;
-        energia.restarEnergia(enerhab);
-
-
+    public void superDanio(BasePersonaje atacante, BasePersonaje objetivo){
+        this.usoEnergia = 5;
+        int danio = atacante.getAtaque() + 500;
+        ener.restarEnergia(usoEnergia);
+        objetivo.aplicarDanio(danio);
+        System.out.println("¡¡¡SUPERDAÑO!!!\nDaño inflijido a "+objetivo.getNombre()+": "+danio);
     }
 
-    public void curacion(Personaje personaje, Energia energia, int enerhab){
-        int cura = (personaje.getPsMaximo() * 20) / 100;
-        energia.restarEnergia(enerhab);
-
-        System.out.println("¡Te curaste! Ps recuperados: "+cura+" PS de "+personaje.getNombre()+": "+ personaje.getPs());
+    public void superCura(BasePersonaje afectado){
+        this.usoEnergia = 5;
+        int cura = (afectado.getPsMaximo() * 50) / 100;
+        ener.restarEnergia(usoEnergia);
+        afectado.recibirCura(cura);
+        System.out.println("¡¡¡SUPERCURA!!!\nCura generada por "+afectado.getNombre()+": "+cura);
     }
 
-    public void golpeEntumecedor(Personaje personaje, Enemigo enemigo, Energia energia, int enerhab){
-        enemigo.setEstado(PosEstados.Entumecido);
-        System.out.println("¡El rival ha sido entumecido!");
+    public void voluntador(BasePersonaje objetivo){
+        System.out.println("¡¡¡Voluntador!!!\nreunes toda tu concentracion y de un movimiento...");
+        est.cambioEstados(objetivo, PosEstados.Entumecido);
+        System.out.println("¡"+objetivo.getNombre()+" a quedado entumecido!");
     }
 
+    public void superEmpujon(BasePersonaje atacante, BasePersonaje objetivo){
+        int danio = (atacante.getAtaque() * 50) / 100;
+        ener.restarEnergia(usoEnergia);
+        objetivo.aplicarDanio(danio);
+        est.cambioEstados(objetivo, PosEstados.Entumecido);
+        System.out.println("¡Super empujon!");
+        System.out.println("Con serenidad y habilidad, aciertas un golpe entumecedor");
+        System.out.println(objetivo.getNombre()+" recibe "+danio);
+    }
 
+    public void ejecutarHabilidades(BasePersonaje usuario, BasePersonaje objetivo){
+        switch (usuario.getIdHabilidad()){
+            case 1:
+                superDanio(usuario, objetivo);
+                break;
+            case 2:
+                superCura(usuario);
+                break;
+            case 3:
+                voluntador(objetivo);
+                break;
+            case 4:
+                superEmpujon(usuario, objetivo);
+                break;
+        }
+    }
 }

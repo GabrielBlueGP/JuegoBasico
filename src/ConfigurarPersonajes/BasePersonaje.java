@@ -12,7 +12,7 @@ public abstract class BasePersonaje{
     protected String apodo;
     protected PosEstados estado;
     protected SuelosPosibles suelo;
-
+    protected int idHabilidad;
     protected int contadorEstados;
     protected int contadorSuelos;
 
@@ -65,6 +65,14 @@ public abstract class BasePersonaje{
 
     public void setPrecision(int precision) {
         this.precision = precision;}
+
+    public int getIdHabilidad() {
+        return idHabilidad;
+    }
+
+    public void setIdHabilidad(int idHabilidad) {
+        this.idHabilidad = idHabilidad;
+    }
 
     public void aplicarDanio(int danio){
         this.ps -= danio;
