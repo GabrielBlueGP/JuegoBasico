@@ -9,23 +9,6 @@ public class Estados {
 
     public Estados(){}
 
-    public void personajeEstados(BasePersonaje afectado){
-        switch (afectado.getEstado()){
-            case Normal:
-                System.out.println("Estado normal");
-                break;
-            case Entumecido:
-                System.out.println("Estado entumecido");
-                break;
-            case Envenenado:
-                System.out.println("Estado envenenado");
-                break;
-            case Sencible:
-                System.out.println("Estado sencible");
-                break;
-        }
-    }
-
     public void  iniciarContador(BasePersonaje afectado){
         switch (afectado.getEstado()){
             case Sencible:

@@ -15,7 +15,7 @@ public class Main {
         String menuOpciones;
         CombateMenus combate = new CombateMenus();
         GestionarPersonajes gestor = new GestionarPersonajes();
-        Personaje pers1 = new Personaje("Tojita",300, 100, 100, PosEstados.Envenenado, Roles.Atacante, "El colorista desquiciado", 1);
+        Personaje pers1 = new Personaje("Tojita",300, 100, 100, PosEstados.Normal, Roles.Atacante, "El colorista desquiciado", 1);
         Personaje pers2 = new Personaje("Wonejo", 500, 20, 100, PosEstados.Normal, Roles.Apoyo, "El conejo dragon", 2);
         Personaje pers3 = new Personaje("Hervacio", 200, 50, 100, PosEstados.Normal, Roles.Sabotaje, "El artesano misterioso", 3);
         Personaje pers4 = new Personaje("Anthony", 400, 70, 100, PosEstados.Normal, Roles.Atacante, "El carnero abismal", 4);

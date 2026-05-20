@@ -93,7 +93,7 @@ public class TextosUsados {
         System.out.println("\n----------------------------------------------------------------------------");
         System.out.println("Caracteristicas del enemigo:");
         System.out.println("\n-Posee un nombre, apodo, atributos, rol y estadisticas");
-        System.out.println("-existen 4 tipos definidos por sus apodos:");
+        System.out.println("-existen 4 tipos definidos por su especie:");
         System.out.println("\t-Aguantador: no ataca, tiene bastantes PS");
         System.out.println("\t-Comun: puede atacar, tiene una cantidad de PS regular");
         System.out.println("\t-Fortalecido: puede atacar, tiene una cantidad de PS alta, Pueden usar habilidades");
@@ -169,6 +169,7 @@ public class TextosUsados {
         System.out.println("\t-Supercura: Cura un equivalente del 50% de los PS maximos del usuario");
         System.out.println("\t-Voluntador: Hace que el rival entre en el estado entumecido");
         System.out.println("\t-Superempujon: Hace la mitad de daño de un ataque normal y entumece al rival");
+        System.out.println("\t-Escupitajo Toxico: Cambia el suelo del rival a toxico");
         System.out.println("----------------------------------------------------------------------------");
     }
 

@@ -6,10 +6,6 @@ import Enums.SuelosPosibles;
 
 public class Suelos {
 
-    public void setear(BasePersonaje afectado){
-        afectado.setSuelo(SuelosPosibles.Puas);
-    }
-
     public void sueloToxico(BasePersonaje afectado){
         afectado.setEstado(PosEstados.Envenenado);
         System.out.println("El suelo toxico a envenenado a "+afectado.getNombre());
@@ -72,5 +68,10 @@ public class Suelos {
             afectado.setSuelo(SuelosPosibles.Normal);
             System.out.println("El suelo se ha restaurado a la normalidad");
         }
+    }
+
+    public void cambioSuelo(BasePersonaje afectado, SuelosPosibles nuevoSuelo){
+        afectado.setSuelo(nuevoSuelo);
+        iniciarContador(afectado);
     }
 }

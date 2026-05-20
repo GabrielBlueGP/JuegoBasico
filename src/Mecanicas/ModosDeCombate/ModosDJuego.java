@@ -22,11 +22,9 @@ public class ModosDJuego {
     public void contraUnComun(Personaje personaje, Enemigo enemigo, Scanner control){
         mostrarTurnos(personaje, enemigo);
         mostrarOpciones();
-
         turnoJugador(personaje, enemigo, control);
         sumarTurnos();
         finalizarTurnos(personaje);
-
         if(enemigo.getPs() > 0) {
             turnoEnemigo(enemigo, personaje);
             sumarTurnos();

@@ -2,6 +2,7 @@ package ConfigurarPersonajes;
 
 import Enums.PosEstados;
 import Enums.SuelosPosibles;
+import Mecanicas.Energia;
 
 public abstract class BasePersonaje{
     protected String nombre;
@@ -12,6 +13,7 @@ public abstract class BasePersonaje{
     protected String apodo;
     protected PosEstados estado;
     protected SuelosPosibles suelo;
+    protected int energia;
     protected int idHabilidad;
     protected int contadorEstados;
     protected int contadorSuelos;
@@ -25,6 +27,7 @@ public abstract class BasePersonaje{
         this.estado = estado;
         this.suelo = SuelosPosibles.Normal;
         this.apodo = apodo;
+        this.energia = 0;
         this.idHabilidad = idHabilidad;
     }
 
@@ -66,6 +69,11 @@ public abstract class BasePersonaje{
 
     public void setPrecision(int precision) {
         this.precision = precision;}
+
+    public int getEnergia() {return energia;}
+
+    public void setEnergia(int energia) {
+        this.energia = energia;}
 
     public int getIdHabilidad() {
         return idHabilidad;
