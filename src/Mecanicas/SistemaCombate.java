@@ -93,7 +93,7 @@ public class SistemaCombate {
     public Estados getEst(){return est;}
 
     public Suelos getSue(){return sue;}
-    
+
     public void opcionesJugador(Personaje personaje, Enemigo enemigo, String accion){
         switch (accion) {
             case "1":

@@ -53,19 +53,26 @@ public class HabilidadesActivas {
     }
 
     public void ejecutarHabilidades(BasePersonaje usuario, BasePersonaje objetivo){
-        switch (usuario.getIdHabilidad()){
-            case 1:
-                superDanio(usuario, objetivo);
-                break;
-            case 2:
-                superCura(usuario);
-                break;
-            case 3:
-                voluntador(objetivo);
-                break;
-            case 4:
-                superEmpujon(usuario, objetivo);
-                break;
+        if(ener.getEnergia() >= usoEnergia) {
+            System.out.println("Se esta ejecutando una habilidad");
+            switch (usuario.getIdHabilidad()) {
+                case 1:
+                    superDanio(usuario, objetivo);
+                    break;
+                case 2:
+                    superCura(usuario);
+                    break;
+                case 3:
+                    voluntador(objetivo);
+                    break;
+                case 4:
+                    superEmpujon(usuario, objetivo);
+                    break;
+            }
+        } else {
+            System.out.println("Energia insuficiente...");
+            System.out.println("En su lugar, se concentrara para reservar...");
+            ener.manejoEnergia();
         }
     }
 }

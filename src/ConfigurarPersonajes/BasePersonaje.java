@@ -16,7 +16,7 @@ public abstract class BasePersonaje{
     protected int contadorEstados;
     protected int contadorSuelos;
 
-    public BasePersonaje(String nombre, int ps, int ataque, int precision, PosEstados estado, String apodo){
+    public BasePersonaje(String nombre, int ps, int ataque, int precision, PosEstados estado, String apodo, int idHabilidad){
         this.nombre = nombre;
         this.ps = ps;
         this.psMaximo = ps;
@@ -25,6 +25,7 @@ public abstract class BasePersonaje{
         this.estado = estado;
         this.suelo = SuelosPosibles.Normal;
         this.apodo = apodo;
+        this.idHabilidad = idHabilidad;
     }
 
     // ---- Textos ----

@@ -6,8 +6,8 @@ import Enums.Roles;
 public class Personaje extends BasePersonaje {
     private Roles rol;
 
-    public Personaje(String nombre, int ps, int ataque, int precision, PosEstados estado, Roles rol, String apodo) {
-        super(nombre, ps, ataque, precision, estado, apodo);
+    public Personaje(String nombre, int ps, int ataque, int precision, PosEstados estado, Roles rol, String apodo, int idHabilidad) {
+        super(nombre, ps, ataque, precision, estado, apodo, idHabilidad);
         this.precision = precision;
         this.rol = rol;
         switch (rol) {

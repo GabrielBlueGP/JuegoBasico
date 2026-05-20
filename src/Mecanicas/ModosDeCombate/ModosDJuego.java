@@ -48,14 +48,14 @@ public class ModosDJuego {
 
     public void mostrarTurnos(Personaje personaje, Enemigo enemigo){
         System.out.println("================");
-        System.out.println("\tTurno " + getTurnos());
+        System.out.println("Turno " + getTurnos());
         System.out.println("=============");
         System.out.println("Entorno: "+ sist.getEnto().getEntor());
         if(sist.getEnto().getEntor() != EntornosTipo.Normal){
             System.out.println("=============");
             System.out.println("Duracion de turnos: "+sist.getEnto().getContadorEntorno());
         }
-        System.out.println("================\n");
+        System.out.println("================");
         System.out.println(personaje.getNombre()+"\nPS: "+personaje.getPs()+"/"+personaje.getPsMaximo());
         System.out.println("Estado: "+personaje.getEstado());
         System.out.println("Suelo: "+personaje.getSuelo()+"\n");
@@ -63,7 +63,7 @@ public class ModosDJuego {
         System.out.println(enemigo.getNombre()+"\nPS: "+enemigo.getPs()+"/"+enemigo.getPsMaximo());
         System.out.println("Estado: "+enemigo.getEstado());
         System.out.println("Suelo: "+enemigo.getSuelo()+"\n");
-        System.out.println("================\n");
+        System.out.println("================");
     }
 
     public void mostrarOpciones(){
@@ -72,7 +72,7 @@ public class ModosDJuego {
         System.out.println("(2) Reservar");
         System.out.println("(3) Ataque Cargado");
         System.out.println("(4) Habilidad");
-        System.out.print("\nOpcion: ");
+        System.out.print("Opcion: ");
     }
 
     // ------ metodos de contra reloj ------
