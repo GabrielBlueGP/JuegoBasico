@@ -14,6 +14,7 @@ public class CombateMenus {
     private Estados est;
     private SistemaCombate sist;
     private HabilidadesActivas hab;
+    private TiposEnemigos tipEne;
     private ModosDJuego modComb;
 
     public CombateMenus(){
@@ -23,7 +24,8 @@ public class CombateMenus {
         this.est = new Estados();
         this.hab = new HabilidadesActivas(ener, est, sue, ento);
         this.sist = new SistemaCombate(ener, hab, ento, sue, est);
-        this.modComb = new ModosDJuego(sist);
+        this.tipEne = new TiposEnemigos(ener, hab, ento, sue, est, sist);
+        this.modComb = new ModosDJuego(sist, tipEne);
     }
 
     public void menuModos(Personaje personaje, Enemigo enemigo, Scanner control) {
@@ -31,18 +33,26 @@ public class CombateMenus {
         boolean activo = true;
         while (activo){
             System.out.println("\nSeleccione el modo de combate:");
-            System.out.print("\n\t(1) 1vs1\n\t(2) Contra-reloj\n\t(3) Salir\n\nOpcion: ");
-            String opcion = control.nextLine();
+            System.out.println("\t(1) Modo practica");
+            System.out.println("\t(2) Contra un enemigo comun");
+            System.out.println("\t(3) Al limite");
+            System.out.println("\t(X) Salir");
+            System.out.print("Opcion: ");
+            String opcion = control.nextLine().toUpperCase();
             switch (opcion){
-                case "1" :
-                    System.out.println("\nModo 1vs1 seleccionado\n");
-                    combateUnoVSUno(personaje, enemigo, control);
+                case "1":
+                    System.out.println("\nModo practica seleccionado\n");
+                    combateEnemigoAguantador(personaje, enemigo, control);
                     break;
-                case "2":
-                    System.out.println("\nModo Contra-reloj seleccionado\n");
-                    combateContraReloj(personaje, enemigo, control);
+                case "2" :
+                    System.out.println("\nContra un enemigo comun seleccionado\n");
+                    combateEnemigoComun(personaje, enemigo, control);
                     break;
                 case "3":
+                    System.out.println("\nAl limite seleccionado\n");
+                    combateContraReloj(personaje, enemigo, control);
+                    break;
+                case "X":
                     System.out.println("\nVolviendo a inicio...\n");
                     activo = false;
                     break;
@@ -53,8 +63,25 @@ public class CombateMenus {
         }
     }
 
+    public void combateEnemigoAguantador(Personaje personaje, Enemigo enemigo, Scanner control){
+        System.out.println("############################################################################");
+        System.out.println("############################################################################");
+        System.out.println("############################################################################");
+        System.out.println("\n¡¡¡COMENZO LA PRACTICA!!!\n");
+        while(personaje.getPs() > 0 && enemigo.getPs() > 0){
+            modComb.practica(personaje, enemigo, control);
+        }
+        modComb.setTurnos(0);
+        personaje.setPs(personaje.getPsMaximo());
+        enemigo.setPs(enemigo.getPsMaximo());
+        System.out.println("############################################################################");
+        System.out.println("############################################################################");
+        System.out.println("############################################################################");
+    }
 
-    public void combateUnoVSUno(Personaje personaje, Enemigo enemigo, Scanner control){
+    public void combateEnemigoComun(Personaje personaje, Enemigo enemigo, Scanner control){
+        System.out.println("############################################################################");
+        System.out.println("############################################################################");
         System.out.println("############################################################################");
         System.out.println("\n¡¡¡COMENZO EL COMBATE!!!\n");
         while(personaje.getPs() > 0 && enemigo.getPs() > 0){
@@ -63,6 +90,8 @@ public class CombateMenus {
         modComb.setTurnos(0);
         personaje.setPs(personaje.getPsMaximo());
         enemigo.setPs(enemigo.getPsMaximo());
+        System.out.println("############################################################################");
+        System.out.println("############################################################################");
         System.out.println("############################################################################");
 
     }

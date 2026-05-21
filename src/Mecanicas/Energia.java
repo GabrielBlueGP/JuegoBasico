@@ -9,9 +9,13 @@ public class Energia {
     public void manejoEnergia(BasePersonaje usuario){
         if(usuario.getEnergia() < 11){
             usuario.setEnergia(usuario.getEnergia() + 1);
-            System.out.println("Con calma, se ha reservado...\nReserva de energia: "+ usuario.getEnergia());}
-        else{
-            System.out.println("Has llegado al limite para reservar...\nReserva de energia: "+ usuario.getEnergia());
+            System.out.println("-----------------------------");
+            System.out.println("Con calma, se ha reservado...");
+            System.out.println("-----------------------------");
+        } else {
+            System.out.println("-----------------------------");
+            System.out.println("Limite de energia alcanzado");
+            System.out.println("-----------------------------");
         }
     }
 

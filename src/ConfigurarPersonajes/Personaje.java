@@ -1,27 +1,29 @@
 package ConfigurarPersonajes;
 
 import Enums.PosEstados;
-import Enums.Roles;
+import Enums.RolJugador;
 
 public class Personaje extends BasePersonaje {
-    private Roles rol;
+    private RolJugador rol;
+    private String apodo;
 
-    public Personaje(String nombre, int ps, int ataque, int precision, PosEstados estado, Roles rol, String apodo, int idHabilidad) {
-        super(nombre, ps, ataque, precision, estado, apodo, idHabilidad);
+    public Personaje(String nombre, String apodo, int precision, PosEstados estado, RolJugador rol, int idHabilidad) {
+        super(nombre, precision, estado, idHabilidad);
         this.precision = precision;
         this.rol = rol;
+        this.apodo = apodo;
         switch (rol) {
             case Atacante:
-                this.ps += 500;
-                this.ataque += 100;
+                this.ps += 800;
+                this.ataque += 200;
                 break;
             case Apoyo:
-                this.ps += 1000;
-                this.ataque += 25;
+                this.ps += 1200;
+                this.ataque += 50;
                 break;
             case Sabotaje:
-                this.ps += 750;
-                this.ataque += 50;
+                this.ps += 1000;
+                this.ataque += 100;
                 break;
             default:
                 throw new IllegalArgumentException("Rol no valido");
@@ -33,7 +35,15 @@ public class Personaje extends BasePersonaje {
         setPsMaximo(maximo);
     }
 
-    public Roles getRol() {
+    public RolJugador getRol() {
         return rol;
+    }
+
+    public String getApodo() {
+        return apodo;
+    }
+
+    public void setApodo(String apodo) {
+        this.apodo = apodo;
     }
 }

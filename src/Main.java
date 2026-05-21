@@ -1,9 +1,10 @@
 import Enums.PosEstados;
+import Enums.RolEnemigos;
 import Mecanicas.CombateMenus;
 import ConfigurarPersonajes.Enemigo;
 import ConfigurarPersonajes.GestionarPersonajes;
 import ConfigurarPersonajes.Personaje;
-import Enums.Roles;
+import Enums.RolJugador;
 import UsosDeMenu.TextosUsados;
 
 import java.util.Scanner;
@@ -15,12 +16,12 @@ public class Main {
         String menuOpciones;
         CombateMenus combate = new CombateMenus();
         GestionarPersonajes gestor = new GestionarPersonajes();
-        Personaje pers1 = new Personaje("Tojita",300, 100, 100, PosEstados.Normal, Roles.Atacante, "El colorista desquiciado", 1);
-        Personaje pers2 = new Personaje("Wonejo", 500, 20, 100, PosEstados.Normal, Roles.Apoyo, "El conejo dragon", 2);
-        Personaje pers3 = new Personaje("Hervacio", 200, 50, 100, PosEstados.Normal, Roles.Sabotaje, "El artesano misterioso", 3);
-        Personaje pers4 = new Personaje("Anthony", 400, 70, 100, PosEstados.Normal, Roles.Atacante, "El carnero abismal", 4);
+        Personaje pers1 = new Personaje("Tojita", "El colorista desquiciad", 100, PosEstados.Normal, RolJugador.Atacante, 1);
+        Personaje pers2 = new Personaje("Wonejo", "El conejo dragon", 100, PosEstados.Normal, RolJugador.Apoyo, 2);
+        Personaje pers3 = new Personaje("Hervacio", "El artesano misterioso", 50, PosEstados.Normal, RolJugador.Sabotaje, 4);
+        Personaje pers4 = new Personaje("Anthony", "El carnero abismal", 75, PosEstados.Normal, RolJugador.Sabotaje, 3);
 
-        Enemigo enemigo = new Enemigo("Ogro", 2000, 50, 50, PosEstados.Normal, "Enemigo común", 1);
+        Enemigo enemigo = new Enemigo("Gordiflon", 50, PosEstados.Normal, 1, RolEnemigos.Aguantador);
 
         gestor.agregar(pers1);
         gestor.agregar(pers2);

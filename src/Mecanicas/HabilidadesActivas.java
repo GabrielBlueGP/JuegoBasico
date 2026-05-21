@@ -21,44 +21,44 @@ public class HabilidadesActivas {
 
     public void superDanio(BasePersonaje atacante, BasePersonaje objetivo){
         this.usoEnergia = 5;
-        if(ener.getEnergia() >= usoEnergia){
-            ener.restarEnergia(usoEnergia);
+        if(atacante.getEnergia() >= usoEnergia){
+            ener.restarEnergia(atacante, usoEnergia);
             int danio = atacante.getAtaque() + 500;
             objetivo.aplicarDanio(danio);
             System.out.println("¡¡¡Super daño!!!\nDaño inflijido a "+objetivo.getNombre()+": "+danio);
         } else {
-            habNoDisponible();
+            habNoDisponible(atacante);
         }
     }
 
     public void superCura(BasePersonaje afectado) {
         this.usoEnergia = 5;
-        if(ener.getEnergia() >= usoEnergia){
-            ener.restarEnergia(usoEnergia);
+        if(afectado.getEnergia() >= usoEnergia){
+            ener.restarEnergia(afectado, usoEnergia);
             int cura = (afectado.getPsMaximo() * 50) / 100;
             afectado.recibirCura(cura);
             System.out.println("¡¡¡Super cura!!!\nCura generada por " + afectado.getNombre() + ": " + cura);
         } else {
-            habNoDisponible();
+            habNoDisponible(afectado);
         }
     }
 
-    public void voluntador(BasePersonaje objetivo){
+    public void voluntador(BasePersonaje atacante, BasePersonaje objetivo){
         this.usoEnergia = 3;
-        if(ener.getEnergia() >= usoEnergia) {
-            ener.restarEnergia(usoEnergia);
+        if(atacante.getEnergia() >= usoEnergia) {
+            ener.restarEnergia(atacante, usoEnergia);
             System.out.println("¡¡¡Voluntador!!!\nreunes toda tu concentracion y de un movimiento...");
             est.cambioEstados(objetivo, PosEstados.Entumecido);
             System.out.println("¡" + objetivo.getNombre() + " a quedado entumecido!");
         } else {
-            habNoDisponible();
+            habNoDisponible(atacante);
         }
     }
 
     public void superEmpujon(BasePersonaje atacante, BasePersonaje objetivo){
         this.usoEnergia = 4;
-        if(ener.getEnergia() >= usoEnergia) {
-            ener.restarEnergia(usoEnergia);
+        if(atacante.getEnergia() >= usoEnergia) {
+            ener.restarEnergia(atacante, usoEnergia);
             int danio = (atacante.getAtaque() * 50) / 100;
             objetivo.aplicarDanio(danio);
             est.cambioEstados(objetivo, PosEstados.Entumecido);
@@ -66,26 +66,26 @@ public class HabilidadesActivas {
             System.out.println("Con serenidad y habilidad, aciertas un golpe entumecedor");
             System.out.println(objetivo.getNombre() + " recibe " + danio);
         } else {
-            habNoDisponible();
+            habNoDisponible(atacante);
         }
     }
 
-    public void escupitajoToxico(BasePersonaje objetivo){
+    public void escupitajoToxico(BasePersonaje usuario ,BasePersonaje objetivo){
         this.usoEnergia = 5;
-        if(ener.getEnergia() >= usoEnergia) {
-            ener.restarEnergia(usoEnergia);
+        if(usuario.getEnergia() >= usoEnergia) {
+            ener.restarEnergia(usuario , usoEnergia);
             sue.cambioSuelo(objetivo, SuelosPosibles.Toxico);
             System.out.println("¡¡¡Escupitajo toxico!!!");
             System.out.println("Con fuerza, escupe algo de veneno al suelo de " + objetivo.getNombre());
         } else {
-            habNoDisponible();
+            habNoDisponible(usuario);
         }
     }
 
     public void aromaNatural(BasePersonaje afectado){
         this.usoEnergia = 6;
-        if(ener.getEnergia() >= usoEnergia) {
-            ener.restarEnergia(usoEnergia);
+        if(afectado.getEnergia() >= usoEnergia) {
+            ener.restarEnergia(afectado ,usoEnergia);
             int cura = (afectado.getPsMaximo() * 20) / 100;
             afectado.recibirCura(cura);
             sue.cambioSuelo(afectado, SuelosPosibles.Resiliente);
@@ -94,14 +94,14 @@ public class HabilidadesActivas {
             System.out.println("Cura generada por " + afectado.getNombre() + ": " + cura);
             System.out.println("El suelo se vuelve resiliente por el aroma...");
         } else {
-            habNoDisponible();
+            habNoDisponible(afectado);
         }
     }
 
-    public void habNoDisponible(){
+    public void habNoDisponible(BasePersonaje usuario){
         System.out.println("Energia insuficiente...");
         System.out.println("En su lugar, se concentrara para reservar...");
-        ener.manejoEnergia();
+        ener.manejoEnergia(usuario);
     }
 
     public void ejecutarHabilidades(BasePersonaje usuario, BasePersonaje objetivo){
@@ -114,13 +114,13 @@ public class HabilidadesActivas {
                 superCura(usuario);
                 break;
             case 3:
-                voluntador(objetivo);
+                voluntador(usuario, objetivo);
                 break;
             case 4:
                 superEmpujon(usuario, objetivo);
                 break;
             case 5:
-                escupitajoToxico(objetivo);
+                escupitajoToxico(usuario, objetivo);
                 break;
             case 6:
                 aromaNatural(usuario);

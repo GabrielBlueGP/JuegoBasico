@@ -30,7 +30,7 @@ public class SistemaCombate {
         ataque = est.estSencible(objetivo, ataque);
         objetivo.aplicarDanio(ataque);
         System.out.println("¡"+atacante.getNombre()+" acerto su ataque contra "+ objetivo.getNombre()+"!");
-        System.out.println("Daño: "+ataque);
+        System.out.println("Daño causado: "+ataque);
 
     }
 
@@ -62,16 +62,16 @@ public class SistemaCombate {
     }
 
     public void ataqueCargado(BasePersonaje atacante, BasePersonaje objetivo){
-        if(ener.verificarEnergia()){
-            int cargado = ener.aumentaDanio();
+        if(ener.verificarEnergia(atacante)){
+            int cargado = ener.aumentaDanio(atacante);
             int ataGuardado = atacante.getAtaque() + cargado;
             ataGuardado = calcularDanio(ataGuardado);
             objetivo.aplicarDanio(ataGuardado);
+            System.out.println("-----------------------------");
+            System.out.println("¡¡¡Ataque Cargado!!!");
             System.out.println("¡"+atacante.getNombre()+" acerto su ataque contra "+ objetivo.getNombre()+"!");
-            System.out.println("Daño: "+ataGuardado);
-            System.out.println("\n¡Ataque Cargado Acertado!");
-            System.out.println("PS de "+objetivo.getNombre()+": "+objetivo.getPs());
-            System.out.println("ataque recibido: "+ ataGuardado);
+            System.out.println("Daño hecho: "+ ataGuardado);
+            System.out.println("-----------------------------");
         } else {
             restarPs(atacante, objetivo);
         }
@@ -100,7 +100,7 @@ public class SistemaCombate {
                 confirmarAtaqueJugador(personaje, enemigo, accion);
                 break;
             case "2":
-                ener.manejoEnergia();
+                ener.manejoEnergia(personaje);
                 break;
             case "3":
                 confirmarAtaqueJugador(personaje, enemigo, accion);
@@ -109,8 +109,8 @@ public class SistemaCombate {
                 hab.ejecutarHabilidades(personaje, enemigo);
                 break;
             default:
-                System.out.println("Accion no reconocida...\nSe contara como Reservar");
-                ener.manejoEnergia();
+                System.out.println("Accion no reconocida...Se contara como Reservar");
+                ener.manejoEnergia(personaje);
                 break;
         }
         ento.accionSanador(personaje);

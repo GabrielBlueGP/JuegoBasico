@@ -34,7 +34,7 @@ public class GestionarPersonajes {
         for(int ver = 0; ver < getPersonajes().size(); ver++){
             lugar = ver + 1;
             System.out.println("----------------------------------------------------------------------------");
-            System.out.println(lugar+" - "+getPersonajes().get(ver).getNombre()+" - "+ getPersonajes().get(ver).getApodo());
+            System.out.println(lugar+" - "+getPersonajes().get(ver).getNombre()+" - "+ getPersonajes().get(ver));
             System.out.println("    PS: "+getPersonajes().get(ver).getPs());
             System.out.println("    Ataque: "+getPersonajes().get(ver).getAtaque());
             System.out.println("----------------------------------------------------------------------------\n");

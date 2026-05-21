@@ -10,7 +10,6 @@ public abstract class BasePersonaje{
     protected int psMaximo;
     protected int ataque;
     protected int precision;
-    protected String apodo;
     protected PosEstados estado;
     protected SuelosPosibles suelo;
     protected int energia;
@@ -18,31 +17,21 @@ public abstract class BasePersonaje{
     protected int contadorEstados;
     protected int contadorSuelos;
 
-    public BasePersonaje(String nombre, int ps, int ataque, int precision, PosEstados estado, String apodo, int idHabilidad){
+    public BasePersonaje(String nombre, int precision, PosEstados estado, int idHabilidad){
         this.nombre = nombre;
-        this.ps = ps;
-        this.psMaximo = ps;
-        this.ataque = ataque;
         this.precision = precision;
         this.estado = estado;
         this.suelo = SuelosPosibles.Normal;
-        this.apodo = apodo;
         this.energia = 0;
         this.idHabilidad = idHabilidad;
     }
 
-    // ---- Textos ----
     public String getNombre(){
         return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;}
-
-    public String getApodo() {return apodo;}
-
-    public void setApodo(String apodo) {
-        this.apodo = apodo;}
 
     // ---- Ps ----
     public int getPs() {
