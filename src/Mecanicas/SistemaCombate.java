@@ -108,8 +108,12 @@ public class SistemaCombate {
             case "4":
                 hab.ejecutarHabilidades(personaje, enemigo);
                 break;
+            case "X":
+                break;
             default:
+                System.out.println("------------------------------------------------");
                 System.out.println("Accion no reconocida...Se contara como Reservar");
+                System.out.println("------------------------------------------------");
                 ener.manejoEnergia(personaje);
                 break;
         }

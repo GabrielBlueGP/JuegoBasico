@@ -22,22 +22,12 @@ public class ModosDJuego {
         this.tipoEnemigo = tipoEnemigo;
     }
 
-    public void practica(Personaje personaje, Enemigo enemigo, Scanner control){
-        secuencia1vs1(personaje, enemigo, control);
+    public boolean practica(Personaje personaje, Enemigo enemigo, Scanner control){
+        return secuencia1vs1(personaje, enemigo, control);
     }
 
-    public void contraUnComun(Personaje personaje, Enemigo enemigo, Scanner control){
-        mostrarTurnos(personaje, enemigo);
-        mostrarOpciones();
-        turnoJugador(personaje, enemigo, control);
-        sumarTurnos();
-        finalizarTurnos(personaje);
-        if(enemigo.getPs() > 0) {
-            turnoEnemigo(enemigo, personaje);
-            sumarTurnos();
-            finalizarTurnos(enemigo);
-        }
-        verificarGanador(personaje, enemigo);
+    public boolean contraUnComun(Personaje personaje, Enemigo enemigo, Scanner control){
+        return secuencia1vs1(personaje,enemigo, control);
     }
 
     // ------ metodos de juegos en general ------
@@ -83,6 +73,7 @@ public class ModosDJuego {
         System.out.println("(2) Reservar");
         System.out.println("(3) Ataque Cargado");
         System.out.println("(4) Habilidad");
+        System.out.println("(X) Salir del combate");
         System.out.print("Opcion: ");
     }
 
@@ -126,14 +117,22 @@ public class ModosDJuego {
     }
 
     // ------ metodos de turnos ------
-    public void turnoJugador(Personaje personaje, Enemigo enemigo, Scanner control){
+    public boolean turnoJugador(Personaje personaje, Enemigo enemigo, Scanner control){
         String accion = control.nextLine();
+        if(accion.equalsIgnoreCase("X")){
+            System.out.println("------------------------------------------------");
+            System.out.println("Combate cancelado, volviendo al menu...");
+            System.out.println("------------------------------------------------");
+            return false;
+        }
+
         if(sist.getEst().estadoEntumecido(personaje)){
             System.out.println("El jugador se encuentra Entumecido, No puede realizar ninguna accion");
         } else {
             sist.opcionesJugador(personaje, enemigo, accion);
             sist.getSue().sueloPuas(personaje);
         }
+        return true;
     }
 
     public void turnoEnemigo(Enemigo enemigo, Personaje personaje) {
@@ -160,10 +159,12 @@ public class ModosDJuego {
         sist.getSue().controlSuelo(perTurno);
     }
 
-    public void secuencia1vs1(Personaje personaje, Enemigo enemigo, Scanner control){
+    public boolean secuencia1vs1(Personaje personaje, Enemigo enemigo, Scanner control){
         mostrarTurnos(personaje, enemigo);
         mostrarOpciones();
-        turnoJugador(personaje, enemigo, control);
+        if(!turnoJugador(personaje, enemigo, control)){
+            return false;
+        }
         sumarTurnos();
         finalizarTurnos(personaje);
         if(enemigo.getPs() > 0) {
@@ -172,6 +173,7 @@ public class ModosDJuego {
             finalizarTurnos(enemigo);
         }
         verificarGanador(personaje, enemigo);
+        return true;
     }
 
     public int getTurnos() {return turnos;}

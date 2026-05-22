@@ -69,7 +69,9 @@ public class CombateMenus {
         System.out.println("############################################################################");
         System.out.println("\n¡¡¡COMENZO LA PRACTICA!!!\n");
         while(personaje.getPs() > 0 && enemigo.getPs() > 0){
-            modComb.practica(personaje, enemigo, control);
+            if(!modComb.practica(personaje, enemigo, control)){
+                break;
+            }
         }
         modComb.setTurnos(0);
         personaje.setPs(personaje.getPsMaximo());
@@ -85,7 +87,9 @@ public class CombateMenus {
         System.out.println("############################################################################");
         System.out.println("\n¡¡¡COMENZO EL COMBATE!!!\n");
         while(personaje.getPs() > 0 && enemigo.getPs() > 0){
-             modComb.contraUnComun(personaje, enemigo, control);
+            if(!modComb.contraUnComun(personaje, enemigo, control)){
+                break;
+            }
         }
         modComb.setTurnos(0);
         personaje.setPs(personaje.getPsMaximo());
