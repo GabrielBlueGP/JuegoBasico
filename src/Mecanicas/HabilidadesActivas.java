@@ -19,6 +19,7 @@ public class HabilidadesActivas {
         this.ento = ento;
     }
 
+    //(1)
     public void superDanio(BasePersonaje atacante, BasePersonaje objetivo){
         this.usoEnergia = 5;
         if(atacante.getEnergia() >= usoEnergia){
@@ -31,11 +32,12 @@ public class HabilidadesActivas {
         }
     }
 
+    //(2)
     public void superCura(BasePersonaje afectado) {
         this.usoEnergia = 5;
         if(afectado.getEnergia() >= usoEnergia){
             ener.restarEnergia(afectado, usoEnergia);
-            int cura = (afectado.getPsMaximo() * 50) / 100;
+            int cura = (afectado.getPsMaximo() * 40) / 100;
             afectado.recibirCura(cura);
             System.out.println("¡¡¡Super cura!!!\nCura generada por " + afectado.getNombre() + ": " + cura);
         } else {
@@ -43,6 +45,22 @@ public class HabilidadesActivas {
         }
     }
 
+    //(3)
+    public void relajacion(BasePersonaje afectado){
+        this.usoEnergia = 6;
+        if(afectado.getEnergia() >= usoEnergia){
+            ener.restarEnergia(afectado, usoEnergia);
+            int cura = (afectado.getPsMaximo() * 70) / 100;
+            afectado.recibirCura(cura);
+            est.cambioEstados(afectado, PosEstados.Dormido);
+            System.out.println("¡¡¡Relajacion!!!\n"+afectado.getNombre()+" genera una cura de: " + cura);
+            System.out.println("Pero en el proceso se ha quedado Dormido");
+        } else {
+            habNoDisponible(afectado);
+        }
+    }
+
+    //(4)
     public void voluntador(BasePersonaje atacante, BasePersonaje objetivo){
         this.usoEnergia = 3;
         if(atacante.getEnergia() >= usoEnergia) {
@@ -55,6 +73,7 @@ public class HabilidadesActivas {
         }
     }
 
+    //(5)
     public void superEmpujon(BasePersonaje atacante, BasePersonaje objetivo){
         this.usoEnergia = 4;
         if(atacante.getEnergia() >= usoEnergia) {
@@ -70,6 +89,7 @@ public class HabilidadesActivas {
         }
     }
 
+    //(6)
     public void escupitajoToxico(BasePersonaje usuario ,BasePersonaje objetivo){
         this.usoEnergia = 5;
         if(usuario.getEnergia() >= usoEnergia) {
@@ -82,6 +102,7 @@ public class HabilidadesActivas {
         }
     }
 
+    //(7)
     public void aromaNatural(BasePersonaje afectado){
         this.usoEnergia = 6;
         if(afectado.getEnergia() >= usoEnergia) {
@@ -114,15 +135,18 @@ public class HabilidadesActivas {
                 superCura(usuario);
                 break;
             case 3:
-                voluntador(usuario, objetivo);
+                relajacion(usuario);
                 break;
             case 4:
-                superEmpujon(usuario, objetivo);
+                voluntador(usuario, objetivo);
                 break;
             case 5:
-                escupitajoToxico(usuario, objetivo);
+                superEmpujon(usuario, objetivo);
                 break;
             case 6:
+                escupitajoToxico(usuario, objetivo);
+                break;
+            case 7:
                 aromaNatural(usuario);
                 break;
             }

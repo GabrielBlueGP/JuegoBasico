@@ -37,8 +37,9 @@ public class TiposEnemigos {
     }
 
     public void enemigoAguantador(Enemigo enemigo, Personaje personaje) {
-        if(enemigo.getPs() < enemigo.getPsMaximo() && enemigo.getEnergia() >= 5){
-            hab.superCura(enemigo);
+        int salud = (enemigo.getPsMaximo() * 20) / 100;
+        if(enemigo.getPs() >= salud && enemigo.getEnergia() >= 5){
+            hab.ejecutarHabilidades(enemigo, personaje);
         } else {
             System.out.println("El enemigo no parece interesado en pelear");
             System.out.println("Parece realizar un reserva");

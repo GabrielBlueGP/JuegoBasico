@@ -15,7 +15,10 @@ public class Estados {
                 afectado.setContadorEstados(3);
                 break;
             case Entumecido:
-                afectado.setContadorEstados(4);
+                afectado.setContadorEstados(6);
+                break;
+            case Dormido:
+                afectado.setContadorEstados(3);
                 break;
         }
     }
@@ -32,6 +35,7 @@ public class Estados {
                 break;
             case Sencible:
             case Entumecido:
+            case Dormido:
                 if(afectado.getContadorEstados() > 1){
                     afectado.setContadorEstados(afectado.getContadorEstados() - 1);
                     System.out.println("El estado durara: "+afectado.getContadorEstados());
@@ -42,10 +46,6 @@ public class Estados {
                 }
                 break;
         }
-    }
-
-    public void setear(BasePersonaje afectado){
-        afectado.setEstado(PosEstados.Envenenado);
     }
 
     public int estSencible(BasePersonaje afectado, int ataque){
@@ -63,9 +63,17 @@ public class Estados {
         }
     }
 
-    public boolean estadoEntumecido(BasePersonaje afectadp){
-        if(afectadp.getEstado() == PosEstados.Entumecido){
-            return true;}
+    public boolean estadoEntumecido(BasePersonaje afectado){
+        if(afectado.getEstado() == PosEstados.Entumecido){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean estadoDormido(BasePersonaje afectado){
+        if(afectado.getEstado() == PosEstados.Dormido){
+            return true;
+        }
         return false;
     }
 }

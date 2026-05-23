@@ -1,5 +1,5 @@
 package Enums;
 
 public enum PosEstados {
-    Normal, Entumecido, Envenenado, Sencible
+    Normal, Entumecido, Envenenado, Sencible, Dormido
 }

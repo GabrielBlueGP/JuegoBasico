@@ -127,7 +127,9 @@ public class ModosDJuego {
         }
 
         if(sist.getEst().estadoEntumecido(personaje)){
-            System.out.println("El jugador se encuentra Entumecido, No puede realizar ninguna accion");
+            System.out.println(personaje.getNombre()+" se encuentra entumecido, no pueda hacer nada...");
+        } else if(sist.getEst().estadoDormido(personaje)){
+            System.out.println(personaje.getNombre()+" se encuentra dormido, no pueda hacer nada...");
         } else {
             sist.opcionesJugador(personaje, enemigo, accion);
             sist.getSue().sueloPuas(personaje);
@@ -140,8 +142,10 @@ public class ModosDJuego {
         System.out.println("Turno " + getTurnos());
         System.out.println("==================");
         System.out.println("-------Turno de enemigo-------");
-        if (sist.getEst().estadoEntumecido(enemigo)) {
-            System.out.println("El enemigo se encuentra Entumecido\nNo puede atacar");
+        if (sist.getEst().estadoEntumecido(enemigo)){
+            System.out.println(enemigo.getNombre()+" se encuentra entumecido, no puede hacer nada...");
+        } else if(sist.getEst().estadoDormido(enemigo)){
+            System.out.println(enemigo.getNombre()+" se encuentra dormido, no pueda hacer nada");
         } else {
             tipoEnemigo.selecEnemigo(enemigo, personaje);
         }

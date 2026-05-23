@@ -2,14 +2,17 @@ package ConfigurarPersonajes;
 
 import java.util.ArrayList;
 
-public class GestionarPersonajes {
+public class GestionPersonajes {
+    private ArrayList<Integer> id;
     private ArrayList<Personaje> personajes;
 
-    public GestionarPersonajes(){
+    public GestionPersonajes(){
+        this.id = new ArrayList<>();
         this.personajes = new ArrayList<>();
     }
 
-    public void agregar(Personaje per){
+    public void agregarPer(Personaje per){
+        id.add(id.size() + 1);
         personajes.add(per);
     }
 
@@ -17,26 +20,26 @@ public class GestionarPersonajes {
         return personajes;
     }
 
+    public ArrayList<Integer> getId() {
+        return id;
+    }
+
     public void mostrarPersonajesRol(){
-        int lugar;
         System.out.println("\n==============================================================================");
         for(int ver = 0; ver < getPersonajes().size(); ver++){
-            lugar = ver + 1;
-            System.out.println(lugar+" - "+getPersonajes().get(ver).getNombre()+" "+getPersonajes().get(ver).getRol());
+            System.out.println(id.get(ver)+" - "+getPersonajes().get(ver).getNombre()+" "+getPersonajes().get(ver).getRol());
             System.out.println("----------------------------------------------------------------------------\n");
         }
         System.out.println("==============================================================================\n");
     }
 
     public void mostrarPersonajesStats(){
-        int lugar;
         System.out.println("\n==============================================================================");
         for(int ver = 0; ver < getPersonajes().size(); ver++){
-            lugar = ver + 1;
             System.out.println("----------------------------------------------------------------------------");
-            System.out.println(lugar+" - "+getPersonajes().get(ver).getNombre()+" - "+ getPersonajes().get(ver));
-            System.out.println("    PS: "+getPersonajes().get(ver).getPs());
-            System.out.println("    Ataque: "+getPersonajes().get(ver).getAtaque());
+            System.out.println(id.get(ver)+" - "+getPersonajes().get(ver).getNombre()+" - "+ getPersonajes().get(ver));
+            System.out.println("\tPS: "+getPersonajes().get(ver).getPs());
+            System.out.println("\tAtaque: "+getPersonajes().get(ver).getAtaque());
             System.out.println("----------------------------------------------------------------------------\n");
         }
         System.out.println("==============================================================================\n");
