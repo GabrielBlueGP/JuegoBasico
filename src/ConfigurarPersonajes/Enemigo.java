@@ -8,6 +8,8 @@ public class Enemigo extends BasePersonaje{
     protected String efectoRival;
     protected RolEnemigos rol;
 
+    public Enemigo(){}
+
     public Enemigo(String nombre, int precision, PosEstados estado, int idHabilidad, RolEnemigos rol){
         super(nombre, precision, estado, idHabilidad);
         this.rol = rol;

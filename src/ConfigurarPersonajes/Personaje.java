@@ -7,6 +7,8 @@ public class Personaje extends BasePersonaje {
     private RolJugador rol;
     private String apodo;
 
+    public Personaje(){}
+
     public Personaje(String nombre, String apodo, int precision, PosEstados estado, RolJugador rol, int idHabilidad) {
         super(nombre, precision, estado, idHabilidad);
         this.precision = precision;

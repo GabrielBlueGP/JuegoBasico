@@ -17,8 +17,8 @@ public class CombateMenus {
     private HabilidadesActivas hab;
     private TiposEnemigos tipEne;
     private ModosDJuego modComb;
-    private BasePersonaje jugadores;
-    private BasePersonaje rivales;
+    private Personaje jugadores;
+    private Enemigo rivales;
 
     public CombateMenus(GestionPersonajes gestPer, GestionEnemigos gestEne){
         this.gestPer = gestPer;
@@ -33,7 +33,7 @@ public class CombateMenus {
         this.modComb = new ModosDJuego(sist, tipEne);
     }
 
-    public void menuModos(Personaje personaje, Enemigo enemigo, Scanner control) {
+    public void menuModos(Scanner control) {
         modComb.setTurnos(1);
         boolean activo = true;
         while (activo){
@@ -48,15 +48,21 @@ public class CombateMenus {
             switch (opcion){
                 case "1":
                     System.out.println("\nModo practica seleccionado");
-                    combateEnemigoAguantador(personaje, enemigo, control);
+                    menuSelectorPer(gestPer, control);
+                    rivales = gestEne.selectorEnemigos(1);
+                    combateEnemigoAguantador(jugadores, rivales, control);
                     break;
                 case "2" :
                     System.out.println("\nContra un enemigo comun seleccionado");
-                    combateEnemigoComun(personaje, enemigo, control);
+                    menuSelectorPer(gestPer, control);
+                    rivales = gestEne.selectorEnemigos(2);
+                    combateEnemigoComun(jugadores, rivales, control);
                     break;
                 case "3":
                     System.out.println("\nAl limite seleccionado");
-                    combateContraReloj(personaje, enemigo, control);
+                    menuSelectorPer(gestPer, control);
+                    rivales = gestEne.selectorEnemigos(1);
+                    combateAlLimite(jugadores, rivales, control);
                     break;
                 case "X":
                     System.out.println("\nVolviendo a inicio...");
@@ -80,7 +86,6 @@ public class CombateMenus {
                 break;
             }
         }
-        modComb.setTurnos(0);
         personaje.setPs(personaje.getPsMaximo());
         enemigo.setPs(enemigo.getPsMaximo());
         System.out.println("############################################################################");
@@ -98,7 +103,6 @@ public class CombateMenus {
                 break;
             }
         }
-        modComb.setTurnos(0);
         personaje.setPs(personaje.getPsMaximo());
         enemigo.setPs(enemigo.getPsMaximo());
         System.out.println("############################################################################");
@@ -107,27 +111,20 @@ public class CombateMenus {
 
     }
 
-    public void combateContraReloj(Personaje personaje, Enemigo enemigo, Scanner control){
+    public void combateAlLimite(Personaje personaje, Enemigo enemigo, Scanner control){
         System.out.println("############################################################################");
-        System.out.println("\n¡¡¡COMENZO EL COMBATE CONTRA EL TIEMPO!!!\n");
+        System.out.println("\n¡¡¡AL LIMITE!!!\n");
         while(modComb.getTurnos() <= modComb.getLimiteTurnos() && (personaje.getPs() > 0 && enemigo.getPs() > 0)){
-            modComb.contraReloj(personaje, enemigo, control);
-        }
-        modComb.finContraReloj(personaje, enemigo);
-        personaje.setPs(personaje.getPsMaximo());
-        enemigo.setPs(enemigo.getPsMaximo());
-        System.out.println("############################################################################");
-    }
-
-    public void selectorPersonaje(GestionPersonajes gestPer, BasePersonaje jugadores, int idBuscado){
-        for(int buscar = 0; buscar < gestPer.getPersonajes().size(); buscar++){
-            if(gestPer.getId().get(buscar) == idBuscado){
-                jugadores = gestPer.getPersonajes().get(buscar);
+            if(!modComb.alLimite(personaje, enemigo, control)){
+                break;
             }
         }
+        personaje.setPs(personaje.getPsMaximo());
+        enemigo.setPs(enemigo.getPsMaximo());
+        System.out.println("############################################################################");
     }
 
-    public void menuSelectorPer(GestionPersonajes gestPer, BasePersonaje jugadores, Scanner control){
+    public void menuSelectorPer(GestionPersonajes gestPer, Scanner control){
         boolean activo = true;
         while (activo){
             System.out.println("\n----------------------------------");
@@ -137,16 +134,20 @@ public class CombateMenus {
             String opcion = control.nextLine().toUpperCase();
             switch (opcion){
                 case "1":
-
+                    jugadores = gestPer.selectorPersonaje(1);
+                    activo = false;
                     break;
-                case "2" :
-                    System.out.println("\nContra un enemigo comun seleccionado");
+                case "2":
+                    jugadores = gestPer.selectorPersonaje(2);
+                    activo = false;
                     break;
                 case "3":
-                    System.out.println("\nAl limite seleccionado");
+                    jugadores = gestPer.selectorPersonaje(3);
+                    activo = false;
                     break;
                 case "4":
-                    System.out.println("\nVolviendo a inicio...");
+                    jugadores = gestPer.selectorPersonaje(4);
+                    activo = false;
                     break;
                 default:
                     System.out.println("\nOpcion no reconocida, reingrese su opcion");
@@ -155,23 +156,6 @@ public class CombateMenus {
             System.out.println("----------------------------------\n");
         }
 
-    }
-
-    public void selectorAutoenemigo(GestionEnemigos gestEne, BasePersonaje rivales, int idBuscado){
-        switch (idBuscado){
-            case 1:
-                rivales = gestEne.getEnemigos().get(idBuscado);
-                break;
-            case 2 :
-                rivales = gestEne.getEnemigos().get(idBuscado);
-                break;
-            case 3:
-                rivales = gestEne.getEnemigos().get(idBuscado);
-                break;
-            case 4:
-                rivales = gestEne.getEnemigos().get(idBuscado);
-                break;
-        }
     }
 }
 

@@ -24,6 +24,15 @@ public class GestionPersonajes {
         return id;
     }
 
+    public Personaje selectorPersonaje(int idBuscado){
+        for(int buscar = 0; buscar < id.size(); buscar++){
+            if(id.get(buscar) == idBuscado){
+                return personajes.get(buscar);
+            }
+        }
+        return null;
+    }
+
     public void mostrarPersonajesRol(){
         System.out.println("\n==============================================================================");
         for(int ver = 0; ver < getPersonajes().size(); ver++){

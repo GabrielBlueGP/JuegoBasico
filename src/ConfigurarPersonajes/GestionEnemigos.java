@@ -24,6 +24,15 @@ public class GestionEnemigos {
         return id;
     }
 
+    public Enemigo selectorEnemigos(int idBuscado){
+        for(int buscar = 0; buscar < id.size(); buscar++){
+            if(id.get(idBuscado) == buscar){
+                return enemigos.get(buscar);
+            }
+        }
+        return null;
+    }
+
     public void mostrarEnemigoRol(){
         System.out.println("\n==============================================================================");
         for(int ver = 0; ver < getEnemigos().size(); ver++){

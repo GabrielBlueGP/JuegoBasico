@@ -27,6 +27,7 @@ public class Main {
         Enemigo enem3 = new Enemigo("Armadura maldita", 90, PosEstados.Normal, 5, RolEnemigos.Fortalecido );
         Enemigo enem4 = new Enemigo("Rey insecto", 100, PosEstados.Normal, 7, RolEnemigos.Jefe);
 
+
         gestorPer.agregarPer(pers1);
         gestorPer.agregarPer(pers2);
         gestorPer.agregarPer(pers3);
@@ -38,10 +39,11 @@ public class Main {
         gestorEne.agregarEne(enem4);
 
         CombateMenus combate = new CombateMenus(gestorPer, gestorEne);
-
-        System.out.println("\nBienvenido a: Gana o muere :3\n\nOpciones:\n\n(Precione la tecla marcada en ( ) + Enter)");
+        System.out.println("\n#######################################");
+        System.out.println("\nBienenido a: Un lugar muy basico\n");
+        System.out.println("#######################################\n");
         while(juegoActivo){
-            System.out.print("\n(A) Acerca del juego\n(B) Reglas de juego\n(C) Jugar\n(D) Mostrar personajes\n(X) Salir del juego\n\nIngrese su opcion: ");
+            TextosUsados.menuMain();
             menuOpciones = menu.nextLine().toUpperCase();
             switch (menuOpciones){
                 case "A":
@@ -51,7 +53,7 @@ public class Main {
                     TextosUsados.reglas(menu);
                     break;
                 case "C":
-                    combate.menuModos(pers1, enem1, menu);
+                    combate.menuModos(menu);
                     break;
                 case "D":
                     gestorPer.mostrarPersonajesStats();

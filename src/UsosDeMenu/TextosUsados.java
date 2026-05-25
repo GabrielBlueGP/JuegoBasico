@@ -4,6 +4,17 @@ import java.util.Scanner;
 
 public class TextosUsados {
 
+    public static void menuMain(){
+        System.out.println("(A) Acerca del juego");
+        System.out.println("(B) Reglas de juego");
+        System.out.println("(C) Modos de juego");
+        System.out.println("(D) Mostrar personajes");
+        System.out.println("(E) Mostrar enemigos");
+        System.out.println("(X) Salir del programa");
+        System.out.println("(Precione la tecla marcada en ( ) + Enter)\n");
+        System.out.print("Ingrese su opcion: ");
+    }
+
     public static void descripcion(){
         System.out.println("\n----------------------------------------------------------------------------");
         System.out.println("\nUn juego centrado en combates con uso de diversos elementos y habilidades");
@@ -70,9 +81,9 @@ public class TextosUsados {
     }
 
     public static void opcionNoReconocida(){
-        System.out.println("\n----------------------------------------------------------------------------\n");
-        System.out.println("\nLa tecla ingresada no se encuentra entre las opciones\nporfavor, precione una tecla valida + Enter\n");
         System.out.println("\n----------------------------------------------------------------------------");
+        System.out.println("\nLa tecla ingresada no se encuentra entre las opciones\nporfavor, precione una tecla valida + Enter\n");
+        System.out.println("----------------------------------------------------------------------------\n");
     }
 
     public static void reglasJugador(){

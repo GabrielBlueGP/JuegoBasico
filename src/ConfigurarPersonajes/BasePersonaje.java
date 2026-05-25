@@ -17,6 +17,8 @@ public abstract class BasePersonaje{
     protected int contadorEstados;
     protected int contadorSuelos;
 
+    public BasePersonaje(){}
+
     public BasePersonaje(String nombre, int precision, PosEstados estado, int idHabilidad){
         this.nombre = nombre;
         this.precision = precision;
