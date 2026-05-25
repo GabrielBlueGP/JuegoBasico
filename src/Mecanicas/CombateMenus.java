@@ -2,6 +2,8 @@ package Mecanicas;
 
 import ConfigurarPersonajes.*;
 import Enums.EntornosTipo;
+import Enums.PosEstados;
+import Enums.SuelosPosibles;
 import Mecanicas.ModosDeCombate.ModosDJuego;
 
 import java.util.Scanner;
@@ -61,7 +63,7 @@ public class CombateMenus {
                 case "3":
                     System.out.println("\nAl limite seleccionado");
                     menuSelectorPer(gestPer, control);
-                    rivales = gestEne.selectorEnemigos(1);
+                    rivales = gestEne.selectorEnemigos(5);
                     combateAlLimite(jugadores, rivales, control);
                     break;
                 case "X":
@@ -86,11 +88,7 @@ public class CombateMenus {
                 break;
             }
         }
-        personaje.setPs(personaje.getPsMaximo());
-        enemigo.setPs(enemigo.getPsMaximo());
-        System.out.println("############################################################################");
-        System.out.println("############################################################################");
-        System.out.println("############################################################################");
+        finCombates(personaje, enemigo);
     }
 
     public void combateEnemigoComun(Personaje personaje, Enemigo enemigo, Scanner control){
@@ -103,11 +101,7 @@ public class CombateMenus {
                 break;
             }
         }
-        personaje.setPs(personaje.getPsMaximo());
-        enemigo.setPs(enemigo.getPsMaximo());
-        System.out.println("############################################################################");
-        System.out.println("############################################################################");
-        System.out.println("############################################################################");
+        finCombates(personaje, enemigo);
 
     }
 
@@ -119,8 +113,16 @@ public class CombateMenus {
                 break;
             }
         }
+        finCombates(personaje, enemigo);
+    }
+
+    public void finCombates(Personaje personaje, Enemigo enemigo){
         personaje.setPs(personaje.getPsMaximo());
+        personaje.setEstado(PosEstados.Normal);
+        personaje.setSuelo(SuelosPosibles.Normal);
         enemigo.setPs(enemigo.getPsMaximo());
+        System.out.println("############################################################################");
+        System.out.println("############################################################################");
         System.out.println("############################################################################");
     }
 
@@ -132,26 +134,12 @@ public class CombateMenus {
             gestPer.mostrarPersonajesRol();
             System.out.print("\nOpcion: ");
             String opcion = control.nextLine().toUpperCase();
-            switch (opcion){
-                case "1":
-                    jugadores = gestPer.selectorPersonaje(1);
-                    activo = false;
-                    break;
-                case "2":
-                    jugadores = gestPer.selectorPersonaje(2);
-                    activo = false;
-                    break;
-                case "3":
-                    jugadores = gestPer.selectorPersonaje(3);
-                    activo = false;
-                    break;
-                case "4":
-                    jugadores = gestPer.selectorPersonaje(4);
-                    activo = false;
-                    break;
-                default:
-                    System.out.println("\nOpcion no reconocida, reingrese su opcion");
-                    break;
+            int idUsado = Integer.parseInt(opcion);
+            if(idUsado >= 1 && idUsado <= 4){
+                jugadores = gestPer.selectorPersonaje(1);
+                activo = false;
+            } else {
+                System.out.println("\nOpcion no reconocida, reingrese su opcion");
             }
             System.out.println("----------------------------------\n");
         }

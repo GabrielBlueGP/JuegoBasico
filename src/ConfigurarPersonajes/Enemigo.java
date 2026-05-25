@@ -8,14 +8,12 @@ public class Enemigo extends BasePersonaje{
     protected String efectoRival;
     protected RolEnemigos rol;
 
-    public Enemigo(){}
-
     public Enemigo(String nombre, int precision, PosEstados estado, int idHabilidad, RolEnemigos rol){
         super(nombre, precision, estado, idHabilidad);
         this.rol = rol;
         switch (rol){
             case RolEnemigos.Aguantador:
-                this.ps += 5000;
+                this.ps += 6000;
                 this.ataque += 0;
                 break;
             case RolEnemigos.Comun:

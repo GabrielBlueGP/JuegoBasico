@@ -26,7 +26,7 @@ public class GestionEnemigos {
 
     public Enemigo selectorEnemigos(int idBuscado){
         for(int buscar = 0; buscar < id.size(); buscar++){
-            if(id.get(idBuscado) == buscar){
+            if(id.get(buscar) == idBuscado){
                 return enemigos.get(buscar);
             }
         }

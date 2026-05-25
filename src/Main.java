@@ -22,10 +22,11 @@ public class Main {
         Personaje pers4 = new Personaje("Anthony", "El carnero abismal", 75, PosEstados.Normal, RolJugador.Sabotaje, 3);
 
         GestionEnemigos gestorEne = new GestionEnemigos();
-        Enemigo enem1 = new Enemigo("Gordiflon", 50, PosEstados.Normal, 3, RolEnemigos.Aguantador);
+        Enemigo enem1 = new Enemigo("Gordiflon", 0, PosEstados.Normal, 3, RolEnemigos.Aguantador);
         Enemigo enem2 = new Enemigo("Ogro", 80, PosEstados.Normal, 1, RolEnemigos.Comun);
         Enemigo enem3 = new Enemigo("Armadura maldita", 90, PosEstados.Normal, 5, RolEnemigos.Fortalecido );
         Enemigo enem4 = new Enemigo("Rey insecto", 100, PosEstados.Normal, 7, RolEnemigos.Jefe);
+        Enemigo enem5 = new Enemigo("Ogrin", 50, PosEstados.Normal, 1, RolEnemigos.Comun);
 
 
         gestorPer.agregarPer(pers1);
@@ -37,6 +38,7 @@ public class Main {
         gestorEne.agregarEne(enem2);
         gestorEne.agregarEne(enem3);
         gestorEne.agregarEne(enem4);
+        gestorEne.agregarEne(enem5);
 
         CombateMenus combate = new CombateMenus(gestorPer, gestorEne);
         System.out.println("\n#######################################");

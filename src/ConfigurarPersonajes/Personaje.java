@@ -16,16 +16,16 @@ public class Personaje extends BasePersonaje {
         this.apodo = apodo;
         switch (rol) {
             case Atacante:
-                this.ps += 800;
-                this.ataque += 200;
+                this.ps += 1400;
+                this.ataque += 600;
                 break;
             case Apoyo:
-                this.ps += 1200;
-                this.ataque += 50;
+                this.ps += 2000;
+                this.ataque += 200;
                 break;
             case Sabotaje:
-                this.ps += 1000;
-                this.ataque += 100;
+                this.ps += 1700;
+                this.ataque += 300;
                 break;
             default:
                 throw new IllegalArgumentException("Rol no valido");

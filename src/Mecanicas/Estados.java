@@ -15,7 +15,7 @@ public class Estados {
                 afectado.setContadorEstados(3);
                 break;
             case Entumecido:
-                afectado.setContadorEstados(6);
+                afectado.setContadorEstados(8);
                 break;
             case Dormido:
                 afectado.setContadorEstados(3);

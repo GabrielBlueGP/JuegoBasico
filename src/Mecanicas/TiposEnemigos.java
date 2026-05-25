@@ -51,7 +51,25 @@ public class TiposEnemigos {
         sist.confirmarAtaqueEnemigo(personaje, enemigo);
     }
 
-    public void enemigoFortalecido(){}
+    public void enemigoFortalecido(Enemigo enemigo, Personaje personaje){
+        int salud = (enemigo.getPsMaximo() * 40) / 100;
+        int curaApuro = (enemigo.getPsMaximo() * 30) / 100;
+        Boolean primerApuro = true;
+        Boolean provocado = true;
+        if(enemigo.getPs() >= salud && enemigo.getEnergia() >= 10 && primerApuro){
+            enemigo.setPs(enemigo.getPs() + curaApuro);
+            primerApuro = false;
+            System.out.println("El enemigo a aplicado una curacion en apuros de: "+curaApuro);
+            sist.confirmarAtaqueEnemigo(personaje, enemigo);
+            ener.manejoEnergia(enemigo);
+        } else if(enemigo.getEnergia() >= 10) {
+            hab.ejecutarHabilidades(enemigo, personaje);
+            ener.manejoEnergia(enemigo);
+        } else {
+            sist.confirmarAtaqueEnemigo(personaje, enemigo);
+            ener.manejoEnergia(enemigo);
+        }
+    }
 
     public void enemigoJefe(){}
 

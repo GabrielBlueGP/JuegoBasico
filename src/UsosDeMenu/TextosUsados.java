@@ -119,9 +119,10 @@ public class TextosUsados {
         System.out.println("\n----------------------------------------------------------------------------");
         System.out.println("-Contra un enemigo: Un jugador se enfrenta a un enemigo comun");
         System.out.println("-Contra lo perseverante y estatico: Un jugador se enfrenta a un enemigo aguantador");
-        System.out.println("-Al limite: Un jugador contra un enemigo comun pero el combate termina si llega al limite de turnos");
+        System.out.println("-Al limite: Contra un enemigo pero el combate termina si llega al limite de turnos");
         System.out.println("-En guardia: Un jugador se enfrenta a un enemigo fortalecido");
         System.out.println("-Peligro inminente: Un jugador se enfrenta a un Jefe");
+        System.out.println("-Dependiendo del modo, en algunos puedes seleccionar el personaje o el jugador");
         System.out.println("----------------------------------------------------------------------------");
     }
 
@@ -140,9 +141,10 @@ public class TextosUsados {
         System.out.println("-Puede ser cambiada por habilidades u otros efectos presenten durante un combate");
         System.out.println("-Hay 4 tipos:");
         System.out.println("\t-Normal: Es el estado base, no causa ningun efecto");
-        System.out.println("\t-Entumecido: El afectado no puede realizar ninguna accion durante cierta cantidad de turnos");
+        System.out.println("\t-Entumecido: El afectado no puede hacer nada durante muchos turnos");
         System.out.println("\t-Envenenado: Quita una pequeña parte de los PS del afectado hasta que cambie de estado");
         System.out.println("\t-Sencible: El afectado recibe el doble de daño durante cierta cantidad de turnos");
+        System.out.println("\t-Dormido: El afectado no puede hacer nada durante pocos turnos");
         System.out.println("----------------------------------------------------------------------------");
     }
 
@@ -177,10 +179,13 @@ public class TextosUsados {
         System.out.println("-Afectan a quien lo usa, el rival, estados, suelos y entornos");
         System.out.println("-Las habilidades existentes son: ");
         System.out.println("\t-Superdaño: Realiza un fuerte ataque contra el rival");
-        System.out.println("\t-Supercura: Cura un equivalente del 50% de los PS maximos del usuario");
+        System.out.println("\t-Supercura: Cura un equivalente del 40% de los PS maximos del usuario");
+        System.out.println("\n-Relajacion: Cura un equivalente del 70% de los PS maximos del usuario y cambia su estado a dormido");
         System.out.println("\t-Voluntador: Hace que el rival entre en el estado entumecido");
         System.out.println("\t-Superempujon: Hace la mitad de daño de un ataque normal y entumece al rival");
         System.out.println("\t-Escupitajo Toxico: Cambia el suelo del rival a toxico");
+        System.out.println("\t-Aroma natural: Cura un equivalente del 20% de los PS maximos del usuario y cambia el suelo a resiliente");
+
         System.out.println("----------------------------------------------------------------------------");
     }
 

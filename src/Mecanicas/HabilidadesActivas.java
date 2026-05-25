@@ -24,7 +24,7 @@ public class HabilidadesActivas {
         this.usoEnergia = 5;
         if(atacante.getEnergia() >= usoEnergia){
             ener.restarEnergia(atacante, usoEnergia);
-            int danio = atacante.getAtaque() + 500;
+            int danio = atacante.getAtaque() + 1000;
             objetivo.aplicarDanio(danio);
             System.out.println("¡¡¡Super daño!!!\nDaño inflijido a "+objetivo.getNombre()+": "+danio);
         } else {
