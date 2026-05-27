@@ -4,7 +4,6 @@ import ConfigurarPersonajes.Enemigo;
 import ConfigurarPersonajes.Personaje;
 
 public class TiposEnemigos {
-    private Enemigo enemigo;
     private Energia ener;
     private HabilidadesActivas hab;
     private Entornos ento;
@@ -30,6 +29,7 @@ public class TiposEnemigos {
                 enemigoComun(enemigo, personaje);
                 break;
             case Fortalecido:
+                enemigoFortalecido(enemigo, personaje);
                 break;
             case Jefe:
                 break;
@@ -54,23 +54,32 @@ public class TiposEnemigos {
     public void enemigoFortalecido(Enemigo enemigo, Personaje personaje){
         int salud = (enemigo.getPsMaximo() * 40) / 100;
         int curaApuro = (enemigo.getPsMaximo() * 30) / 100;
-        Boolean primerApuro = true;
-        Boolean provocado = true;
-        if(enemigo.getPs() >= salud && enemigo.getEnergia() >= 10 && primerApuro){
-            enemigo.setPs(enemigo.getPs() + curaApuro);
-            primerApuro = false;
+        int auxHabilidad;
+        if(enemigo.getPs() <= salud && enemigo.getPrimerApuro()){
+            enemigo.recibirCura(curaApuro);
+            enemigo.setPrimerApuro(false);
             System.out.println("El enemigo a aplicado una curacion en apuros de: "+curaApuro);
             sist.confirmarAtaqueEnemigo(personaje, enemigo);
             ener.manejoEnergia(enemigo);
-        } else if(enemigo.getEnergia() >= 10) {
+            enemigo.setCantProvocado(enemigo.getCantProvocado() + 1);
+        } else if(enemigo.getEnergia() >= 10 && enemigo.getCantProvocado() >= 6) {
+            System.out.println("!El enemigo se siente provocado¡");
+            auxHabilidad = enemigo.getIdHabilidad();
+            enemigo.setIdHabilidad(enemigo.getIdHabSecundaria());
             hab.ejecutarHabilidades(enemigo, personaje);
-            ener.manejoEnergia(enemigo);
+            enemigo.setIdHabilidad(auxHabilidad);
+            enemigo.setCantProvocado(0);
+        } else if (enemigo.getEnergia() >= 10){
+            hab.ejecutarHabilidades(enemigo, personaje);
         } else {
             sist.confirmarAtaqueEnemigo(personaje, enemigo);
             ener.manejoEnergia(enemigo);
+            enemigo.setCantProvocado(enemigo.getCantProvocado() + 1);
         }
     }
 
     public void enemigoJefe(){}
+
+
 
 }

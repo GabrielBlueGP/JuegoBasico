@@ -43,7 +43,8 @@ public class CombateMenus {
             System.out.println("Seleccione el modo de combate:");
             System.out.println("\t(1) Modo practica");
             System.out.println("\t(2) Contra un enemigo comun");
-            System.out.println("\t(3) Al limite");
+            System.out.println("\t(3) Contra un enemigo fortalecido");
+            System.out.println("\t(4) Al limite");
             System.out.println("\t(X) Salir");
             System.out.print("\nOpcion: ");
             String opcion = control.nextLine().toUpperCase();
@@ -61,6 +62,12 @@ public class CombateMenus {
                     combateEnemigoComun(jugadores, rivales, control);
                     break;
                 case "3":
+                    System.out.println("\nContra un enemigo fortalecido seleccionado");
+                    menuSelectorPer(gestPer, control);
+                    rivales = gestEne.selectorEnemigos(3);
+                    combateEnemigoFortalecido(jugadores, rivales, control);
+                    break;
+                case "4":
                     System.out.println("\nAl limite seleccionado");
                     menuSelectorPer(gestPer, control);
                     rivales = gestEne.selectorEnemigos(5);
@@ -79,9 +86,7 @@ public class CombateMenus {
     }
 
     public void combateEnemigoAguantador(Personaje personaje, Enemigo enemigo, Scanner control){
-        System.out.println("############################################################################");
-        System.out.println("############################################################################");
-        System.out.println("############################################################################");
+        barraDecorativa();
         System.out.println("\n¡¡¡COMENZO LA PRACTICA!!!\n");
         while(personaje.getPs() > 0 && enemigo.getPs() > 0){
             if(!modComb.practica(personaje, enemigo, control)){
@@ -92,9 +97,7 @@ public class CombateMenus {
     }
 
     public void combateEnemigoComun(Personaje personaje, Enemigo enemigo, Scanner control){
-        System.out.println("############################################################################");
-        System.out.println("############################################################################");
-        System.out.println("############################################################################");
+        barraDecorativa();
         System.out.println("\n¡¡¡COMENZO EL COMBATE!!!\n");
         while(personaje.getPs() > 0 && enemigo.getPs() > 0){
             if(!modComb.contraUnComun(personaje, enemigo, control)){
@@ -102,11 +105,21 @@ public class CombateMenus {
             }
         }
         finCombates(personaje, enemigo);
+    }
 
+    public void combateEnemigoFortalecido(Personaje personaje, Enemigo enemigo, Scanner control){
+        barraDecorativa();
+        System.out.println("\n¡¡¡COMENZO UN COMBATE SERIO!!!\n");
+        while(personaje.getPs() > 0 && enemigo.getPs() > 0){
+            if(!modComb.contraFortalecido(personaje, enemigo, control)){
+                break;
+            }
+        }
+        finCombates(personaje, enemigo);
     }
 
     public void combateAlLimite(Personaje personaje, Enemigo enemigo, Scanner control){
-        System.out.println("############################################################################");
+        barraDecorativa();
         System.out.println("\n¡¡¡AL LIMITE!!!\n");
         while(modComb.getTurnos() <= modComb.getLimiteTurnos() && (personaje.getPs() > 0 && enemigo.getPs() > 0)){
             if(!modComb.alLimite(personaje, enemigo, control)){
@@ -121,6 +134,18 @@ public class CombateMenus {
         personaje.setEstado(PosEstados.Normal);
         personaje.setSuelo(SuelosPosibles.Normal);
         enemigo.setPs(enemigo.getPsMaximo());
+        enemigo.setEstado(PosEstados.Normal);
+        switch (enemigo.getRol()){
+            case Fortalecido:
+                enemigo.setPrimerApuro(true);
+                enemigo.setProvocado(true);
+                enemigo.setCantProvocado(0);
+                break;
+        }
+        barraDecorativa();
+    }
+
+    public void barraDecorativa(){
         System.out.println("############################################################################");
         System.out.println("############################################################################");
         System.out.println("############################################################################");

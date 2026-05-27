@@ -1,5 +1,5 @@
 package Enums;
 
-public enum RolJugador {
+public enum RolPer {
     Atacante, Apoyo, Sabotaje;
 }

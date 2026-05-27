@@ -1,5 +1,5 @@
 package Enums;
 
-public enum RolEnemigos {
+public enum RolEne {
     Aguantador, Comun, Fortalecido, Jefe;
 }

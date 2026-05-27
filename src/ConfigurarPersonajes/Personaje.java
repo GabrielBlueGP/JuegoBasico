@@ -1,30 +1,30 @@
 package ConfigurarPersonajes;
 
 import Enums.PosEstados;
-import Enums.RolJugador;
+import Enums.RolPer;
 
 public class Personaje extends BasePersonaje {
-    private RolJugador rol;
+    private RolPer rol;
     private String apodo;
 
     public Personaje(){}
 
-    public Personaje(String nombre, String apodo, int precision, PosEstados estado, RolJugador rol, int idHabilidad) {
+    public Personaje(String nombre, String apodo, int precision, PosEstados estado, RolPer rol, int idHabilidad) {
         super(nombre, precision, estado, idHabilidad);
         this.precision = precision;
         this.rol = rol;
         this.apodo = apodo;
         switch (rol) {
             case Atacante:
-                this.ps += 1400;
+                this.ps += 2400;
                 this.ataque += 600;
                 break;
             case Apoyo:
-                this.ps += 2000;
+                this.ps += 4000;
                 this.ataque += 200;
                 break;
             case Sabotaje:
-                this.ps += 1700;
+                this.ps += 2700;
                 this.ataque += 300;
                 break;
             default:
@@ -37,7 +37,7 @@ public class Personaje extends BasePersonaje {
         setPsMaximo(maximo);
     }
 
-    public RolJugador getRol() {
+    public RolPer getRol() {
         return rol;
     }
 
