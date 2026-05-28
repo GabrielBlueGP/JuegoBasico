@@ -50,7 +50,7 @@ public class ModosDJuego {
     }
 
     public void verificarAlLimite(Personaje personaje, Enemigo enemigo){
-        if(personaje.getPs() > 0  && enemigo.getPs() > 0 || turnos == 0){
+        if((personaje.getPs() > 0  && enemigo.getPs() > 0) || turnos == 0){
             System.out.println("\n¡Fin del combate!");
             System.out.println("Nadie ha ganado");
         } else if(enemigo.getPs() == 0){
@@ -119,19 +119,19 @@ public class ModosDJuego {
 
     // ------ metodos de turnos ------
     public boolean turnoJugador(Personaje personaje, Enemigo enemigo, Scanner control){
-        String accion = control.nextLine();
-        if(accion.equalsIgnoreCase("X")){
-            System.out.println("------------------------------------------------");
-            System.out.println("Combate cancelado, volviendo al menu...");
-            System.out.println("------------------------------------------------");
-            return false;
-        }
-
         if(sist.getEst().estadoEntumecido(personaje)){
             System.out.println(personaje.getNombre()+" se encuentra entumecido, no pueda hacer nada...");
         } else if(sist.getEst().estadoDormido(personaje)){
             System.out.println(personaje.getNombre()+" se encuentra dormido, no pueda hacer nada...");
         } else {
+            mostrarOpciones();
+            String accion = control.nextLine();
+            if(accion.equalsIgnoreCase("X")){
+                System.out.println("------------------------------------------------");
+                System.out.println("Combate cancelado, volviendo al menu...");
+                System.out.println("------------------------------------------------");
+                return false;
+            }
             sist.opcionesJugador(personaje, enemigo, accion);
             sist.getSue().sueloPuas(personaje);
         }
@@ -183,7 +183,6 @@ public class ModosDJuego {
 
     public boolean secuencia1vs1(Personaje personaje, Enemigo enemigo, Scanner control){
         mostrarTurnos(personaje, enemigo);
-        mostrarOpciones();
         if(!turnoJugador(personaje, enemigo, control)){
             return false;
         }

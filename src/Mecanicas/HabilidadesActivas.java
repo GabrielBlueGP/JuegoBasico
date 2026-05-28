@@ -1,6 +1,7 @@
 package Mecanicas;
 
 import ConfigurarPersonajes.BasePersonaje;
+import Enums.EntornosTipo;
 import Enums.PosEstados;
 import Enums.SuelosPosibles;
 
@@ -21,7 +22,7 @@ public class HabilidadesActivas {
 
     //(1)
     public void superDanio(BasePersonaje atacante, BasePersonaje objetivo){
-        this.usoEnergia = 5;
+        this.usoEnergia = 7;
         if(atacante.getEnergia() >= usoEnergia){
             ener.restarEnergia(atacante, usoEnergia);
             int danio = atacante.getAtaque() + 1000;
@@ -116,6 +117,63 @@ public class HabilidadesActivas {
             System.out.println("El suelo se vuelve resiliente por el aroma...");
         } else {
             habNoDisponible(afectado);
+        }
+    }
+
+    //(8)
+    public void sanguijuela(BasePersonaje usuario, BasePersonaje objetivo){
+        this.usoEnergia = 5;
+        if(usuario.getEnergia() >= usoEnergia){
+            ener.restarEnergia(usuario, usoEnergia);
+            int danio = usuario.getAtaque() + 200;
+            objetivo.aplicarDanio(danio);
+            int cura = (danio * 50) / 100;
+            usuario.recibirCura(cura);
+            System.out.println("¡¡¡Sanguijuela!!!");
+            System.out.println(objetivo.getNombre()+" sufrio unos "+danio+" de daño");
+            System.out.println(usuario.getNombre()+" recupero "+cura+" de PS tras su ataque");
+        } else {
+            habNoDisponible(usuario);
+        }
+    }
+
+    //(9)
+    public void rasgunioVenenoso(BasePersonaje usuario, BasePersonaje objetivo){
+        this.usoEnergia = 5;
+        if(usuario.getEnergia() >= usoEnergia){
+
+        } else {
+            habNoDisponible(usuario);
+        }
+    }
+
+    //(10)
+    public void superPatada(BasePersonaje usuario, BasePersonaje objetivo){
+        this.usoEnergia = 7;
+        if(usuario.getEnergia() >= usoEnergia){
+            ener.restarEnergia(usuario, usoEnergia);
+            int danio = 500;
+            objetivo.aplicarDanio(danio);
+            ento.cambioEntorno(EntornosTipo.Temblor);
+            System.out.println("¡¡¡Super patada!!!");
+            System.out.println(objetivo.getNombre()+" sufrio unos "+danio+" de daño");
+            System.out.println("El impacto ha provocado que empieze a temblar...");
+        } else {
+            habNoDisponible(usuario);
+        }
+    }
+
+    //(11)
+    public void gritoFurioso(BasePersonaje usuario){
+        this.usoEnergia = 6;
+        if(usuario.getEnergia() >= usoEnergia){
+            usuario.aplicarDanio(100);
+            ento.cambioEntorno(EntornosTipo.Agresivo);
+            System.out.println("¡¡¡Grito furioso!!!");
+            System.out.println(usuario.getNombre()+" ha soltado un gran grito algo doloroso");
+            System.out.println("El entorno se ha tornado agresivo...");
+        } else {
+            habNoDisponible(usuario);
         }
     }
 

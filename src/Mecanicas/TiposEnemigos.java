@@ -54,21 +54,10 @@ public class TiposEnemigos {
     public void enemigoFortalecido(Enemigo enemigo, Personaje personaje){
         int salud = (enemigo.getPsMaximo() * 40) / 100;
         int curaApuro = (enemigo.getPsMaximo() * 30) / 100;
-        int auxHabilidad;
         if(enemigo.getPs() <= salud && enemigo.getPrimerApuro()){
-            enemigo.recibirCura(curaApuro);
-            enemigo.setPrimerApuro(false);
-            System.out.println("El enemigo a aplicado una curacion en apuros de: "+curaApuro);
-            sist.confirmarAtaqueEnemigo(personaje, enemigo);
-            ener.manejoEnergia(enemigo);
-            enemigo.setCantProvocado(enemigo.getCantProvocado() + 1);
+            accionApuro(enemigo, personaje, salud, curaApuro);
         } else if(enemigo.getEnergia() >= 10 && enemigo.getCantProvocado() >= 6) {
-            System.out.println("!El enemigo se siente provocado¡");
-            auxHabilidad = enemigo.getIdHabilidad();
-            enemigo.setIdHabilidad(enemigo.getIdHabSecundaria());
-            hab.ejecutarHabilidades(enemigo, personaje);
-            enemigo.setIdHabilidad(auxHabilidad);
-            enemigo.setCantProvocado(0);
+            accionProvocado(enemigo, personaje);
         } else if (enemigo.getEnergia() >= 10){
             hab.ejecutarHabilidades(enemigo, personaje);
         } else {
@@ -80,6 +69,23 @@ public class TiposEnemigos {
 
     public void enemigoJefe(){}
 
+    public void accionApuro(Enemigo enemigo, Personaje personaje, int salud, int curaApuro){
+        enemigo.recibirCura(curaApuro);
+        enemigo.setPrimerApuro(false);
+        System.out.println(enemigo.getNombre()+" entro en apuros, se curo: "+curaApuro);
+        sist.confirmarAtaqueEnemigo(personaje, enemigo);
+        ener.manejoEnergia(enemigo);
+        enemigo.setCantProvocado(enemigo.getCantProvocado() + 1);
+    }
 
+    public void accionProvocado(Enemigo enemigo, Personaje personaje){
+        int auxHabilidad;
+        System.out.println("!"+enemigo.getNombre()+" se siente provocado¡");
+        auxHabilidad = enemigo.getIdHabilidad();
+        enemigo.setIdHabilidad(enemigo.getIdHabSecundaria());
+        hab.ejecutarHabilidades(enemigo, personaje);
+        enemigo.setIdHabilidad(auxHabilidad);
+        enemigo.setCantProvocado(0);
+    }
 
 }

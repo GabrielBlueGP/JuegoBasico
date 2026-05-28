@@ -80,15 +80,15 @@ public class Enemigo extends BasePersonaje{
                 break;
             case RolEne.Comun:
                 this.ps += 2500;
-                this.ataque += 100;
+                this.ataque += 175;
                 break;
             case RolEne.Fortalecido:
                 this.ps += 5000;
-                this.ataque += 300;
+                this.ataque += 200;
                 break;
             case RolEne.Jefe:
                 this.ps += 10000;
-                this.ataque += 500;
+                this.ataque += 300;
                 break;
             default:
                 throw new IllegalArgumentException("Rol no valido");

@@ -16,15 +16,15 @@ public class Personaje extends BasePersonaje {
         this.apodo = apodo;
         switch (rol) {
             case Atacante:
-                this.ps += 2400;
+                this.ps += 3000;
                 this.ataque += 600;
                 break;
             case Apoyo:
-                this.ps += 4000;
+                this.ps += 5500;
                 this.ataque += 200;
                 break;
             case Sabotaje:
-                this.ps += 2700;
+                this.ps += 3400;
                 this.ataque += 300;
                 break;
             default:

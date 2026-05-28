@@ -161,7 +161,7 @@ public class CombateMenus {
             String opcion = control.nextLine().toUpperCase();
             int idUsado = Integer.parseInt(opcion);
             if(idUsado >= 1 && idUsado <= 4){
-                jugadores = gestPer.selectorPersonaje(1);
+                jugadores = gestPer.selectorPersonaje(idUsado);
                 activo = false;
             } else {
                 System.out.println("\nOpcion no reconocida, reingrese su opcion");
