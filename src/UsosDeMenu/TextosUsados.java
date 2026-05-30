@@ -185,7 +185,6 @@ public class TextosUsados {
         System.out.println("\t-Superempujon: Hace la mitad de daño de un ataque normal y entumece al rival");
         System.out.println("\t-Escupitajo Toxico: Cambia el suelo del rival a toxico");
         System.out.println("\t-Aroma natural: Cura un equivalente del 20% de los PS maximos del usuario y cambia el suelo a resiliente");
-
         System.out.println("----------------------------------------------------------------------------");
     }
 

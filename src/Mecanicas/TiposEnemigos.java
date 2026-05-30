@@ -32,6 +32,7 @@ public class TiposEnemigos {
                 enemigoFortalecido(enemigo, personaje);
                 break;
             case Jefe:
+                enemigoJefe(enemigo, personaje);
                 break;
         }
     }
@@ -58,6 +59,7 @@ public class TiposEnemigos {
             accionApuro(enemigo, personaje, salud, curaApuro);
         } else if(enemigo.getEnergia() >= 10 && enemigo.getCantProvocado() >= 6) {
             accionProvocado(enemigo, personaje);
+            enemigo.setCantProvocado(0);
         } else if (enemigo.getEnergia() >= 10){
             hab.ejecutarHabilidades(enemigo, personaje);
         } else {
@@ -67,7 +69,24 @@ public class TiposEnemigos {
         }
     }
 
-    public void enemigoJefe(){}
+    public void enemigoJefe(Enemigo enemigo, Personaje personaje){
+        int salud = (enemigo.getPsMaximo() * 40) / 100;
+        int curaApuro = (enemigo.getPsMaximo() * 30) / 100;
+        if(enemigo.getPs() <= salud && enemigo.getPrimerApuro()){
+            accionApuro(enemigo, personaje, salud, curaApuro);
+        } else if(enemigo.getEnergia() >= 10 && enemigo.getCantProvocado() == 10) {
+            accionProvocado(enemigo, personaje);
+            enemigo.setCantProvocado(0);
+        } else if (enemigo.getEnergia() >= 10 && enemigo.getCantProvocado() == 5) {
+            accionProvocado(enemigo, personaje);
+        } else if (enemigo.getEnergia() >= 10){
+            hab.ejecutarHabilidades(enemigo, personaje);
+        } else {
+            sist.confirmarAtaqueEnemigo(personaje, enemigo);
+            ener.manejoEnergia(enemigo);
+            enemigo.setCantProvocado(enemigo.getCantProvocado() + 1);
+        }
+    }
 
     public void accionApuro(Enemigo enemigo, Personaje personaje, int salud, int curaApuro){
         enemigo.recibirCura(curaApuro);
@@ -85,7 +104,6 @@ public class TiposEnemigos {
         enemigo.setIdHabilidad(enemigo.getIdHabSecundaria());
         hab.ejecutarHabilidades(enemigo, personaje);
         enemigo.setIdHabilidad(auxHabilidad);
-        enemigo.setCantProvocado(0);
     }
 
 }

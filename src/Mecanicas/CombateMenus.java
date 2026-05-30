@@ -44,7 +44,8 @@ public class CombateMenus {
             System.out.println("\t(1) Modo practica");
             System.out.println("\t(2) Contra un enemigo comun");
             System.out.println("\t(3) Contra un enemigo fortalecido");
-            System.out.println("\t(4) Al limite");
+            System.out.println("\t(4) Contra un jefe");
+            System.out.println("\t(5) Al limite");
             System.out.println("\t(X) Salir");
             System.out.print("\nOpcion: ");
             String opcion = control.nextLine().toUpperCase();
@@ -68,6 +69,12 @@ public class CombateMenus {
                     combateEnemigoFortalecido(jugadores, rivales, control);
                     break;
                 case "4":
+                    System.out.println("\nContra un enemigo fortalecido seleccionado");
+                    menuSelectorPer(gestPer, control);
+                    rivales = gestEne.selectorEnemigos(4);
+                    combateEnemigoJefe(jugadores, rivales, control);
+                    break;
+                case "5":
                     System.out.println("\nAl limite seleccionado");
                     menuSelectorPer(gestPer, control);
                     rivales = gestEne.selectorEnemigos(5);
@@ -112,6 +119,17 @@ public class CombateMenus {
         System.out.println("\n¡¡¡COMENZO UN COMBATE SERIO!!!\n");
         while(personaje.getPs() > 0 && enemigo.getPs() > 0){
             if(!modComb.contraFortalecido(personaje, enemigo, control)){
+                break;
+            }
+        }
+        finCombates(personaje, enemigo);
+    }
+
+    public void combateEnemigoJefe(Personaje personaje, Enemigo enemigo, Scanner control){
+        barraDecorativa();
+        System.out.println("\n¡¡¡UN JEFE ENFURECIDO HA APARECIDO!!!\n");
+        while(personaje.getPs() > 0 && enemigo.getPs() > 0){
+            if(!modComb.contraJefe(personaje, enemigo, control)){
                 break;
             }
         }

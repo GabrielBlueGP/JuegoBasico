@@ -34,6 +34,10 @@ public class ModosDJuego {
         return secuencia1vs1(personaje, enemigo, control);
     }
 
+    public boolean contraJefe(Personaje personaje, Enemigo enemigo, Scanner control){
+        return secuencia1vs1(personaje, enemigo, control);
+    }
+
     public boolean alLimite(Personaje personaje, Enemigo enemigo, Scanner control){
         return secuenciaLimite(personaje, enemigo, control);
     }

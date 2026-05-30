@@ -141,7 +141,13 @@ public class HabilidadesActivas {
     public void rasgunioVenenoso(BasePersonaje usuario, BasePersonaje objetivo){
         this.usoEnergia = 5;
         if(usuario.getEnergia() >= usoEnergia){
-
+            ener.restarEnergia(usuario, usoEnergia);
+            int danio = (usuario.getAtaque() * 50) / 100;
+            objetivo.aplicarDanio(danio);
+            est.cambioEstados(objetivo, PosEstados.Envenenado);
+            System.out.println("¡¡¡Rasguño venenoso!!!");
+            System.out.println(objetivo.getNombre()+" sufrio unos "+danio+" de daño");
+            System.out.println("El ataque a provocado que "+objetivo.getNombre()+" sea envenenado...");
         } else {
             habNoDisponible(usuario);
         }
