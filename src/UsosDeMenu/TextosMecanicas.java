@@ -2,6 +2,52 @@ package UsosDeMenu;
 
 public class TextosMecanicas {
 
+    public static void energiaText(){
+        System.out.println("\n----------------------------------------------------------------------------");
+        System.out.println("-Se acumula dependiendo de la accion");
+        System.out.println("-Puede ser usada por los ataques cargados del jugador o las habilidades");
+        System.out.println("-Los ataque cargados usan energia apartir de 3 puntos, tras usarse vuelve a 0");
+        System.out.println("-El limite de energia acumulable es de 20");
+        System.out.println("----------------------------------------------------------------------------");
+    }
+
+    public static void estadosText(){
+        System.out.println("\n----------------------------------------------------------------------------");
+        System.out.println("-Definen la condicion fisica del jugador y el enemigo");
+        System.out.println("-Puede ser cambiada por habilidades u otros efectos presenten durante un combate");
+        System.out.println("-Hay 4 tipos:");
+        System.out.println("\t-Normal: Es el estado base, no causa ningun efecto");
+        System.out.println("\t-Entumecido: El afectado no puede hacer nada durante muchos turnos");
+        System.out.println("\t-Envenenado: Quita una pequeña parte de los PS del afectado hasta que cambie de estado");
+        System.out.println("\t-Sensible: El afectado recibe el doble de daño durante cierta cantidad de turnos");
+        System.out.println("\t-Dormido: El afectado no puede hacer nada durante pocos turnos");
+        System.out.println("----------------------------------------------------------------------------");
+    }
+
+    public static void entornosText(){
+        System.out.println("\n----------------------------------------------------------------------------");
+        System.out.println("-Es el campo donde ocurren los combates");
+        System.out.println("-Afecta a todos los presentes");
+        System.out.println("-Existen 4 tipos:");
+        System.out.println("\t-Normal: Es un entorno sin efecto");
+        System.out.println("\t-Temblor: Hace que el campo de batalla tiemble afectando la precision de los ataques");
+        System.out.println("\t-Agresivo: Provoca una niebla en el campo que aumenta los ataques en un 15%");
+        System.out.println("\t-Sanador: Envuelve el campo en un aura que tras cualquier accion se recupere un 10% de PS");
+        System.out.println("----------------------------------------------------------------------------");
+    }
+
+    public static void suelosText(){
+        System.out.println("\n----------------------------------------------------------------------------");
+        System.out.println("-Es el area ocupada por los personajes");
+        System.out.println("-Afecta solo al personaje que corresponda dicho suelo");
+        System.out.println("-Existen 4 tipos:");
+        System.out.println("\t-Normal: No causa ningun efecto");
+        System.out.println("\t-Puas: Causa una pequeña cantidad de daño tras realizar cualquier accion");
+        System.out.println("\t-Toxico: Provoca que se cambia a un estado envenenado");
+        System.out.println("\t-Resiliente: Retorna el estado a normal e impide que se cambie a otros estados mientras este activo");
+        System.out.println("----------------------------------------------------------------------------");
+    }
+
     public static void habilidadesText(){
         System.out.println("\n----------------------------------------------------------------------------");
         System.out.println("-Son efectos que se pueden usar durante los combates");
@@ -19,8 +65,8 @@ public class TextosMecanicas {
         System.out.println("\t9 -Rasguño venenoso: Ataca haciendo la mitad de su daño y deja envenenado al rival");
         System.out.println("\t10-Super patada: Lanza una patada que provoca que el entorno tiemble");
         System.out.println("\t11-Grito furioso: Suelta un grito que desgasta la salud del usuario a cambio de tornar el entorno agresivo");
-        System.out.println("\t-");
-        System.out.println("\t-");
+        System.out.println("\t12-Canto energico: El usuario se pone a cantar provocando que el entorno sea sanador");
+        System.out.println("\t13-Juego sucio: La risa del usuario provoca que el rival se vuelva sensible con un suelo lleno de puas");
         System.out.println("----------------------------------------------------------------------------");
     }
 }

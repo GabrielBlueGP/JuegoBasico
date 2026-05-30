@@ -16,16 +16,26 @@ public class Main {
         Boolean juegoActivo = true;
         String menuOpciones;
         GestionPersonajes gestorPer = new GestionPersonajes();
-        Personaje pers1 = new Personaje("Tojita", "El colorista desquiciad", 100, PosEstados.Normal, RolPer.Atacante, 1);
-        Personaje pers2 = new Personaje("Wonejo", "El conejo dragon", 100, PosEstados.Normal, RolPer.Apoyo, 2);
-        Personaje pers3 = new Personaje("Hervacio", "El artesano misterioso", 50, PosEstados.Normal, RolPer.Sabotaje, 4);
-        Personaje pers4 = new Personaje("Anthony", "El carnero abismal", 75, PosEstados.Normal, RolPer.Sabotaje, 3);
+        Personaje pers1 = new Personaje("Brayan", "El espadachin", 100, PosEstados.Normal, RolPer.Atacante, 1);
+        Personaje pers2 = new Personaje("Chris", "El curandero", 90, PosEstados.Normal, RolPer.Apoyo, 2);
+        Personaje pers3 = new Personaje("Fabi", "El dormilon", 90, PosEstados.Normal, RolPer.Apoyo, 3);
+        Personaje pers4 = new Personaje("Luana", "La viajera", 80, PosEstados.Normal, RolPer.Sabotaje, 4);
+        Personaje pers5 = new Personaje("Valen", "El luchador", 80, PosEstados.Normal, RolPer.Sabotaje, 5);
+        Personaje pers6 = new Personaje("Matias", "El brujo", 80, PosEstados.Normal, RolPer.Atacante, 6);
+        Personaje pers7 = new Personaje("Luna", "La cuidadora", 80, PosEstados.Normal, RolPer.Apoyo, 7);
+        Personaje pers8 = new Personaje("Paola", "La intercambiante", 80, PosEstados.Normal, RolPer.Sabotaje, 8);
+        Personaje pers9 = new Personaje("Bogdan", "El salvaje", 80, PosEstados.Normal, RolPer.Atacante, 9);
+        Personaje pers10 = new Personaje("Xavier", "El deportista", 80, PosEstados.Normal, RolPer.Sabotaje, 10);
+        Personaje pers11 = new Personaje("Lauty", "El musico", 80, PosEstados.Normal, RolPer.Atacante, 11);
+        Personaje pers12 = new Personaje("Toji", "El cantante", 80, PosEstados.Normal, RolPer.Apoyo, 12);
+        Personaje pers13 = new Personaje("Hervo", "El peligroso", 80, PosEstados.Normal, RolPer.Sabotaje, 13);
+
 
         GestionEnemigos gestorEne = new GestionEnemigos();
         Enemigo enem1 = new Enemigo("Gordiflon", 0, PosEstados.Normal, 3, RolEne.Aguantador);
         Enemigo enem2 = new Enemigo("Ogro", 80, PosEstados.Normal, 1, RolEne.Comun);
         Enemigo enem3 = new Enemigo("Armadura maldita", 90, PosEstados.Normal, 1, 5, RolEne.Fortalecido );
-        Enemigo enem4 = new Enemigo("Rey insecto", 100, PosEstados.Normal, 1, 2, 3, RolEne.Jefe);
+        Enemigo enem4 = new Enemigo("Rey insecto", 100, PosEstados.Normal, 1, 6, 13, RolEne.Jefe);
         Enemigo enem5 = new Enemigo("Ogrin", 50, PosEstados.Normal, 1, RolEne.Comun);
 
 
@@ -33,6 +43,16 @@ public class Main {
         gestorPer.agregarPer(pers2);
         gestorPer.agregarPer(pers3);
         gestorPer.agregarPer(pers4);
+        gestorPer.agregarPer(pers5);
+        gestorPer.agregarPer(pers6);
+        gestorPer.agregarPer(pers7);
+        gestorPer.agregarPer(pers8);
+        gestorPer.agregarPer(pers9);
+        gestorPer.agregarPer(pers10);
+        gestorPer.agregarPer(pers11);
+        gestorPer.agregarPer(pers12);
+        gestorPer.agregarPer(pers13);
+
 
         gestorEne.agregarEne(enem1);
         gestorEne.agregarEne(enem2);

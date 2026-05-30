@@ -1,8 +1,6 @@
 package Mecanicas;
 
 import ConfigurarPersonajes.BasePersonaje;
-import ConfigurarPersonajes.Personaje;
-import Enums.EntornosTipo;
 import Enums.PosEstados;
 
 public class Estados {
@@ -11,7 +9,7 @@ public class Estados {
 
     public void  iniciarContador(BasePersonaje afectado){
         switch (afectado.getEstado()){
-            case Sencible:
+            case Sensible:
                 afectado.setContadorEstados(3);
                 break;
             case Entumecido:
@@ -33,7 +31,7 @@ public class Estados {
             case Envenenado:
                 estEnvenenado(afectado);
                 break;
-            case Sencible:
+            case Sensible:
             case Entumecido:
             case Dormido:
                 if(afectado.getContadorEstados() > 1){
@@ -49,7 +47,7 @@ public class Estados {
     }
 
     public int estSencible(BasePersonaje afectado, int ataque){
-        if(afectado.getEstado() == PosEstados.Sencible){
+        if(afectado.getEstado() == PosEstados.Sensible){
             ataque = ataque * 2;
         }
         return ataque;

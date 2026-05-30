@@ -50,19 +50,19 @@ public class TextosUsados {
                     reglasModos();
                     break;
                 case "4":
-                    reglasEnergia();
+                    TextosMecanicas.energiaText();
                     break;
                 case "5":
-                    reglasEstados();
+                    TextosMecanicas.estadosText();
                     break;
                 case "6":
-                    reglasEntornos();
+                    TextosMecanicas.entornosText();
                     break;
                 case "7":
-                    reglasSuelos();
+                    TextosMecanicas.suelosText();
                     break;
                 case "8":
-                    reglasHabilidades();
+                    TextosMecanicas.habilidadesText();
                     break;
                 case "X":
                     System.out.println("Volviendo al menu principal...");
@@ -125,67 +125,4 @@ public class TextosUsados {
         System.out.println("-Dependiendo del modo, en algunos puedes seleccionar el personaje o el jugador");
         System.out.println("----------------------------------------------------------------------------");
     }
-
-    public static void reglasEnergia(){
-        System.out.println("\n----------------------------------------------------------------------------");
-        System.out.println("-Se acumula dependiendo de la accion");
-        System.out.println("-Puede ser usada por los ataques cargados del jugador o las habilidades");
-        System.out.println("-Los ataque cargados usan energia apartir de 3 puntos, tras usarse vuelve a 0");
-        System.out.println("-El limite de energia acumulable es de 20");
-        System.out.println("----------------------------------------------------------------------------");
-    }
-
-    public static void reglasEstados(){
-        System.out.println("\n----------------------------------------------------------------------------");
-        System.out.println("-Definen la condicion fisica del jugador y el enemigo");
-        System.out.println("-Puede ser cambiada por habilidades u otros efectos presenten durante un combate");
-        System.out.println("-Hay 4 tipos:");
-        System.out.println("\t-Normal: Es el estado base, no causa ningun efecto");
-        System.out.println("\t-Entumecido: El afectado no puede hacer nada durante muchos turnos");
-        System.out.println("\t-Envenenado: Quita una pequeña parte de los PS del afectado hasta que cambie de estado");
-        System.out.println("\t-Sencible: El afectado recibe el doble de daño durante cierta cantidad de turnos");
-        System.out.println("\t-Dormido: El afectado no puede hacer nada durante pocos turnos");
-        System.out.println("----------------------------------------------------------------------------");
-    }
-
-    public static void reglasEntornos(){
-        System.out.println("\n----------------------------------------------------------------------------");
-        System.out.println("-Es el campo donde ocurren los combates");
-        System.out.println("-Afecta a todos los presentes");
-        System.out.println("-Existen 4 tipos:");
-        System.out.println("\t-Normal: Es un entorno sin efecto");
-        System.out.println("\t-Temblor: Hace que el campo de batalla tiemble afectando la precision de los ataques");
-        System.out.println("\t-Agresivo: Provoca una niebla en el campo que aumenta los ataques en un 15%");
-        System.out.println("\t-Sanador: Envuelve el campo en un aura que tras cualquier accion se recupere un 10% de PS");
-        System.out.println("----------------------------------------------------------------------------");
-    }
-
-    public static void reglasSuelos(){
-        System.out.println("\n----------------------------------------------------------------------------");
-        System.out.println("-Es el area ocupada por los personajes");
-        System.out.println("-Afecta solo al personaje que corresponda dicho suelo");
-        System.out.println("-Existen 4 tipos:");
-        System.out.println("\t-Normal: No causa ningun efecto");
-        System.out.println("\t-Puas: Causa una pequeña cantidad de daño tras realizar cualquier accion");
-        System.out.println("\t-Toxico: Provoca que se cambia a un estado envenenado");
-        System.out.println("\t-Resiliente: Retorna el estado a normal e impide que se cambie a otros estados mientras este activo");
-        System.out.println("----------------------------------------------------------------------------");
-    }
-
-    public static void reglasHabilidades(){
-        System.out.println("\n----------------------------------------------------------------------------");
-        System.out.println("-Son efectos que se pueden usar durante los combates");
-        System.out.println("-Solo pueden usarse con cierta cantidad de energia, tras su uson restan dicha cantidad");
-        System.out.println("-Afectan a quien lo usa, el rival, estados, suelos y entornos");
-        System.out.println("-Las habilidades existentes son: ");
-        System.out.println("\t-Superdaño: Realiza un fuerte ataque contra el rival");
-        System.out.println("\t-Supercura: Cura un equivalente del 40% de los PS maximos del usuario");
-        System.out.println("\n-Relajacion: Cura un equivalente del 70% de los PS maximos del usuario y cambia su estado a dormido");
-        System.out.println("\t-Voluntador: Hace que el rival entre en el estado entumecido");
-        System.out.println("\t-Superempujon: Hace la mitad de daño de un ataque normal y entumece al rival");
-        System.out.println("\t-Escupitajo Toxico: Cambia el suelo del rival a toxico");
-        System.out.println("\t-Aroma natural: Cura un equivalente del 20% de los PS maximos del usuario y cambia el suelo a resiliente");
-        System.out.println("----------------------------------------------------------------------------");
-    }
-
 }

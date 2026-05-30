@@ -173,11 +173,44 @@ public class HabilidadesActivas {
     public void gritoFurioso(BasePersonaje usuario){
         this.usoEnergia = 6;
         if(usuario.getEnergia() >= usoEnergia){
+            ener.restarEnergia(usuario , usoEnergia);
             usuario.aplicarDanio(100);
             ento.cambioEntorno(EntornosTipo.Agresivo);
             System.out.println("¡¡¡Grito furioso!!!");
             System.out.println(usuario.getNombre()+" ha soltado un gran grito algo doloroso");
             System.out.println("El entorno se ha tornado agresivo...");
+        } else {
+            habNoDisponible(usuario);
+        }
+    }
+
+    //(12)
+    public void cantoEnergico(BasePersonaje usuario){
+        this.usoEnergia = 5;
+        if(usuario.getEnergia() >= usoEnergia){
+            ener.restarEnergia(usuario , usoEnergia);
+            if(usuario.getEstado() != PosEstados.Normal){
+                est.cambioEstados(usuario, PosEstados.Normal);
+            }
+            ento.cambioEntorno(EntornosTipo.Sanador);
+            System.out.println("¡¡¡Canto energico!!!");
+            System.out.println(usuario.getNombre()+" empezo a cantar con pasión");
+            System.out.println("El entorno se ha tornado sanador...");
+        } else {
+            habNoDisponible(usuario);
+        }
+    }
+
+    //(13)
+    public void juegoSucio(BasePersonaje usuario, BasePersonaje objetivo){
+        this.usoEnergia = 7;
+        if(usuario.getEnergia() >= usoEnergia){
+            ener.restarEnergia(usuario, usoEnergia);
+            sue.cambioSuelo(objetivo, SuelosPosibles.Puas);
+            est.cambioEstados(objetivo, PosEstados.Sensible);
+            System.out.println("¡¡¡Juego sucio!!!");
+            System.out.println(usuario.getNombre()+" se rie malisiosamente");
+            System.out.println(objetivo.getNombre()+" empieza a sentirse sensible mientras su suelo se llena de puas");
         } else {
             habNoDisponible(usuario);
         }
@@ -212,6 +245,24 @@ public class HabilidadesActivas {
                 break;
             case 7:
                 aromaNatural(usuario);
+                break;
+            case 8:
+                sanguijuela(usuario, objetivo);
+                break;
+            case 9:
+                rasgunioVenenoso(usuario, objetivo);
+                break;
+            case 10:
+                superPatada(usuario, objetivo);
+                break;
+            case 11:
+                gritoFurioso(usuario);
+                break;
+            case 12:
+                cantoEnergico(usuario);
+                break;
+            case 13:
+                juegoSucio(usuario, objetivo);
                 break;
             }
     }
