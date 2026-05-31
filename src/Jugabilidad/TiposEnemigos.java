@@ -1,7 +1,8 @@
-package Mecanicas;
+package Jugabilidad;
 
 import ConfigurarPersonajes.Enemigo;
 import ConfigurarPersonajes.Personaje;
+import Jugabilidad.Mecanicas.*;
 
 public class TiposEnemigos {
     private Energia ener;

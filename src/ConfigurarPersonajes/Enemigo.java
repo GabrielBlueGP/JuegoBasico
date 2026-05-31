@@ -17,20 +17,12 @@ public class Enemigo extends BasePersonaje{
         this.rol = rol;
         switch (rol){
             case RolEne.Aguantador:
-                this.ps += 6000;
-                this.ataque += 0;
+                this.ps = 5000;
+                this.ataque = 0;
                 break;
             case RolEne.Comun:
-                this.ps += 2500;
-                this.ataque += 100;
-                break;
-            case RolEne.Fortalecido:
-                this.ps += 5000;
-                this.ataque += 200;
-                break;
-            case RolEne.Jefe:
-                this.ps += 10000;
-                this.ataque += 500;
+                this.ps = 2500;
+                this.ataque = 25;
                 break;
             default:
                 throw new IllegalArgumentException("Rol no valido");
@@ -46,21 +38,9 @@ public class Enemigo extends BasePersonaje{
         this.cantProvocado = 0;
         this.primerApuro = true;
         switch (rol){
-            case RolEne.Aguantador:
-                this.ps = 6000;
-                this.ataque = 0;
-                break;
-            case RolEne.Comun:
-                this.ps = 2500;
-                this.ataque = 25;
-                break;
             case RolEne.Fortalecido:
-                this.ps = 5000;
+                this.ps = 4000;
                 this.ataque = 50;
-                break;
-            case RolEne.Jefe:
-                this.ps = 10000;
-                this.ataque = 100;
                 break;
             default:
                 throw new IllegalArgumentException("Rol no valido");
@@ -74,21 +54,9 @@ public class Enemigo extends BasePersonaje{
         this.idHabSecundaria = idHabSecundaria;
         this.idHabTerciaria = idHabTerciaria;
         switch (rol){
-            case RolEne.Aguantador:
-                this.ps += 6000;
-                this.ataque += 0;
-                break;
-            case RolEne.Comun:
-                this.ps += 2500;
-                this.ataque += 175;
-                break;
-            case RolEne.Fortalecido:
-                this.ps += 5000;
-                this.ataque += 200;
-                break;
             case RolEne.Jefe:
-                this.ps += 10000;
-                this.ataque += 300;
+                this.ps = 6000;
+                this.ataque = 75;
                 break;
             default:
                 throw new IllegalArgumentException("Rol no valido");

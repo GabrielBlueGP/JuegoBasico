@@ -1,7 +1,7 @@
 import ConfigurarPersonajes.GestionEnemigos;
 import Enums.PosEstados;
 import Enums.RolEne;
-import Mecanicas.CombateMenus;
+import Jugabilidad.ModosDeCombate.CombateMenus;
 import ConfigurarPersonajes.Enemigo;
 import ConfigurarPersonajes.GestionPersonajes;
 import ConfigurarPersonajes.Personaje;
@@ -30,15 +30,6 @@ public class Main {
         Personaje pers12 = new Personaje("Toji", "El cantante", 80, PosEstados.Normal, RolPer.Apoyo, 12);
         Personaje pers13 = new Personaje("Hervo", "El peligroso", 80, PosEstados.Normal, RolPer.Sabotaje, 13);
 
-
-        GestionEnemigos gestorEne = new GestionEnemigos();
-        Enemigo enem1 = new Enemigo("Gordiflon", 0, PosEstados.Normal, 3, RolEne.Aguantador);
-        Enemigo enem2 = new Enemigo("Ogro", 80, PosEstados.Normal, 1, RolEne.Comun);
-        Enemigo enem3 = new Enemigo("Armadura maldita", 90, PosEstados.Normal, 1, 5, RolEne.Fortalecido );
-        Enemigo enem4 = new Enemigo("Rey insecto", 100, PosEstados.Normal, 1, 6, 13, RolEne.Jefe);
-        Enemigo enem5 = new Enemigo("Ogrin", 50, PosEstados.Normal, 1, RolEne.Comun);
-
-
         gestorPer.agregarPer(pers1);
         gestorPer.agregarPer(pers2);
         gestorPer.agregarPer(pers3);
@@ -53,6 +44,12 @@ public class Main {
         gestorPer.agregarPer(pers12);
         gestorPer.agregarPer(pers13);
 
+        GestionEnemigos gestorEne = new GestionEnemigos();
+        Enemigo enem1 = new Enemigo("Gordiflon", 0, PosEstados.Normal, 3, RolEne.Aguantador);
+        Enemigo enem2 = new Enemigo("Ogro", 80, PosEstados.Normal, 1, RolEne.Comun);
+        Enemigo enem3 = new Enemigo("Armadura maldita", 90, PosEstados.Normal, 1, 5, RolEne.Fortalecido );
+        Enemigo enem4 = new Enemigo("Rey insecto", 100, PosEstados.Normal, 1, 6, 13, RolEne.Jefe);
+        Enemigo enem5 = new Enemigo("Ogrin", 50, PosEstados.Normal, 1, RolEne.Comun);
 
         gestorEne.agregarEne(enem1);
         gestorEne.agregarEne(enem2);

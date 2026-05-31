@@ -1,9 +1,9 @@
-package Mecanicas;
+package Jugabilidad;
 
 import ConfigurarPersonajes.BasePersonaje;
 import ConfigurarPersonajes.Enemigo;
 import ConfigurarPersonajes.Personaje;
-import Enums.EntornosTipo;
+import Jugabilidad.Mecanicas.*;
 
 import java.util.Random;
 

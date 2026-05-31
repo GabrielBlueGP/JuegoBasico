@@ -1,10 +1,11 @@
-package Mecanicas;
+package Jugabilidad.ModosDeCombate;
 
 import ConfigurarPersonajes.*;
 import Enums.EntornosTipo;
 import Enums.PosEstados;
 import Enums.SuelosPosibles;
-import Mecanicas.ModosDeCombate.ModosDJuego;
+import Jugabilidad.*;
+import Jugabilidad.Mecanicas.*;
 
 import java.util.Scanner;
 
@@ -178,7 +179,7 @@ public class CombateMenus {
             System.out.print("\nOpcion: ");
             String opcion = control.nextLine().toUpperCase();
             int idUsado = Integer.parseInt(opcion);
-            if(idUsado >= 1 && idUsado <= 4){
+            if(idUsado >= 1 && idUsado <= 13){
                 jugadores = gestPer.selectorPersonaje(idUsado);
                 activo = false;
             } else {

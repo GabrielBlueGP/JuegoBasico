@@ -1,4 +1,4 @@
-package Mecanicas;
+package Jugabilidad.Mecanicas;
 
 import ConfigurarPersonajes.BasePersonaje;
 import Enums.EntornosTipo;

@@ -11,7 +11,7 @@ public class TextosUsados {
         System.out.println("(D) Mostrar personajes");
         System.out.println("(E) Mostrar enemigos");
         System.out.println("(X) Salir del programa");
-        System.out.println("(Precione la tecla marcada en ( ) + Enter)\n");
+        System.out.println("(Presione la tecla marcada en ( ) + Enter)\n");
         System.out.print("Ingrese su opcion: ");
     }
 
@@ -31,12 +31,12 @@ public class TextosUsados {
             System.out.println("(1) Personaje del jugador");
             System.out.println("(2) Acerca de los enemigos");
             System.out.println("(3) Modos de juego");
-            System.out.println("(4) Energia");
+            System.out.println("(4) Energía");
             System.out.println("(5) Estados");
             System.out.println("(6) Entornos");
             System.out.println("(7) Suelos");
             System.out.println("(8) Habilidades Activas");
-            System.out.println("(X) Volver a incio");
+            System.out.println("(X) Volver a inicio");
             System.out.print("Opcion: ");
             opcion = control.nextLine().toUpperCase();
             switch (opcion){
@@ -82,7 +82,7 @@ public class TextosUsados {
 
     public static void opcionNoReconocida(){
         System.out.println("\n----------------------------------------------------------------------------");
-        System.out.println("\nLa tecla ingresada no se encuentra entre las opciones\nporfavor, precione una tecla valida + Enter\n");
+        System.out.println("\nLa tecla ingresada no se encuentra entre las opciones\nPor favor, presione una tecla válida + Enter\n");
         System.out.println("----------------------------------------------------------------------------\n");
     }
 
@@ -90,8 +90,7 @@ public class TextosUsados {
         System.out.println("\n----------------------------------------------------------------------------");
         System.out.println("Caracteristicas del personaje jugable:");
         System.out.println("\n-Posee un nombre, apodo, atributos, rol y estadisticas");
-        System.out.println("-El rol define el tipo habilidades que tendra");
-        System.out.println("-Cada rol brinda un plus especifico a las estadisticas");
+        System.out.println("-El rol define las estadísticas");
         System.out.println("-Puede atacar");
         System.out.println("-Los ataques normales pueden llegar a fallar en base a la precision");
         System.out.println("-Puede reservar energia");
@@ -104,12 +103,11 @@ public class TextosUsados {
         System.out.println("\n----------------------------------------------------------------------------");
         System.out.println("Caracteristicas del enemigo:");
         System.out.println("\n-Posee un nombre, apodo, atributos, rol y estadisticas");
-        System.out.println("-existen 4 tipos definidos por su especie:");
+        System.out.println("-Existen 4 tipos definidos por su rol:");
         System.out.println("\t-Aguantador: no ataca, tiene bastantes PS");
         System.out.println("\t-Comun: puede atacar, tiene una cantidad de PS regular");
         System.out.println("\t-Fortalecido: puede atacar, tiene una cantidad de PS alta, Pueden usar habilidades");
-        System.out.println("\t-Jefe: version mucho mas fuerte y desafiante de un Fortalecido");
-        System.out.println("\t-");
+        System.out.println("\t-Jefe: versión mucho más fuerte y desafiante de un Fortalecido");
         System.out.println("-Los ataques normales pueden llegar a fallar en base a la precision");
         System.out.println("-Puede reservar energia");
         System.out.println("----------------------------------------------------------------------------");
@@ -117,9 +115,9 @@ public class TextosUsados {
 
     public static void reglasModos(){
         System.out.println("\n----------------------------------------------------------------------------");
-        System.out.println("-Contra un enemigo: Un jugador se enfrenta a un enemigo comun");
-        System.out.println("-Contra lo perseverante y estatico: Un jugador se enfrenta a un enemigo aguantador");
-        System.out.println("-Al limite: Contra un enemigo pero el combate termina si llega al limite de turnos");
+        System.out.println("-Contra un enemigo: Un jugador se enfrenta a un enemigo común");
+        System.out.println("-Contra lo perseverante y estático: Un jugador se enfrenta a un enemigo aguantador");
+        System.out.println("-Al límite: Contra un enemigo pero el combate termina si llega al limite de turnos");
         System.out.println("-En guardia: Un jugador se enfrenta a un enemigo fortalecido");
         System.out.println("-Peligro inminente: Un jugador se enfrenta a un Jefe");
         System.out.println("-Dependiendo del modo, en algunos puedes seleccionar el personaje o el jugador");

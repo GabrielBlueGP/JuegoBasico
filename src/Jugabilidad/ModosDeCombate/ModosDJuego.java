@@ -1,12 +1,11 @@
-package Mecanicas.ModosDeCombate;
+package Jugabilidad.ModosDeCombate;
 
 import ConfigurarPersonajes.BasePersonaje;
 import ConfigurarPersonajes.Enemigo;
 import ConfigurarPersonajes.Personaje;
 import Enums.EntornosTipo;
-import Enums.PosEstados;
-import Mecanicas.SistemaCombate;
-import Mecanicas.TiposEnemigos;
+import Jugabilidad.SistemaCombate;
+import Jugabilidad.TiposEnemigos;
 
 import java.util.Scanner;
 

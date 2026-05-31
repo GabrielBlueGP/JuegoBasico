@@ -2,7 +2,6 @@ package ConfigurarPersonajes;
 
 import Enums.PosEstados;
 import Enums.SuelosPosibles;
-import Mecanicas.Energia;
 
 public abstract class BasePersonaje{
     protected String nombre;
